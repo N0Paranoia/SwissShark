@@ -201,6 +201,8 @@ void Player::Input(Tile* tiles[])
             }
 			if(keyState[SDL_SCANCODE_W])
 			{
+				Yvel = -walkingSpeed;
+				this->Move(up, tiles);
 				this->GoTroughDoor(tiles);
 				this->Climb(up, tiles);
 			}

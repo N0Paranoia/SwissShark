@@ -139,7 +139,7 @@ void Game::Input()
 void Game::Loop()
 {
     camera.Center(&player.playerRect);
-    player.Falling(tileSet);
+//    player.Falling(tileSet);
 }
 
 void Game::Render()
