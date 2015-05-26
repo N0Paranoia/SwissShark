@@ -18,8 +18,7 @@ Player::Player()
 	Xvel = 0;
 	Yvel = 0;
 	Jvel = 0;
-	walkingSpeed = 4;
-	runningSpeed = 8;
+	swimmingSpeed = 8;
 	frame = 0;
 	StartFrameLeft = 7;
 	EndFrameLeft = 0;
@@ -39,11 +38,10 @@ Player::Player()
 	WalkingLeft = false;
 	FacingLeft = false;
 	FacingRight = true;
-	isRunning = false;
 
 	isFalling = true;
 
-	isClimbing = false;
+
 	canEnterDoor = true;
 
 	canJump = true;
@@ -218,7 +216,7 @@ void Player::Input(Tile* tiles[])
 		case state_walking:
 			if(keyState[SDL_SCANCODE_A])
 			{
-				Xvel = -walkingSpeed;
+				Xvel = -swimmingSpeed;
 				this->Move(left, tiles);
 				WalkingLeft = true;
 				FacingRight = false;
@@ -226,7 +224,7 @@ void Player::Input(Tile* tiles[])
 			}
 			else if(keyState[SDL_SCANCODE_D])
            {
-				Xvel = walkingSpeed;
+				Xvel = swimmingSpeed;
 				this->Move(right, tiles);
 				WalkingRight = true;
 				FacingLeft = false;
@@ -238,60 +236,22 @@ void Player::Input(Tile* tiles[])
 			}
 			if (keyState[SDL_SCANCODE_W])
 			{
-				Yvel = -walkingSpeed;
+				Yvel = -swimmingSpeed;
 				this->Move(up, tiles);
 			}
 			else if(keyState[SDL_SCANCODE_S])
 			{
-				Yvel = walkingSpeed;
+				Yvel = swimmingSpeed;
 				this->Move(down, tiles);
 			}
 			
 			else
 			{
 				_state = state_idle;
-			}
-			if(keyState[SDL_SCANCODE_LSHIFT] || keyState[SDL_SCANCODE_RSHIFT])
-			{
-				isRunning = true;
-				cout << "run" << endl;
-			}
-			else
-			{
-				isRunning = false;
-			}
-			if(keyState[SDL_SCANCODE_SPACE])
-			{
-				Jvel = -jumpSpeed;
-				this->Jump(tiles);
 			}
 			if(keyState[SDL_SCANCODE_L])
 			{
 				_state = state_attacking;
-			}
-			break;
-			
-		case state_jumping:
-
-			break;
-			
-		case state_climbing:
-			if(keyState[SDL_SCANCODE_W])
-			{
-				Yvel = -walkingSpeed;
-				this->Move(down, tiles);
-				this->Climb(up, tiles);
-			}
-			else if(keyState[SDL_SCANCODE_S])
-			{
-				Yvel = walkingSpeed;
-				this->Move(down, tiles);
-				this->Climb(down, tiles);
-			}
-			else if(keyState[SDL_SCANCODE_A] || keyState[SDL_SCANCODE_D])
-			{
-				isClimbing = false;
-				_state = state_idle;
 			}
 			break;
 			
@@ -307,68 +267,6 @@ void Player::Input(Tile* tiles[])
 				this->Attack();
 			}
 			break;
-	}
-}
-
-void Player::Jump(Tile* tiles[])
-{
-	if(isRunning)
-	{
-		playerRect.y += Jvel;
-		isClimbing = false;
-		//Jumping collision handeling
-		if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE ||  pCollision.WallCollision(playerRect, tiles))
-			playerRect.y -= Jvel;
-	}
-}
-
-void Player::Falling(Tile* tiles[])
-{
-	if(!isClimbing)
-	{
-		playerRect.y += GRAVITY;
-		isFalling = true;
-		if(pCollision.WallCollision(playerRect, tiles) || pCollision.CloudCollision(playerRect, tiles))
-		{
-			playerRect.y -=GRAVITY;
-			isFalling = false;
-		}
-		if(pCollision.VarCollision(playerRect, tiles, TILE_SLOPE_LEFT))
-		{
-			if(playerRect.y + playerRect.h >= (TILE_SIZE - ((playerRect.x-1) + playerRect.w) % TILE_SIZE) + ((playerRect.y + playerRect.h )/ TILE_SIZE)*TILE_SIZE)
-			{
-				playerRect.y -=GRAVITY;
-				isFalling = false;
-			}
-		}
-		if(pCollision.VarCollision(playerRect, tiles, TILE_SLOPE_RIGHT))
-		{
-			if(playerRect.y + playerRect.h >= ((playerRect.x) % TILE_SIZE) + ((playerRect.y + playerRect.h)/ TILE_SIZE)*TILE_SIZE)
-			{
-				playerRect.y -=GRAVITY;
-				isFalling = false;
-			}
-		}
-	}
-}
-
-void Player::Climb(int Dir, Tile* tiles[])
-{
-	if(pCollision.VarCollision(playerRect, tiles, TILE_LADDER) || pCollision.VarCollision(playerRect, tiles, TILE_LADDER_TOP))
-	{
-		if(Dir == up || down)
-		{
-			_state = state_climbing;
-			playerRect.y += Yvel;
-			isClimbing = true;
-			isFalling = false;
-			if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE ||  pCollision.WallCollision(playerRect, tiles))
-				playerRect.y -= Yvel;
-		}
-	}
-	else
-	{
-		isClimbing = false;
 	}
 }
 
@@ -421,48 +319,6 @@ void Player::Attack()
 	{
 		SwordBox = {NULL, NULL, NULL, NULL};
 		isAttacking = false;
-		_state = state_idle;
-		energyRecover = true;
-	}
-}
-
-void Player::Block()
-{
-	if(block)
-	{
-		if(Energy(NULL) > blockEnergy)
-		{
-			if(FacingLeft)
-			{
-				ShieldBox = {this->playerRect.x - 10, this->playerRect.y, 10, playerRect.h};
-			}
-			else if(FacingRight)
-			{
-				ShieldBox = {this->playerRect.x + this->playerRect.w, this->playerRect.y, 10, playerRect.h};
-			}
-			if(!isBlocking)
-			{
-				Energy(blockEnergy);
-				isBlocking = true;
-				energyRecover = false;
-			}
-		}
-		else
-		{
-			if(FacingLeft)
-			{
-				ShieldBox = {this->playerRect.x - 2, this->playerRect.y, 2, playerRect.h};
-			}
-			if(FacingRight)
-			{
-				ShieldBox = {this->playerRect.x + this->playerRect.w, this->playerRect.y, 2, playerRect.h};
-			}
-		}
-	}
-	else
-	{
-		ShieldBox = {NULL, NULL, NULL, NULL};
-		isBlocking = false;
 		_state = state_idle;
 		energyRecover = true;
 	}
@@ -597,10 +453,9 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 	SDL_RenderFillRect(Renderer, &StaminBar);
 	//Render Frame
 	SpriteSheetTexture.Render(Renderer, playerRect.x - camera->x, playerRect.y - camera->y, &PlayerClips[frame]);
-	SDL_SetRenderDrawColor(Renderer, 0x00, 0x00, 0xff, 0xff);
-	//Create New Rectangle for shield for the camera compisation
-	Shield = {ShieldBox.x - camera->x, ShieldBox.y - camera->y, ShieldBox.w, ShieldBox.h};
-	SDL_RenderFillRect(Renderer, &Shield);
+	SDL_SetRenderDrawColor(Renderer, 0x00, 0x00, 0xff, 0xff);\
+	cout << "Xvel = " << Xvel << endl;
+	cout << "Yvel = " << Yvel << endl;
 }
 
 void Player::Cleanup()

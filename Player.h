@@ -14,12 +14,8 @@ class Player
 		enum State
 		{
 			state_idle,
-			state_jumping,
 			state_walking,
-			state_running,
 			state_attacking,
-			state_blocking,
-			state_climbing
 		};
 
 		enum Direction
@@ -37,7 +33,7 @@ class Player
 		int Xvel;
 		int Yvel;
 		int Jvel;
-		int walkingSpeed;
+		int swimmingSpeed;
 		int runningSpeed;
 
 		int frame;
@@ -84,8 +80,6 @@ class Player
 		int health;
 
 		SDL_Rect PlayerClips[18];
-		SDL_Rect ShieldBox;
-		SDL_Rect Shield;
 		SDL_Rect SwordBox;
 		SDL_Rect Sword;
 		SDL_Rect HealthBar;
@@ -102,10 +96,6 @@ class Player
 		int LoadMedia(SDL_Renderer* Renderer);
 		void Move(int Dir, Tile* tiles[]);
 		void Attack();
-		void Block();
-		void Jump(Tile* tiles[]);
-		void Climb(int Dir, Tile* tiles[]);
-		void Falling(Tile* tiles[]);
 		void GoTroughDoor(Tile* tiles[]);
 		int Health();
 		int Energy(int action);
