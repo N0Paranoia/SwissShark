@@ -13,8 +13,8 @@ Player::Player()
 {
 	playerRect.x = 1*TILE_SIZE;
 	playerRect.y = 2*TILE_SIZE;
-	playerRect.w = TILE_SIZE;
-	playerRect.h = 2*TILE_SIZE;
+	playerRect.w = 2*TILE_SIZE;
+	playerRect.h = TILE_SIZE;
 	Xvel = 0;
 	Yvel = 0;
 	Jvel = 0;
@@ -195,16 +195,11 @@ void Player::Input(Tile* tiles[])
 			}
 			if(keyState[SDL_SCANCODE_S])
 			{
-				Yvel = walkingSpeed;
-				this->Move(down, tiles);
-				this->Climb(down, tiles);
-            }
+				_state = state_walking;
+			}
 			if(keyState[SDL_SCANCODE_W])
 			{
-				Yvel = -walkingSpeed;
-				this->Move(up, tiles);
-				this->GoTroughDoor(tiles);
-				this->Climb(up, tiles);
+				_state = state_walking;
 			}
 			if(!keyState[SDL_SCANCODE_W])
 			{
@@ -218,10 +213,6 @@ void Player::Input(Tile* tiles[])
 			{
 				isAttacking = false;
 			}
-			if(keyState[SDL_SCANCODE_K])
-			{
-				_state = state_blocking;
-			}
 			break;
 			
 		case state_walking:
@@ -234,13 +225,28 @@ void Player::Input(Tile* tiles[])
 				FacingLeft = true;
 			}
 			else if(keyState[SDL_SCANCODE_D])
-            {
+           {
 				Xvel = walkingSpeed;
 				this->Move(right, tiles);
 				WalkingRight = true;
 				FacingLeft = false;
 				FacingRight = true;
-            }
+           }
+			else
+			{
+				_state = state_idle;
+			}
+			if (keyState[SDL_SCANCODE_W])
+			{
+				Yvel = -walkingSpeed;
+				this->Move(up, tiles);
+			}
+			else if(keyState[SDL_SCANCODE_S])
+			{
+				Yvel = walkingSpeed;
+				this->Move(down, tiles);
+			}
+			
 			else
 			{
 				_state = state_idle;
@@ -262,10 +268,6 @@ void Player::Input(Tile* tiles[])
 			if(keyState[SDL_SCANCODE_L])
 			{
 				_state = state_attacking;
-			}
-			if(keyState[SDL_SCANCODE_K])
-			{
-				_state = state_blocking;
 			}
 			break;
 			
@@ -303,19 +305,6 @@ void Player::Input(Tile* tiles[])
 			{
 				attack = false;
 				this->Attack();
-			}
-			break;
-			
-		case state_blocking:
-			if(keyState[SDL_SCANCODE_K])
-			{
-				block = true;
-				this->Block();
-			}
-			else
-			{
-				block = false;
-				this->Block();
 			}
 			break;
 	}
@@ -403,11 +392,11 @@ void Player::Attack()
 		{
 			if(FacingLeft)
 			{
-				SwordBox = {this->playerRect.x - TILE_SIZE, this->playerRect.y + TILE_SIZE, TILE_SIZE, 10};
+				SwordBox = {this->playerRect.x - TILE_SIZE, this->playerRect.y + (TILE_SIZE/2 - 5), TILE_SIZE, 10};
 			}
 			else if(FacingRight)
 			{
-				SwordBox = {this->playerRect.x + this->playerRect.w, this->playerRect.y + TILE_SIZE, TILE_SIZE, 10};
+				SwordBox = {this->playerRect.x + this->playerRect.w, this->playerRect.y + (TILE_SIZE/2 - 5), TILE_SIZE, 10};
 			}
 			if(!isAttacking)
 			{
@@ -420,11 +409,11 @@ void Player::Attack()
 		{
 			if(FacingLeft)
 			{
-				SwordBox = {this->playerRect.x - TILE_SIZE, this->playerRect.y + TILE_SIZE, 10, 10};
+				SwordBox = {this->playerRect.x - TILE_SIZE, this->playerRect.y + TILE_SIZE/2, NULL, NULL};
 			}
 			else if(FacingRight)
 			{
-				SwordBox = {this->playerRect.x + this->playerRect.w, this->playerRect.y + TILE_SIZE, 10, 10};
+				SwordBox = {this->playerRect.x + this->playerRect.w, this->playerRect.y + TILE_SIZE/2, NULL, NULL};
 			}
 		}
 	}
