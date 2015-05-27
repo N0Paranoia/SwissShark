@@ -183,6 +183,8 @@ void Player::Input(Tile* tiles[])
     switch(_state)
 	{
 		case state_idle:
+			Xvel = 0;
+			Yvel = 0;
 			if(keyState[SDL_SCANCODE_A])
 			{
 				_state = state_walking;
@@ -216,35 +218,66 @@ void Player::Input(Tile* tiles[])
 		case state_walking:
 			if(keyState[SDL_SCANCODE_A])
 			{
-				Xvel = -swimmingSpeed;
+				//To compensate fot verical movement
+				if(keyState[SDL_SCANCODE_W] || keyState[SDL_SCANCODE_S])
+				{
+					Xvel = -(swimmingSpeed/2);
+				}
+				else
+				{
+					Xvel = -swimmingSpeed;
+				}
 				this->Move(left, tiles);
 				WalkingLeft = true;
 				FacingRight = false;
 				FacingLeft = true;
 			}
 			else if(keyState[SDL_SCANCODE_D])
-           {
-				Xvel = swimmingSpeed;
+			{
+				//To compensate fot verical movement
+				if(keyState[SDL_SCANCODE_W] || keyState[SDL_SCANCODE_S])
+				{
+					Xvel = swimmingSpeed/2;
+				}
+				else
+				{
+					Xvel = swimmingSpeed;
+				}
 				this->Move(right, tiles);
 				WalkingRight = true;
 				FacingLeft = false;
 				FacingRight = true;
-           }
+			}
 			else
 			{
 				_state = state_idle;
 			}
 			if (keyState[SDL_SCANCODE_W])
 			{
-				Yvel = -swimmingSpeed;
+				//To compensate fot verical movement
+				if(keyState[SDL_SCANCODE_A] || keyState[SDL_SCANCODE_D])
+				{
+					Yvel = -(swimmingSpeed/2);
+				}
+				else
+				{
+					Yvel = -swimmingSpeed;
+				}
 				this->Move(up, tiles);
 			}
 			else if(keyState[SDL_SCANCODE_S])
 			{
-				Yvel = swimmingSpeed;
+				//To compensate fot verical movement
+				if(keyState[SDL_SCANCODE_A] || keyState[SDL_SCANCODE_D])
+				{
+					Yvel = swimmingSpeed/2;
+				}
+				else
+				{
+					Yvel = swimmingSpeed;
+				}
 				this->Move(down, tiles);
-			}
-			
+			}			
 			else
 			{
 				_state = state_idle;
@@ -326,48 +359,52 @@ void Player::Attack()
 
 void Player::Move(int Dir, Tile* tiles[])
 {
-	if(!isAttacking)
+	if(Dir == left || Dir == right)
 	{
-		if(Dir == left || Dir == right)
-			playerRect.x += Xvel;
-		// Horizontal collision handling
-		if(playerRect.x < 0 || playerRect.x + playerRect.w > LEVEL_WIDTH*TILE_SIZE || pCollision.WallCollision(playerRect, tiles))
-			playerRect.x -= Xvel;
-
-		if(Dir == up || Dir == down)
-			playerRect.y += Yvel;
-		// Vertical collision handling
-		if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE ||  pCollision.WallCollision(playerRect, tiles))
-			playerRect.y -= Yvel;
-		//Slanted tiles collision handling
-		if(pCollision.VarCollision(playerRect, tiles, TILE_SLOPE_LEFT) && Dir == right)
+		playerRect.x += Xvel;
+	}
+	// Horizontal collision handling
+	if(playerRect.x < 0 || playerRect.x + playerRect.w > LEVEL_WIDTH*TILE_SIZE || pCollision.WallCollision(playerRect, tiles))
+	{
+		playerRect.x -= Xvel;
+	}
+	if(Dir == up || Dir == down)
+	{
+		playerRect.y += Yvel;
+	}
+	// Vertical collision handling
+	if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE ||  pCollision.WallCollision(playerRect, tiles))
+	{
+		playerRect.y -= Yvel;
+	}
+	//Slanted tiles collision handling
+	if(pCollision.VarCollision(playerRect, tiles, TILE_SLOPE_LEFT) && Dir == right)
+	{
+		if((playerRect.x + playerRect.w) % TILE_SIZE == 0)
 		{
-			if((playerRect.x + playerRect.w) % TILE_SIZE == 0)
-			{
-				//Counters that the sum is 0 because he is entering the next tile (the playerRect.x -1 as used in the fall method leads to other collision problems)
-				playerRect.y = TILE_SIZE - (TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE;
-			}
-			else if(TILE_SIZE - (playerRect.x + playerRect.w) % TILE_SIZE == 4)
-			{
-				//Counters going to fast and colliding in to next block
-				playerRect.y = ((playerRect.y / TILE_SIZE) * TILE_SIZE)-4;
-			}
-			else if(playerRect.y + playerRect.h != (TILE_SIZE - ((playerRect.x) + playerRect.w) % TILE_SIZE) + ((playerRect.y + playerRect.h )/ TILE_SIZE)*TILE_SIZE)
-			{
-				playerRect.y = (TILE_SIZE - ((playerRect.x) + playerRect.w) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE;
-			}
+			//Counters that the sum is 0 because he is entering the next tile (the playerRect.x -1 as used in the fall method leads to other collision problems)
+			playerRect.y = TILE_SIZE - (TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE;
 		}
-		if(pCollision.VarCollision(playerRect, tiles, TILE_SLOPE_RIGHT) && Dir == left)
+		else if(TILE_SIZE - (playerRect.x + playerRect.w) % TILE_SIZE == 4)
 		{
-			if((playerRect.x) % TILE_SIZE == 4)
-			{
-				//Counters getting stuck when running
-				playerRect.y = ((playerRect.x-4) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE;
-			}
-			else if(playerRect.y + playerRect.h != ((playerRect.x) % TILE_SIZE) + ((playerRect.y + playerRect.h )/ TILE_SIZE)*TILE_SIZE)
-			{
-				playerRect.y = ((playerRect.x) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE;
-			}
+			//Counters going to fast and colliding in to next block
+			playerRect.y = ((playerRect.y / TILE_SIZE) * TILE_SIZE)-4;
+		}
+		else if(playerRect.y + playerRect.h != (TILE_SIZE - ((playerRect.x) + playerRect.w) % TILE_SIZE) + ((playerRect.y + playerRect.h )/ TILE_SIZE)*TILE_SIZE)
+		{
+			playerRect.y = (TILE_SIZE - ((playerRect.x) + playerRect.w) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE;
+		}
+	}
+	if(pCollision.VarCollision(playerRect, tiles, TILE_SLOPE_RIGHT) && Dir == left)
+	{
+		if((playerRect.x) % TILE_SIZE == 4)
+		{
+			//Counters getting stuck when running
+			playerRect.y = ((playerRect.x-4) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE;
+		}
+		else if(playerRect.y + playerRect.h != ((playerRect.x) % TILE_SIZE) + ((playerRect.y + playerRect.h )/ TILE_SIZE)*TILE_SIZE)
+		{
+			playerRect.y = ((playerRect.x) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE;
 		}
 	}
 }
@@ -389,7 +426,7 @@ int Player::Energy(int action)
 	}
 	if(energyRecover && action == NULL && energy < maxEnergy)
 	{
-			energy ++;
+		energy ++;
 	}
 	energy = energy - action;
 	return energy;
@@ -453,7 +490,7 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 	SDL_RenderFillRect(Renderer, &StaminBar);
 	//Render Frame
 	SpriteSheetTexture.Render(Renderer, playerRect.x - camera->x, playerRect.y - camera->y, &PlayerClips[frame]);
-	SDL_SetRenderDrawColor(Renderer, 0x00, 0x00, 0xff, 0xff);\
+	SDL_SetRenderDrawColor(Renderer, 0x00, 0x00, 0xff, 0xff);
 	cout << "Xvel = " << Xvel << endl;
 	cout << "Yvel = " << Yvel << endl;
 }

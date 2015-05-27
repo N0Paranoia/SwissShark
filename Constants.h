@@ -4,16 +4,16 @@
 const int FPS = 60;
 const int TICK_PER_FRAME = 1000 / FPS;
 
-const int WINDOW_WIDTH = 1024;
+const int WINDOW_WIDTH = 1056;
 const int WINDOW_HEIGHT = 576;
 
 const int TILE_SIZE = 48;
 
-const int LEVEL_WIDTH = 30;
-const int LEVEL_HEIGHT = 30;
+const int LEVEL_WIDTH = 44;
+const int LEVEL_HEIGHT = 12;
 
 //Set Tile Types
-const int TOTAL_TILES = 900;
+const int TOTAL_TILES = LEVEL_WIDTH*LEVEL_HEIGHT;
 const int TOTAL_TILE_SPRITES = 15;
 
 const int TILE_CLEAR = 00;

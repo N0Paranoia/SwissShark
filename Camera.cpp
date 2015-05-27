@@ -6,8 +6,8 @@ Camera::Camera()
 {
     centerRect.x = 0;
     centerRect.y = 0;
-    centerRect.w = 2*TILE_SIZE;
-    centerRect.h = 4*TILE_SIZE;
+    centerRect.w = 4*TILE_SIZE;
+    centerRect.h = 2*TILE_SIZE;
 
     cameraRect.x = 0;
     cameraRect.y = 0;
