@@ -15,6 +15,12 @@ Player::Player()
 	playerRect.y = 2*TILE_SIZE;
 	playerRect.w = 3*TILE_SIZE;
 	playerRect.h = TILE_SIZE;
+	
+	playerSprite.x = 1*TILE_SIZE;
+	playerSprite.y = 2*TILE_SIZE;
+	playerSprite.w = 3*TILE_SIZE;
+	playerSprite.h = TILE_SIZE;
+	
 	Xvel = 0;
 	Yvel = 0;
 	Jvel = 0;
@@ -79,117 +85,98 @@ int Player::LoadMedia(SDL_Renderer* Renderer)
 	}
 	else
 	{
-		PlayerClips[0].x = 0 * playerRect.w;
-		PlayerClips[0].y = 0 * playerRect.h;
-		PlayerClips[0].w = playerRect.w;
-		PlayerClips[0].h = playerRect.h;
+		PlayerClips[0].x = 0 * playerSprite.w;
+		PlayerClips[0].y = 0 * playerSprite.h;
+		PlayerClips[0].w = playerSprite.w;
+		PlayerClips[0].h = playerSprite.h;
 
-		PlayerClips[1].x = 1 * playerRect.w;
-		PlayerClips[1].y = 0 * playerRect.h;
-		PlayerClips[1].w = playerRect.w;
-		PlayerClips[1].h = playerRect.h;
+		PlayerClips[1].x = 1 * playerSprite.w;
+		PlayerClips[1].y = 0 * playerSprite.h;
+		PlayerClips[1].w = playerSprite.w;
+		PlayerClips[1].h = playerSprite.h;
 
-		PlayerClips[2].x = 2 * playerRect.w;
-		PlayerClips[2].y = 0 * playerRect.h;
-		PlayerClips[2].w = playerRect.w;
-		PlayerClips[2].h = playerRect.h;
+		PlayerClips[2].x = 2 * playerSprite.w;
+		PlayerClips[2].y = 0 * playerSprite.h;
+		PlayerClips[2].w = playerSprite.w;
+		PlayerClips[2].h = playerSprite.h;
 
-		PlayerClips[3].x = 3 * playerRect.w;
-		PlayerClips[3].y = 0 * playerRect.h;
-		PlayerClips[3].w = playerRect.w;
-		PlayerClips[3].h = playerRect.h;
+		PlayerClips[3].x = 3 * playerSprite.w;
+		PlayerClips[3].y = 0 * playerSprite.h;
+		PlayerClips[3].w = playerSprite.w;
+		PlayerClips[3].h = playerSprite.h;
 
-		PlayerClips[4].x = 4 * playerRect.w;
-		PlayerClips[4].y = 0 * playerRect.h;
-		PlayerClips[4].w = playerRect.w;
-		PlayerClips[4].h = playerRect.h;
+		PlayerClips[4].x = 4 * playerSprite.w;
+		PlayerClips[4].y = 0 * playerSprite.h;
+		PlayerClips[4].w = playerSprite.w;
+		PlayerClips[4].h = playerSprite.h;
 
-		PlayerClips[5].x = 5 * playerRect.w;
-		PlayerClips[5].y = 0 * playerRect.h;
-		PlayerClips[5].w = playerRect.w;
-		PlayerClips[5].h = playerRect.h;
+		PlayerClips[5].x = 5 * playerSprite.w;
+		PlayerClips[5].y = 0 * playerSprite.h;
+		PlayerClips[5].w = playerSprite.w;
+		PlayerClips[5].h = playerSprite.h;
 
-		PlayerClips[6].x = 6 * playerRect.w;
-		PlayerClips[6].y = 0 * playerRect.h;
-		PlayerClips[6].w = playerRect.w;
-		PlayerClips[6].h = playerRect.h;
+		PlayerClips[6].x = 6 * playerSprite.w;
+		PlayerClips[6].y = 0 * playerSprite.h;
+		PlayerClips[6].w = playerSprite.w;
+		PlayerClips[6].h = playerSprite.h;
 
-		PlayerClips[7].x = 7 * playerRect.w;
-		PlayerClips[7].y = 0 * playerRect.h;
-		PlayerClips[7].w = playerRect.w;
-		PlayerClips[7].h = playerRect.h;
+		PlayerClips[7].x = 7 * playerSprite.w;
+		PlayerClips[7].y = 0 * playerSprite.h;
+		PlayerClips[7].w = playerSprite.w;
+		PlayerClips[7].h = playerSprite.h;
 
-		PlayerClips[8].x = 8 * playerRect.w;
-		PlayerClips[8].y = 0 * playerRect.h;
-		PlayerClips[8].w = playerRect.w;
-		PlayerClips[8].h = playerRect.h;
+		PlayerClips[8].x = 8 * playerSprite.w;
+		PlayerClips[8].y = 0 * playerSprite.h;
+		PlayerClips[8].w = playerSprite.w;
+		PlayerClips[8].h = playerSprite.h;
 
-		PlayerClips[9].x = 0 * playerRect.w;
-		PlayerClips[9].y = 1 * playerRect.h;
-		PlayerClips[9].w = playerRect.w;
-		PlayerClips[9].h = playerRect.h;
+		PlayerClips[9].x = 0 * playerSprite.w;
+		PlayerClips[9].y = 1 * playerSprite.h;
+		PlayerClips[9].w = playerSprite.w;
+		PlayerClips[9].h = playerSprite.h;
 
-		PlayerClips[10].x = 1 * playerRect.w;
-		PlayerClips[10].y = 1 * playerRect.h;
-		PlayerClips[10].w = playerRect.w;
-		PlayerClips[10].h = playerRect.h;
+		PlayerClips[10].x = 1 * playerSprite.w;
+		PlayerClips[10].y = 1 * playerSprite.h;
+		PlayerClips[10].w = playerSprite.w;
+		PlayerClips[10].h = playerSprite.h;
 
-		PlayerClips[11].x = 2 * playerRect.w;
-		PlayerClips[11].y = 1 * playerRect.h;
-		PlayerClips[11].w = playerRect.w;
-		PlayerClips[11].h = playerRect.h;
+		PlayerClips[11].x = 2 * playerSprite.w;
+		PlayerClips[11].y = 1 * playerSprite.h;
+		PlayerClips[11].w = playerSprite.w;
+		PlayerClips[11].h = playerSprite.h;
 
-		PlayerClips[12].x = 3 * playerRect.w;
-		PlayerClips[12].y = 1 * playerRect.h;
-		PlayerClips[12].w = playerRect.w;
-		PlayerClips[12].h = playerRect.h;
+		PlayerClips[12].x = 3 * playerSprite.w;
+		PlayerClips[12].y = 1 * playerSprite.h;
+		PlayerClips[12].w = playerSprite.w;
+		PlayerClips[12].h = playerSprite.h;
 
-		PlayerClips[13].x = 4 * playerRect.w;
-		PlayerClips[13].y = 1 * playerRect.h;
-		PlayerClips[13].w = playerRect.w;
-		PlayerClips[13].h = playerRect.h;
+		PlayerClips[13].x = 4 * playerSprite.w;
+		PlayerClips[13].y = 1 * playerSprite.h;
+		PlayerClips[13].w = playerSprite.w;
+		PlayerClips[13].h = playerSprite.h;
 
-		PlayerClips[14].x = 5 * playerRect.w;
-		PlayerClips[14].y = 1 * playerRect.h;
-		PlayerClips[14].w = playerRect.w;
-		PlayerClips[14].h = playerRect.h;
+		PlayerClips[14].x = 5 * playerSprite.w;
+		PlayerClips[14].y = 1 * playerSprite.h;
+		PlayerClips[14].w = playerSprite.w;
+		PlayerClips[14].h = playerSprite.h;
 
-		PlayerClips[15].x = 6 * playerRect.w;
-		PlayerClips[15].y = 1 * playerRect.h;
-		PlayerClips[15].w = playerRect.w;
-		PlayerClips[15].h = playerRect.h;
+		PlayerClips[15].x = 6 * playerSprite.w;
+		PlayerClips[15].y = 1 * playerSprite.h;
+		PlayerClips[15].w = playerSprite.w;
+		PlayerClips[15].h = playerSprite.h;
 
-		PlayerClips[16].x = 7 * playerRect.w;
-		PlayerClips[16].y = 1 * playerRect.h;
-		PlayerClips[16].w = playerRect.w;
-		PlayerClips[16].h = playerRect.h;
+		PlayerClips[16].x = 7 * playerSprite.w;
+		PlayerClips[16].y = 1 * playerSprite.h;
+		PlayerClips[16].w = playerSprite.w;
+		PlayerClips[16].h = playerSprite.h;
 
-		PlayerClips[17].x = 8 * playerRect.w;
-		PlayerClips[17].y = 1 * playerRect.h;
-		PlayerClips[17].w = playerRect.w;
-		PlayerClips[17].h = playerRect.h;
+		PlayerClips[17].x = 8 * playerSprite.w;
+		PlayerClips[17].y = 1 * playerSprite.h;
+		PlayerClips[17].w = playerSprite.w;
+		PlayerClips[17].h = playerSprite.h;
 	}
 	return true;
 }
-
-void Player::CollisionBox()
-{
-	if(FacingLeft)
-	{
-		playerBox.x = playerRect.x;
-		playerBox.y = playerRect.y;
-		playerBox.w = 2*TILE_SIZE;
-		playerBox.h = TILE_SIZE;
-	}
-	if(FacingRight)
-	{
-		playerBox.x = playerRect.x + TILE_SIZE;
-		playerBox.y = playerRect.y;
-		playerBox.w = 2*TILE_SIZE;
-		playerBox.h = TILE_SIZE;
-	}
-}
-
 
 void Player::Input(Tile* tiles[])
 {
@@ -492,7 +479,6 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 			}
 		}
 	}
-	this->CollisionBox();
 	//Show collsiion box
 	SDL_SetRenderDrawColor(Renderer, 0xff, 0x00, 0x00, 0xff);
 	//Create New REctangle for sword for the camera compisation
@@ -500,7 +486,6 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 	SDL_RenderFillRect(Renderer, &Sword);	
 	HealthBar = {10, 10, this->Health(), 10};
 	StaminBar = {10, 25, this->Energy(NULL), 10};
-	SDL_RenderDrawRect(Renderer, &playerBox);
 	SDL_RenderFillRect(Renderer, &HealthBar);
 	SDL_SetRenderDrawColor(Renderer, 0x00, 0xff, 0x00, 0xFF );
 	SDL_RenderFillRect(Renderer, &StaminBar);

@@ -12,15 +12,15 @@
     </TabInfo>
     <TabInfo>
       <wxString Value="C:\Users\Tijn\Documents\GitHub\SwissShark\Player.h" Name="FileName"/>
-      <int Value="82" Name="FirstVisibleLine"/>
-      <int Value="95" Name="CurrentLine"/>
+      <int Value="73" Name="FirstVisibleLine"/>
+      <int Value="89" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
     <TabInfo>
       <wxString Value="C:\Users\Tijn\Documents\GitHub\SwissShark\Player.cpp" Name="FileName"/>
-      <int Value="466" Name="FirstVisibleLine"/>
-      <int Value="502" Name="CurrentLine"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="21" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>

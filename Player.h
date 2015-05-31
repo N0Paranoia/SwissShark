@@ -87,13 +87,11 @@ class Player
 	public:
 		//Collision box
 		SDL_Rect playerRect;
-		SDL_Rect playerBox;
+		SDL_Rect playerSprite;
 
 		Player();
 		virtual ~Player();
-		//void Event(SDL_Event* event);
 		void Input(Tile* tiles[]);
-		void CollisionBox();
 		int LoadMedia(SDL_Renderer* Renderer);
 		void Move(int Dir, Tile* tiles[]);
 		void Attack();
