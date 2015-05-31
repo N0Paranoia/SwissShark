@@ -93,6 +93,7 @@ class Player
 		virtual ~Player();
 		//void Event(SDL_Event* event);
 		void Input(Tile* tiles[]);
+		void CollisionBox();
 		int LoadMedia(SDL_Renderer* Renderer);
 		void Move(int Dir, Tile* tiles[]);
 		void Attack();

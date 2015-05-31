@@ -13,7 +13,7 @@ Player::Player()
 {
 	playerRect.x = 1*TILE_SIZE;
 	playerRect.y = 2*TILE_SIZE;
-	playerRect.w = 2*TILE_SIZE;
+	playerRect.w = 3*TILE_SIZE;
 	playerRect.h = TILE_SIZE;
 	Xvel = 0;
 	Yvel = 0;
@@ -124,52 +124,70 @@ int Player::LoadMedia(SDL_Renderer* Renderer)
 		PlayerClips[8].w = playerRect.w;
 		PlayerClips[8].h = playerRect.h;
 
-		PlayerClips[9].x = 9 * playerRect.w;
-		PlayerClips[9].y = 0 * playerRect.h;
+		PlayerClips[9].x = 0 * playerRect.w;
+		PlayerClips[9].y = 1 * playerRect.h;
 		PlayerClips[9].w = playerRect.w;
 		PlayerClips[9].h = playerRect.h;
 
-		PlayerClips[10].x = 10 * playerRect.w;
-		PlayerClips[10].y = 0 * playerRect.h;
+		PlayerClips[10].x = 1 * playerRect.w;
+		PlayerClips[10].y = 1 * playerRect.h;
 		PlayerClips[10].w = playerRect.w;
 		PlayerClips[10].h = playerRect.h;
 
-		PlayerClips[11].x = 11 * playerRect.w;
-		PlayerClips[11].y = 0 * playerRect.h;
+		PlayerClips[11].x = 2 * playerRect.w;
+		PlayerClips[11].y = 1 * playerRect.h;
 		PlayerClips[11].w = playerRect.w;
 		PlayerClips[11].h = playerRect.h;
 
-		PlayerClips[12].x = 12 * playerRect.w;
-		PlayerClips[12].y = 0 * playerRect.h;
+		PlayerClips[12].x = 3 * playerRect.w;
+		PlayerClips[12].y = 1 * playerRect.h;
 		PlayerClips[12].w = playerRect.w;
 		PlayerClips[12].h = playerRect.h;
 
-		PlayerClips[13].x = 13 * playerRect.w;
-		PlayerClips[13].y = 0 * playerRect.h;
+		PlayerClips[13].x = 4 * playerRect.w;
+		PlayerClips[13].y = 1 * playerRect.h;
 		PlayerClips[13].w = playerRect.w;
 		PlayerClips[13].h = playerRect.h;
 
-		PlayerClips[14].x = 14 * playerRect.w;
-		PlayerClips[14].y = 0 * playerRect.h;
+		PlayerClips[14].x = 5 * playerRect.w;
+		PlayerClips[14].y = 1 * playerRect.h;
 		PlayerClips[14].w = playerRect.w;
 		PlayerClips[14].h = playerRect.h;
 
-		PlayerClips[15].x = 15 * playerRect.w;
-		PlayerClips[15].y = 0 * playerRect.h;
+		PlayerClips[15].x = 6 * playerRect.w;
+		PlayerClips[15].y = 1 * playerRect.h;
 		PlayerClips[15].w = playerRect.w;
 		PlayerClips[15].h = playerRect.h;
 
-		PlayerClips[16].x = 16 * playerRect.w;
-		PlayerClips[16].y = 0 * playerRect.h;
+		PlayerClips[16].x = 7 * playerRect.w;
+		PlayerClips[16].y = 1 * playerRect.h;
 		PlayerClips[16].w = playerRect.w;
 		PlayerClips[16].h = playerRect.h;
 
-		PlayerClips[17].x = 17 * playerRect.w;
-		PlayerClips[17].y = 0 * playerRect.h;
+		PlayerClips[17].x = 8 * playerRect.w;
+		PlayerClips[17].y = 1 * playerRect.h;
 		PlayerClips[17].w = playerRect.w;
 		PlayerClips[17].h = playerRect.h;
 	}
 	return true;
+}
+
+void Player::CollisionBox()
+{
+	if(FacingLeft)
+	{
+		playerBox.x = playerRect.x;
+		playerBox.y = playerRect.y;
+		playerBox.w = 2*TILE_SIZE;
+		playerBox.h = TILE_SIZE;
+	}
+	if(FacingRight)
+	{
+		playerBox.x = playerRect.x + TILE_SIZE;
+		playerBox.y = playerRect.y;
+		playerBox.w = 2*TILE_SIZE;
+		playerBox.h = TILE_SIZE;
+	}
 }
 
 
@@ -474,25 +492,21 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 			}
 		}
 	}
+	this->CollisionBox();
 	//Show collsiion box
 	SDL_SetRenderDrawColor(Renderer, 0xff, 0x00, 0x00, 0xff);
-	playerBox = {playerRect.x - camera->x, playerRect.y - camera->y, playerRect.w, playerRect.h};
-	SDL_RenderDrawRect(Renderer, &playerBox);
-	
 	//Create New REctangle for sword for the camera compisation
 	Sword = {SwordBox.x - camera->x, SwordBox.y - camera->y, SwordBox.w, SwordBox.h};
-	SDL_RenderFillRect(Renderer, &Sword);
-	
+	SDL_RenderFillRect(Renderer, &Sword);	
 	HealthBar = {10, 10, this->Health(), 10};
 	StaminBar = {10, 25, this->Energy(NULL), 10};
+	SDL_RenderDrawRect(Renderer, &playerBox);
 	SDL_RenderFillRect(Renderer, &HealthBar);
 	SDL_SetRenderDrawColor(Renderer, 0x00, 0xff, 0x00, 0xFF );
 	SDL_RenderFillRect(Renderer, &StaminBar);
 	//Render Frame
 	SpriteSheetTexture.Render(Renderer, playerRect.x - camera->x, playerRect.y - camera->y, &PlayerClips[frame]);
 	SDL_SetRenderDrawColor(Renderer, 0x00, 0x00, 0xff, 0xff);
-	cout << "Xvel = " << Xvel << endl;
-	cout << "Yvel = " << Yvel << endl;
 }
 
 void Player::Cleanup()
