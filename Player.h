@@ -88,6 +88,8 @@ class Player
 		//Collision box
 		SDL_Rect playerRect;
 		SDL_Rect playerSprite;
+		
+		SDL_Rect collisionBox;
 
 		Player();
 		virtual ~Player();

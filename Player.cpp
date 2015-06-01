@@ -13,7 +13,7 @@ Player::Player()
 {
 	playerRect.x = 1*TILE_SIZE;
 	playerRect.y = 2*TILE_SIZE;
-	playerRect.w = 3*TILE_SIZE;
+	playerRect.w = 2*TILE_SIZE;
 	playerRect.h = TILE_SIZE;
 	
 	playerSprite.x = 1*TILE_SIZE;
@@ -487,6 +487,8 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 	HealthBar = {10, 10, this->Health(), 10};
 	StaminBar = {10, 25, this->Energy(NULL), 10};
 	SDL_RenderFillRect(Renderer, &HealthBar);
+	//For test purposes
+	SDL_RenderDrawRect(Renderer, &collisionBox);
 	SDL_SetRenderDrawColor(Renderer, 0x00, 0xff, 0x00, 0xFF );
 	SDL_RenderFillRect(Renderer, &StaminBar);
 	//Render Frame
