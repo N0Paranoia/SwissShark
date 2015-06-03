@@ -67,6 +67,9 @@ Player::Player()
 	attackEnergy = 25;
 	blockEnergy = 25;
 	
+	
+	Circle collider;
+	
 	int _state = state_idle;
 }
 
