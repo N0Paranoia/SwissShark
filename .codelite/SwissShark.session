@@ -5,22 +5,29 @@
   <TabInfoArray Name="TabInfoArray">
     <TabInfo>
       <wxString Value="C:\Users\nsmm\C_C++\SwissShark\Player.cpp" Name="FileName"/>
-      <int Value="352" Name="FirstVisibleLine"/>
-      <int Value="373" Name="CurrentLine"/>
+      <int Value="499" Name="FirstVisibleLine"/>
+      <int Value="507" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
     <TabInfo>
       <wxString Value="C:\Users\nsmm\C_C++\SwissShark\Player.h" Name="FileName"/>
-      <int Value="51" Name="FirstVisibleLine"/>
+      <int Value="95" Name="FirstVisibleLine"/>
       <int Value="96" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
     <TabInfo>
       <wxString Value="C:\Users\nsmm\C_C++\SwissShark\Game.cpp" Name="FileName"/>
-      <int Value="111" Name="FirstVisibleLine"/>
+      <int Value="139" Name="FirstVisibleLine"/>
       <int Value="140" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="C:\Users\nsmm\C_C++\SwissShark\Doors.cpp" Name="FileName"/>
+      <int Value="31" Name="FirstVisibleLine"/>
+      <int Value="32" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>

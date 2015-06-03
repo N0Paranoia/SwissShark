@@ -465,7 +465,7 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 		{
 			frame ++;
 			frameCounter = 0;
-			if(frame  > EndFrameRight || frame < StartFrameRight)
+			if(frame > EndFrameRight || frame < StartFrameRight)
 			{
 				frame = StartFrameRight;
 			}
@@ -487,12 +487,18 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 	HealthBar = {10, 10, this->Health(), 10};
 	StaminBar = {10, 25, this->Energy(NULL), 10};
 	SDL_RenderFillRect(Renderer, &HealthBar);
-	//For test purposes
-	SDL_RenderDrawRect(Renderer, &collisionBox);
+
 	SDL_SetRenderDrawColor(Renderer, 0x00, 0xff, 0x00, 0xFF );
 	SDL_RenderFillRect(Renderer, &StaminBar);
 	//Render Frame
-	SpriteSheetTexture.Render(Renderer, playerRect.x - camera->x, playerRect.y - camera->y, &PlayerClips[frame]);
+	if(FacingLeft)
+	{
+		SpriteSheetTexture.Render(Renderer, playerRect.x - camera->x, playerRect.y - camera->y, &PlayerClips[frame]);
+	}
+	else if(FacingRight)
+	{
+		SpriteSheetTexture.Render(Renderer, playerRect.x - TILE_SIZE - camera->x, playerRect.y - camera->y, &PlayerClips[frame]);
+	}	
 	SDL_SetRenderDrawColor(Renderer, 0x00, 0x00, 0xff, 0xff);
 }
 
