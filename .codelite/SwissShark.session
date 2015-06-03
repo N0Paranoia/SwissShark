@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Session Name="C:\Users\nsmm\C_C++\SwissShark\SwissShark.workspace">
-  <int Value="0" Name="m_selectedTab"/>
+  <int Value="4" Name="m_selectedTab"/>
   <wxString Value="C:\Users\nsmm\C_C++\SwissShark\SwissShark.workspace" Name="m_workspaceName"/>
   <TabInfoArray Name="TabInfoArray">
     <TabInfo>
       <wxString Value="C:\Users\nsmm\C_C++\SwissShark\Player.cpp" Name="FileName"/>
-      <int Value="499" Name="FirstVisibleLine"/>
-      <int Value="507" Name="CurrentLine"/>
+      <int Value="363" Name="FirstVisibleLine"/>
+      <int Value="372" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
@@ -20,7 +20,7 @@
     <TabInfo>
       <wxString Value="C:\Users\nsmm\C_C++\SwissShark\Game.cpp" Name="FileName"/>
       <int Value="139" Name="FirstVisibleLine"/>
-      <int Value="140" Name="CurrentLine"/>
+      <int Value="159" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
@@ -28,6 +28,20 @@
       <wxString Value="C:\Users\nsmm\C_C++\SwissShark\Doors.cpp" Name="FileName"/>
       <int Value="31" Name="FirstVisibleLine"/>
       <int Value="32" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="C:\Users\nsmm\C_C++\SwissShark\World.cpp" Name="FileName"/>
+      <int Value="63" Name="FirstVisibleLine"/>
+      <int Value="93" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="C:\Users\nsmm\C_C++\SwissShark\Constants.h" Name="FileName"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="28" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>

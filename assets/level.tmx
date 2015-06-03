@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="44" height="12" tilewidth="48" tileheight="48" nextobjectid="1">
  <tileset firstgid="1" name="Zee" tilewidth="48" tileheight="48">
-  <image source="tileSheet48.png" width="192" height="192"/>
+  <image source="tileSheet48.png" width="240" height="144"/>
  </tileset>
  <layer name="Tilelaag 1" width="44" height="12">
   <data encoding="base64" compression="zlib">
-   eJxjYqA+YILiUXNHzR01d9TcUXNHzR1O5tIKMA1BDACtBwCt
+   eJztlEsKgDAQQ6ujbbX1/tdtAj3CZBFw4G0fYX5R8usAIfJ2gbcaedmDFzwlv8eKvHS2jcKd7RzgBhf4kt1Oe/Z7Pb1u/4H3Njcu96Yq5uXcThO4Zwso2gHP
   </data>
  </layer>
 </map>

@@ -308,18 +308,6 @@ void Player::Input(Tile* tiles[])
 	}
 }
 
-void Player::GoTroughDoor(Tile* tiles[])
-{
-	if(pCollision.VarCollision(playerRect, tiles, TILE_DOOR))
-	{
-		if(canEnterDoor)
-		{
-			pDoors.Connection(&playerRect, NULL);
-			canEnterDoor = false;
-		}
-	}
-}
-
 void Player::Attack()
 {
 	if(attack)
@@ -381,36 +369,6 @@ void Player::Move(int Dir, Tile* tiles[])
 	if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE ||  pCollision.WallCollision(playerRect, tiles))
 	{
 		playerRect.y -= Yvel;
-	}
-	//Slanted tiles collision handling
-	if(pCollision.VarCollision(playerRect, tiles, TILE_SLOPE_LEFT) && Dir == right)
-	{
-		if((playerRect.x + playerRect.w) % TILE_SIZE == 0)
-		{
-			//Counters that the sum is 0 because he is entering the next tile (the playerRect.x -1 as used in the fall method leads to other collision problems)
-			playerRect.y = TILE_SIZE - (TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE;
-		}
-		else if(TILE_SIZE - (playerRect.x + playerRect.w) % TILE_SIZE == 4)
-		{
-			//Counters going to fast and colliding in to next block
-			playerRect.y = ((playerRect.y / TILE_SIZE) * TILE_SIZE)-4;
-		}
-		else if(playerRect.y + playerRect.h != (TILE_SIZE - ((playerRect.x) + playerRect.w) % TILE_SIZE) + ((playerRect.y + playerRect.h )/ TILE_SIZE)*TILE_SIZE)
-		{
-			playerRect.y = (TILE_SIZE - ((playerRect.x) + playerRect.w) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE;
-		}
-	}
-	if(pCollision.VarCollision(playerRect, tiles, TILE_SLOPE_RIGHT) && Dir == left)
-	{
-		if((playerRect.x) % TILE_SIZE == 4)
-		{
-			//Counters getting stuck when running
-			playerRect.y = ((playerRect.x-4) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE;
-		}
-		else if(playerRect.y + playerRect.h != ((playerRect.x) % TILE_SIZE) + ((playerRect.y + playerRect.h )/ TILE_SIZE)*TILE_SIZE)
-		{
-			playerRect.y = ((playerRect.x) % TILE_SIZE) + ((playerRect.y-1)/ TILE_SIZE)*TILE_SIZE;
-		}
 	}
 }
 

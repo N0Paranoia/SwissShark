@@ -91,7 +91,7 @@ bool Collision::WallCollision(SDL_Rect cBox, Tile* tiles[])
 {
     for(int i = 0; i < TOTAL_TILES; i++)
     {
-        if(tiles[i]->getType() == TILE_WALL)
+        if(tiles[i]->getType() > TILE_CLEAR)
         {
             if(this->CheckCollision(cBox, tiles[i]->getTileBox()))
             {
@@ -102,17 +102,17 @@ bool Collision::WallCollision(SDL_Rect cBox, Tile* tiles[])
     return false;
 }
 
-bool Collision::CloudCollision(SDL_Rect cBox, Tile* tiles[])
-{
-    for(int i = 0; i < TOTAL_TILES; i++)
-    {
-        if(tiles[i]->getType() == TILE_LADDER_TOP || tiles[i]->getType() == TILE_PLATFORM)
-        {
-            if(this->CheckCloudCollision(cBox, tiles[i]->getTileBox()))
-            {
-                return true;
-            }
-        }
-    }
-    return false;
-}
+//bool Collision::CloudCollision(SDL_Rect cBox, Tile* tiles[])
+//{
+//    for(int i = 0; i < TOTAL_TILES; i++)
+//    {
+//        if(tiles[i]->getType() == TILE_LADDER_TOP || tiles[i]->getType() == TILE_PLATFORM)
+//        {
+//            if(this->CheckCloudCollision(cBox, tiles[i]->getTileBox()))
+//            {
+//                return true;
+//            }
+//        }
+//    }
+//    return false;
+//}
