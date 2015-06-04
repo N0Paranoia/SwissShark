@@ -41,48 +41,53 @@ bool Collision::CheckCollision(SDL_Rect a, SDL_Rect b)
     return true;
 }
 
-bool CheckCircleCollision(Circle& a, SDL_Rect b)
+bool Collision::CheckCircleCollision(Circle a, SDL_Rect b)
 {
-	//Closest point on collision box
-	int cX, cY;
-
 	//Find closest x offset
-	if( a.x < b.x )
+	if(a.x < b.x)
 	{
-		cX = b.x;
+		circX = b.x;
 	}
-	else if( a.x > b.x + b.w )
+	else if(a.x > b.x + b.w)
 	{
-		cX = b.x + b.w;
+		circX = b.x + b.w;
 	}
 	else
 	{
-		cX = a.x;
+		circX = a.x;
 	}
 
 	//Find closest y offset
-	if( a.y < b.y )
+	if(a.y < b.y)
 	{
-		cY = b.y;
+		circY = b.y;
 	}
-	else if( a.y > b.y + b.h )
+	else if(a.y > b.y + b.h)
 	{
-		cY = b.y + b.h;
+		circY = b.y + b.h;
 	}
 	else
 	{
-		cY = a.y;
+		circY = a.y;
 	}
 
 	//If the closest point is inside the circle
-//	if( distanceSquared( a.x, a.y, cX, cY) < a.r * a.r )
-//	{
-//		return true;
-//	}
-	return false;
+	if(this->distanceSquared(a.x, a.y, circX, circY) < a.r*a.r)
+	{
+		return true;
 	}
+	return false;
+}
 
-	bool Collision::VarCollision(SDL_Rect cBox, Tile* tiles[], int type)
+double Collision::distanceSquared(int x1, int y1, int x2, int y2)
+{
+	int deltaX = x2 - x1;
+	int deltaY = y2 - y1;
+	
+	return deltaX*deltaX + deltaY*deltaY;
+}
+
+bool Collision::VarCollision(SDL_Rect cBox, Tile* tiles[], int type)
 	{
 	for(int i = 0; i < TOTAL_TILES; i++)
 	{
@@ -110,4 +115,19 @@ bool Collision::WallCollision(SDL_Rect cBox, Tile* tiles[])
         }
     }
     return false;
+}
+
+bool Collision::CircleCollision(Circle cCircle, Tile* tiles[])
+{    
+	for(int i = 0; i < TOTAL_TILES; i++)
+	{
+		if(tiles[i]->getType() > TILE_CLEAR)
+		{
+			if(this->CheckCircleCollision(cCircle, tiles[i]->getTileBox()))
+			{
+				return true;
+			}
+		}
+	}
+	return false;
 }

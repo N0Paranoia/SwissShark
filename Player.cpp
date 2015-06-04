@@ -13,13 +13,15 @@ Player::Player()
 {
 	playerRect.x = 1*TILE_SIZE;
 	playerRect.y = 2*TILE_SIZE;
-	playerRect.w = 2*TILE_SIZE;
+	playerRect.w = 1*TILE_SIZE;
 	playerRect.h = TILE_SIZE;
 	
 	playerSprite.x = 1*TILE_SIZE;
 	playerSprite.y = 2*TILE_SIZE;
 	playerSprite.w = 3*TILE_SIZE;
 	playerSprite.h = TILE_SIZE;
+	
+	collider.r = playerRect.h /2;
 	
 	Xvel = 0;
 	Yvel = 0;
@@ -52,24 +54,21 @@ Player::Player()
 
 	canJump = true;
 	isJumping = false;
-	
+
 	attack = false;
 	isAttacking = false;
 	block = false;
 	isBlocking = false;
-	
+
 	maxHealth = 100;
 	health = maxHealth;
 	maxEnergy = 100;
 	energy = maxEnergy;
 	energyRecover = true;
-	
+
 	attackEnergy = 25;
 	blockEnergy = 25;
-	
-	
-	Circle collider;
-	
+
 	int _state = state_idle;
 }
 
@@ -319,11 +318,11 @@ void Player::Attack()
 		{
 			if(FacingLeft)
 			{
-				SwordBox = {this->playerRect.x - TILE_SIZE, this->playerRect.y + (TILE_SIZE/2 - 5), TILE_SIZE, 10};
+				SwordBox = {this->playerRect.x - TILE_SIZE*2, this->playerRect.y + (TILE_SIZE/2 - 5), TILE_SIZE, 10};
 			}
 			else if(FacingRight)
 			{
-				SwordBox = {this->playerRect.x + this->playerRect.w, this->playerRect.y + (TILE_SIZE/2 - 5), TILE_SIZE, 10};
+				SwordBox = {this->playerRect.x + this->playerRect.w + TILE_SIZE, this->playerRect.y + (TILE_SIZE/2 - 5), TILE_SIZE, 10};
 			}
 			if(!isAttacking)
 			{
@@ -352,26 +351,30 @@ void Player::Attack()
 		energyRecover = true;
 	}
 }
-
+\
 void Player::Move(int Dir, Tile* tiles[])
 {
 	if(Dir == left || Dir == right)
 	{
 		playerRect.x += Xvel;
+		this->ShiftCollider();
 	}
 	// Horizontal collision handling
-	if(playerRect.x < 0 || playerRect.x + playerRect.w > LEVEL_WIDTH*TILE_SIZE || pCollision.WallCollision(playerRect, tiles))
+	if(playerRect.x < 0 || playerRect.x + playerRect.w > LEVEL_WIDTH*TILE_SIZE || pCollision.WallCollision(playerRect, tiles) || pCollision.CircleCollision(collider, tiles))
 	{
 		playerRect.x -= Xvel;
+		this->ShiftCollider();
 	}
 	if(Dir == up || Dir == down)
 	{
 		playerRect.y += Yvel;
+		this->ShiftCollider();
 	}
 	// Vertical collision handling
-	if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE ||  pCollision.WallCollision(playerRect, tiles))
+	if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE ||  pCollision.WallCollision(playerRect, tiles) || pCollision.CircleCollision(collider, tiles))
 	{
 		playerRect.y -= Yvel;
+		this->ShiftCollider();
 	}
 }
 
@@ -396,6 +399,22 @@ int Player::Energy(int action)
 	}
 	energy = energy - action;
 	return energy;
+}
+
+void Player::ShiftCollider()
+{
+	//Align collider to center of dot
+	if(FacingLeft)
+	{
+		collider.x = playerRect.x + collider.r*2;
+		collider.y = playerRect.y + collider.r;
+		
+	}
+	if(FacingRight)
+	{
+		collider.x = playerRect.x + playerRect.h + collider.r;
+		collider.y = playerRect.y + collider.r;
+	}
 }
 
 void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
@@ -448,10 +467,9 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 	HealthBar = {10, 10, this->Health(), 10};
 	StaminBar = {10, 25, this->Energy(NULL), 10};
 	SDL_RenderFillRect(Renderer, &HealthBar);
-
 	SDL_SetRenderDrawColor(Renderer, 0x00, 0xff, 0x00, 0xFF );
 	SDL_RenderFillRect(Renderer, &StaminBar);
-	//Render Frame
+	//Render Frameq
 	if(FacingLeft)
 	{
 		SpriteSheetTexture.Render(Renderer, playerRect.x - camera->x, playerRect.y - camera->y, &PlayerClips[frame]);
@@ -459,7 +477,7 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 	else if(FacingRight)
 	{
 		SpriteSheetTexture.Render(Renderer, playerRect.x - TILE_SIZE - camera->x, playerRect.y - camera->y, &PlayerClips[frame]);
-	}	
+	}		
 	SDL_SetRenderDrawColor(Renderer, 0x00, 0x00, 0xff, 0xff);
 }
 

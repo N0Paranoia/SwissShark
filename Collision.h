@@ -11,10 +11,11 @@ class Collision
 		Collision();
 		virtual ~Collision();
 		bool CheckCollision(SDL_Rect a, SDL_Rect b);
-		bool CheckCircleCollision(Circle& a, SDL_Rect b);
+		bool CheckCircleCollision(Circle a, SDL_Rect b);
 		bool VarCollision(SDL_Rect cBox, Tile* tiles[], int type);
 		bool WallCollision(SDL_Rect cBox, Tile* tiles[]);
-		bool CircleCollision(Circle& cCircle, Tile* tiles[]);
+		bool CircleCollision(Circle cCircle, Tile* tiles[]);
+		double distanceSquared( int x1, int y1, int x2, int y2 );
 
 	protected:
 	private:
@@ -22,6 +23,8 @@ class Collision
 		int rightA, rightB;
 		int topA, topB;
 		int bottomA, bottomB;
+		
+		int circX, circY;
 };
 
 #endif // COLLISION_H

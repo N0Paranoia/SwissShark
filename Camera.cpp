@@ -20,15 +20,15 @@ Camera::~Camera()
     //dtor
 }
 
-void Camera::Center(SDL_Rect* playerRect)
+void Camera::Center(SDL_Rect* playerRect, Circle* collider)
 {
     if(centerRect.x > playerRect->x)
     {
-        centerRect.x = playerRect->x;
+        centerRect.x = playerRect-> x;
     }
-    if((centerRect.x + centerRect.w) < (playerRect->x + playerRect->w))
+    if((centerRect.x + centerRect.w) < (playerRect->x + playerRect->w + collider->r*2))
     {
-        centerRect.x = (playerRect->x + playerRect->w) - centerRect.w;
+        centerRect.x = (playerRect->x + playerRect->w) - centerRect.w + collider->r*2;
     }
     if(centerRect.y > playerRect->y)
     {

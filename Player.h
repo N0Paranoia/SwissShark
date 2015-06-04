@@ -5,6 +5,7 @@
 #include <SDL_image.h>
 #include "Tile.h"
 #include <iostream>
+#include "Constants.h"
 
 using namespace std;
 
@@ -84,18 +85,21 @@ class Player
 		SDL_Rect Sword;
 		SDL_Rect HealthBar;
 		SDL_Rect StaminBar;
+		
 	public:
 		//Collision box
 		SDL_Rect playerRect;
 		SDL_Rect playerSprite;
-						
-		SDL_Rect collisionBox;
 
+		SDL_Rect collisionBox;
+		
+		Circle collider;
+		
 		Player();
 		virtual ~Player();
+		void ShiftCollider();
 		void Input(Tile* tiles[]);
 		int LoadMedia(SDL_Renderer* Renderer);
-		void ShiftColliders();
 		void Move(int Dir, Tile* tiles[]);
 		void Attack();
 		void GoTroughDoor(Tile* tiles[]);

@@ -2,6 +2,7 @@
 #define CAMERA_H
 
 #include <SDL.h>
+#include "Constants.h"
 
 using namespace std;
 
@@ -14,7 +15,7 @@ class Camera
     public:
         Camera();
         virtual ~Camera();
-        void Center(SDL_Rect* playerRect);
+        void Center(SDL_Rect* playerRect, Circle* collider);
         void Follow();
         void Update(SDL_Rect* playerRect);
         void Render(SDL_Renderer* Renderer);
