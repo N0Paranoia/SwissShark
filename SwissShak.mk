@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=nsmm
-Date                   :=04/06/2015
+Date                   :=08/06/2015
 CodeLitePath           :="C:\Program Files\CodeLite"
 LinkerName             :=C:/Compilers/MinGW/bin/g++.exe
 SharedObjectLinkerName :=C:/Compilers/MinGW/bin/g++.exe -shared -fPIC
@@ -62,7 +62,8 @@ AS       := C:/Compilers/MinGW/bin/as.exe
 ## User defined environment variables
 ##
 CodeLiteDir:=C:\Program Files\CodeLite
-Objects0=$(IntermediateDirectory)/Camera.cpp$(ObjectSuffix) $(IntermediateDirectory)/Collision.cpp$(ObjectSuffix) $(IntermediateDirectory)/Doors.cpp$(ObjectSuffix) $(IntermediateDirectory)/Player.cpp$(ObjectSuffix) $(IntermediateDirectory)/Textures.cpp$(ObjectSuffix) $(IntermediateDirectory)/Tile.cpp$(ObjectSuffix) $(IntermediateDirectory)/Timer.cpp$(ObjectSuffix) $(IntermediateDirectory)/World.cpp$(ObjectSuffix) $(IntermediateDirectory)/Game.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/Camera.cpp$(ObjectSuffix) $(IntermediateDirectory)/Collision.cpp$(ObjectSuffix) $(IntermediateDirectory)/Doors.cpp$(ObjectSuffix) $(IntermediateDirectory)/Player.cpp$(ObjectSuffix) $(IntermediateDirectory)/Textures.cpp$(ObjectSuffix) $(IntermediateDirectory)/Tile.cpp$(ObjectSuffix) $(IntermediateDirectory)/Timer.cpp$(ObjectSuffix) $(IntermediateDirectory)/World.cpp$(ObjectSuffix) $(IntermediateDirectory)/Game.cpp$(ObjectSuffix) $(IntermediateDirectory)/Objects.cpp$(ObjectSuffix) \
+	
 
 
 
@@ -160,6 +161,14 @@ $(IntermediateDirectory)/Game.cpp$(DependSuffix): Game.cpp
 
 $(IntermediateDirectory)/Game.cpp$(PreprocessSuffix): Game.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Game.cpp$(PreprocessSuffix) "Game.cpp"
+
+$(IntermediateDirectory)/Objects.cpp$(ObjectSuffix): Objects.cpp $(IntermediateDirectory)/Objects.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/nsmm/C_C++/SwissShark/Objects.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Objects.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/Objects.cpp$(DependSuffix): Objects.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Objects.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Objects.cpp$(DependSuffix) -MM "Objects.cpp"
+
+$(IntermediateDirectory)/Objects.cpp$(PreprocessSuffix): Objects.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Objects.cpp$(PreprocessSuffix) "Objects.cpp"
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)

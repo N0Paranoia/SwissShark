@@ -45,7 +45,7 @@ Debug/Player.cpp.o: Player.cpp Player.h \
  C:/Compilers/MinGW/include/SDL2/SDL_image.h \
  C:/Compilers/MinGW/include/SDL2/SDL.h Tile.h Textures.h \
  C:/Compilers/MinGW/include/SDL2/SDL_ttf.h Constants.h Collision.h \
- Doors.h
+ Objects.h
 
 Player.h:
 
@@ -149,4 +149,4 @@ Constants.h:
 
 Collision.h:
 
-Doors.h:
+Objects.h:

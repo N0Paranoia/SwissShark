@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "Textures.h"
 #include "Camera.h"
+#include "Objects.h"
 #include "World.h"
 #include "Constants.h"
 
@@ -12,6 +13,7 @@ Timer CAPtimer;
 Player player;
 World world;
 Camera camera;
+Objects objects;
 Tile* tileSet[TOTAL_TILES];
 
 Textures wallpaperTexture;
@@ -144,28 +146,30 @@ void Game::Loop()
 
 void Game::Render()
 {
-    //Set Default colors
-    SDL_SetRenderDrawColor(Renderer, 0xFF, 0xFF, 0xFF, 0xFF);
-    //Clear screen
-    SDL_RenderClear(Renderer);
-    //Render Texture to screen
-    wallpaperTexture.Render(Renderer, 0, 0);
-    // Render Tiles
-    world.Render(Renderer, &camera.cameraRect, tileSet);
-    // Render Player data
-    player.Render(Renderer, &camera.cameraRect);
-    //Render Camara outline
-    camera.Render(Renderer);
-    //Render FPS text
-    TextTexture.Render(Renderer, WINDOW_WIDTH - TILE_SIZE, 0);
+	//Set Default colors
+	SDL_SetRenderDrawColor(Renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+	//Clear screen
+	SDL_RenderClear(Renderer);
+	//Render Texture to screen
+	wallpaperTexture.Render(Renderer, 0, 0);
+	// Render Tiles
+	world.Render(Renderer, &camera.cameraRect, tileSet);
+	// Render Player data
+	player.Render(Renderer, &camera.cameraRect);
+	//Render Objects
+	objects.Render(Renderer, &camera.cameraRect);
+	//Render Camara outline
+	camera.Render(Renderer);
+	//Render FPS text
+	TextTexture.Render(Renderer, WINDOW_WIDTH - TILE_SIZE, 0);
 
-    //Update screen
-    SDL_RenderPresent(Renderer);
+	//Update screen
+	SDL_RenderPresent(Renderer);
 
-    // frame counter for FPS
-    ++countedFrames;
+	// frame counter for FPS
+	++countedFrames;
 
-    this->FpsCap();
+	this->FpsCap();
 }
 
 void Game::Cleanup()

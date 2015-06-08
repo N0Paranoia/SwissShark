@@ -2,12 +2,12 @@
 #include "Textures.h"
 #include "Constants.h"
 #include "Collision.h"
-#include "Doors.h"
+#include "Objects.h"
 
 //Texture playerTexture;
 Textures SpriteSheetTexture;
 Collision pCollision;
-Doors pDoors;
+Objects pObjects;
 
 Player::Player()
 {
@@ -238,6 +238,7 @@ void Player::Input(Tile* tiles[])
 				WalkingLeft = true;
 				FacingRight = false;
 				FacingLeft = true;
+				this->CheckObjects();
 			}
 			else if(keyState[SDL_SCANCODE_D])
 			{
@@ -254,6 +255,7 @@ void Player::Input(Tile* tiles[])
 				WalkingRight = true;
 				FacingLeft = false;
 				FacingRight = true;
+				this->CheckObjects();
 			}
 			else
 			{
@@ -271,6 +273,7 @@ void Player::Input(Tile* tiles[])
 					Yvel = -swimmingSpeed;
 				}
 				this->Move(up, tiles);
+				this->CheckObjects();
 			}
 			else if(keyState[SDL_SCANCODE_S])
 			{
@@ -284,6 +287,7 @@ void Player::Input(Tile* tiles[])
 					Yvel = swimmingSpeed;
 				}
 				this->Move(down, tiles);
+				this->CheckObjects();
 			}			
 			else
 			{
@@ -310,6 +314,11 @@ void Player::Input(Tile* tiles[])
 	}
 }
 
+void Player::CheckObjects()
+{
+	cout << pObjects.Door(playerRect.x, playerRect.y) << endl;
+}
+
 void Player::Attack()
 {
 	if(attack)
@@ -318,7 +327,7 @@ void Player::Attack()
 		{
 			if(FacingLeft)
 			{
-				SwordBox = {this->playerRect.x - TILE_SIZE*2, this->playerRect.y + (TILE_SIZE/2 - 5), TILE_SIZE, 10};
+				SwordBox = {this->playerRect.x - TILE_SIZE, this->playerRect.y + (TILE_SIZE/2 - 5), TILE_SIZE, 10};
 			}
 			else if(FacingRight)
 			{

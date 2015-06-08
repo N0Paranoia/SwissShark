@@ -29,6 +29,7 @@
     <File Name="Timer.cpp"/>
     <File Name="World.cpp"/>
     <File Name="Game.cpp"/>
+    <File Name="Objects.cpp"/>
   </VirtualDirectory>
   <VirtualDirectory Name="headers">
     <File Name="Camera.h"/>
@@ -41,6 +42,7 @@
     <File Name="Timer.h"/>
     <File Name="World.h"/>
     <File Name="Game.h"/>
+    <File Name="Objects.h"/>
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>

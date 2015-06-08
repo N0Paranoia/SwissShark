@@ -102,7 +102,7 @@ class Player
 		int LoadMedia(SDL_Renderer* Renderer);
 		void Move(int Dir, Tile* tiles[]);
 		void Attack();
-		void GoTroughDoor(Tile* tiles[]);
+		void CheckObjects();
 		int Health();
 		int Energy(int action);
 		void Render(SDL_Renderer* Renderer, SDL_Rect* camera);

@@ -44,7 +44,7 @@ Debug/Game.cpp.o: Game.cpp Game.h C:/Compilers/MinGW/include/SDL2/SDL.h \
  C:/Compilers/MinGW/include/SDL2/SDL_image.h \
  C:/Compilers/MinGW/include/SDL2/SDL.h \
  C:/Compilers/MinGW/include/SDL2/SDL_ttf.h Timer.h Player.h Tile.h \
- Textures.h Constants.h Camera.h World.h
+ Textures.h Constants.h Camera.h Objects.h World.h
 
 Game.h:
 
@@ -151,5 +151,7 @@ Textures.h:
 Constants.h:
 
 Camera.h:
+
+Objects.h:
 
 World.h:
