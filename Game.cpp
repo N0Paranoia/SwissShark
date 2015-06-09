@@ -140,8 +140,7 @@ void Game::Input()
 
 void Game::Loop()
 {
-	camera.Center(&player.playerRect, &player.collider);
-//    player.Falling(tileSet);
+	camera.Center(&player.playerRect);
 }
 
 void Game::Render()
@@ -152,9 +151,9 @@ void Game::Render()
 	SDL_RenderClear(Renderer);
 	//Render Texture to screen
 	wallpaperTexture.Render(Renderer, 0, 0);
-	// Render Tiles
+	//Render Tiles
 	world.Render(Renderer, &camera.cameraRect, tileSet);
-	// Render Player data
+	//Render Player data
 	player.Render(Renderer, &camera.cameraRect);
 	//Render Objects
 	objects.Render(Renderer, &camera.cameraRect);

@@ -13,15 +13,13 @@ Player::Player()
 {
 	playerRect.x = 1*TILE_SIZE;
 	playerRect.y = 2*TILE_SIZE;
-	playerRect.w = 1*TILE_SIZE;
+	playerRect.w = 2*TILE_SIZE;
 	playerRect.h = TILE_SIZE;
 	
 	playerSprite.x = 1*TILE_SIZE;
 	playerSprite.y = 2*TILE_SIZE;
 	playerSprite.w = 3*TILE_SIZE;
 	playerSprite.h = TILE_SIZE;
-	
-	collider.r = playerRect.h /2;
 	
 	Xvel = 0;
 	Yvel = 0;
@@ -238,7 +236,6 @@ void Player::Input(Tile* tiles[])
 				WalkingLeft = true;
 				FacingRight = false;
 				FacingLeft = true;
-				this->CheckObjects();
 			}
 			else if(keyState[SDL_SCANCODE_D])
 			{
@@ -255,7 +252,6 @@ void Player::Input(Tile* tiles[])
 				WalkingRight = true;
 				FacingLeft = false;
 				FacingRight = true;
-				this->CheckObjects();
 			}
 			else
 			{
@@ -273,7 +269,6 @@ void Player::Input(Tile* tiles[])
 					Yvel = -swimmingSpeed;
 				}
 				this->Move(up, tiles);
-				this->CheckObjects();
 			}
 			else if(keyState[SDL_SCANCODE_S])
 			{
@@ -287,7 +282,6 @@ void Player::Input(Tile* tiles[])
 					Yvel = swimmingSpeed;
 				}
 				this->Move(down, tiles);
-				this->CheckObjects();
 			}			
 			else
 			{
@@ -304,6 +298,7 @@ void Player::Input(Tile* tiles[])
 			{
 				attack = true;
 				this->Attack();
+				this->CheckObjects();
 			}
 			else
 			{
@@ -316,7 +311,10 @@ void Player::Input(Tile* tiles[])
 
 void Player::CheckObjects()
 {
-	cout << pObjects.Door(playerRect.x, playerRect.y) << endl;
+	if(pCollision.VarCollision(SwordBox, pObjects.Door()))
+	{
+		pObjects.Door();
+	}
 }
 
 void Player::Attack()
@@ -331,7 +329,7 @@ void Player::Attack()
 			}
 			else if(FacingRight)
 			{
-				SwordBox = {this->playerRect.x + this->playerRect.w + TILE_SIZE, this->playerRect.y + (TILE_SIZE/2 - 5), TILE_SIZE, 10};
+				SwordBox = {this->playerRect.x + this->playerRect.w, this->playerRect.y + (TILE_SIZE/2 - 5), TILE_SIZE, 10};
 			}
 			if(!isAttacking)
 			{
@@ -366,24 +364,20 @@ void Player::Move(int Dir, Tile* tiles[])
 	if(Dir == left || Dir == right)
 	{
 		playerRect.x += Xvel;
-		this->ShiftCollider();
 	}
 	// Horizontal collision handling
-	if(playerRect.x < 0 || playerRect.x + playerRect.w > LEVEL_WIDTH*TILE_SIZE || pCollision.WallCollision(playerRect, tiles) || pCollision.CircleCollision(collider, tiles))
+	if(playerRect.x < 0 || playerRect.x + playerRect.w > LEVEL_WIDTH*TILE_SIZE || pCollision.WallCollision(playerRect, tiles) || pCollision.VarCollision(playerRect, pObjects.Door()))
 	{
 		playerRect.x -= Xvel;
-		this->ShiftCollider();
 	}
 	if(Dir == up || Dir == down)
 	{
 		playerRect.y += Yvel;
-		this->ShiftCollider();
 	}
 	// Vertical collision handling
-	if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE ||  pCollision.WallCollision(playerRect, tiles) || pCollision.CircleCollision(collider, tiles))
+	if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE ||  pCollision.WallCollision(playerRect, tiles) || pCollision.VarCollision(playerRect, pObjects.Door()))
 	{
 		playerRect.y -= Yvel;
-		this->ShiftCollider();
 	}
 }
 
@@ -408,22 +402,6 @@ int Player::Energy(int action)
 	}
 	energy = energy - action;
 	return energy;
-}
-
-void Player::ShiftCollider()
-{
-	//Align collider to center of dot
-	if(FacingLeft)
-	{
-		collider.x = playerRect.x + collider.r*2;
-		collider.y = playerRect.y + collider.r;
-		
-	}
-	if(FacingRight)
-	{
-		collider.x = playerRect.x + playerRect.h + collider.r;
-		collider.y = playerRect.y + collider.r;
-	}
 }
 
 void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
@@ -476,6 +454,7 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 	HealthBar = {10, 10, this->Health(), 10};
 	StaminBar = {10, 25, this->Energy(NULL), 10};
 	SDL_RenderFillRect(Renderer, &HealthBar);
+	SDL_RenderDrawRect(Renderer, &playerRect);
 	SDL_SetRenderDrawColor(Renderer, 0x00, 0xff, 0x00, 0xFF );
 	SDL_RenderFillRect(Renderer, &StaminBar);
 	//Render Frameq

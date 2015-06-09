@@ -35,11 +35,4 @@ const int TOTAL_DOORS = 2;
 
 const int GRAVITY = 4;
 
-//A circle stucture
-struct Circle
-{
-	int x, y;
-	int r;
-};
-
 #endif // CONSTANTS_H_INCLUDED

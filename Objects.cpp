@@ -3,41 +3,39 @@
 
 using namespace std;
 
+
 Objects::Objects()
 {
-
+	door.x = 22*TILE_SIZE; 
+	door.y = 10*TILE_SIZE;
+	door.w = TILE_SIZE/2;
+	door.h = TILE_SIZE;
+	
+	brokenDoor = false;
 }
 
 Objects::~Objects()
 {
 }
 
-void Objects::Chest(int playerX, int playerY)
+SDL_Rect Objects::Chest()
 {
 	chest = {4 * TILE_SIZE, TILE_SIZE, 2*TILE_SIZE, TILE_SIZE};
+	return chest;
 }
 
-bool Objects::Door(int playerX, int playerY)
+SDL_Rect Objects::Door()
 {
-	door.x = 22*TILE_SIZE; 
-	door.y = 10*TILE_SIZE;
-	
-	if(playerX == door.x && playerY == door.y)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+	return door;
 }
 
 void Objects::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 {
-	this->Chest(NULL, NULL);
-	this->Door(NULL, NULL);
-	door = {door.x - camera->x, door.y - camera->y, TILE_SIZE/4, TILE_SIZE};
-	SDL_SetRenderDrawColor(Renderer, 0xff, 0xff, 0xff, 0xff);
+	this->Chest();
+	this->Door();
+	SDL_SetRenderDrawColor(Renderer, 0xff, 0xff, 0x00, 0x00);
+	test = {door.x - camera->x, door.y - camera->y, door.w, door.h};
+	
 	SDL_RenderFillRect(Renderer, &chest);
-	SDL_RenderFillRect(Renderer, &door);	
+	SDL_RenderFillRect(Renderer, &test);
 }

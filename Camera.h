@@ -15,7 +15,7 @@ class Camera
     public:
         Camera();
         virtual ~Camera();
-        void Center(SDL_Rect* playerRect, Circle* collider);
+        void Center(SDL_Rect* playerRect);
         void Follow();
         void Update(SDL_Rect* playerRect);
         void Render(SDL_Renderer* Renderer);

@@ -9,13 +9,14 @@ class Objects
 public:
 	Objects();
 	~Objects();
-	void Chest(int playerX, int playerY);
-	bool Door(int playerX, int playerY);
+	SDL_Rect Chest();
+	SDL_Rect Door();
 	void Render(SDL_Renderer* Renderer, SDL_Rect* camera);
 	
 	SDL_Rect chest;
 	SDL_Rect door;
-	
+	SDL_Rect test;
+	bool brokenDoor;
 };
 
 #endif // OBJECTS_H

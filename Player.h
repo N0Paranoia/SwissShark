@@ -93,11 +93,8 @@ class Player
 
 		SDL_Rect collisionBox;
 		
-		Circle collider;
-		
 		Player();
 		virtual ~Player();
-		void ShiftCollider();
 		void Input(Tile* tiles[]);
 		int LoadMedia(SDL_Renderer* Renderer);
 		void Move(int Dir, Tile* tiles[]);
