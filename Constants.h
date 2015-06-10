@@ -14,7 +14,7 @@ const int LEVEL_HEIGHT = 12;
 
 //Set Tile Types
 const int TOTAL_TILES = LEVEL_WIDTH*LEVEL_HEIGHT;
-const int TOTAL_TILE_SPRITES = 16;
+const int TOTAL_TILE_SPRITES = 17;
 
 const int TILE_CLEAR = 0;
 const int TILE_LEFT_TOP = 1;
@@ -30,6 +30,7 @@ const int TILE_INNER_LEFT_TOP = 10;
 const int TILE_LEFT_BOTTOM = 11;
 const int TILE_MIDDLE_BOTTOM = 12;
 const int TILE_RIGHT_BOTTOM = 13;
+const int TILE_WATER = 14;
 
 const int TOTAL_DOORS = 2;
 

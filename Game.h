@@ -13,10 +13,22 @@
 using namespace std;
 
 std::stringstream timeText;
+std::stringstream gameOverText1;
+std::stringstream gameOverText2;
 
 class Game
 {
-    private:
+private:
+		
+		enum Gamestates
+		{
+			running,
+			pause,
+			gameover
+		};
+		
+		int _gamestate;
+	
         bool Running;
         SDL_Window* Window ;
         SDL_Renderer* Renderer;
@@ -35,6 +47,7 @@ class Game
     public:
         void Event(SDL_Event* Event);
         void Fps();
+		void GameOver();
         void FpsCap();
         bool Init();
         bool LoadMedia();

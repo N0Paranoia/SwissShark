@@ -28,7 +28,16 @@ class Player
 			jump
 		};
 		
+		enum Weapon
+		{
+			noweapon,
+			saw,
+			sword
+		};
+		
 		int _state;
+		int _weaponType;
+		
 		
 		const Uint8* keyState;
 		int Xvel;
@@ -79,10 +88,10 @@ class Player
 		bool energyRecover;
 		int maxHealth;
 		int health;
-
+		
 		SDL_Rect PlayerClips[18];
-		SDL_Rect SwordBox;
-		SDL_Rect Sword;
+		SDL_Rect AttackBox;
+		SDL_Rect WeaponBox;
 		SDL_Rect HealthBar;
 		SDL_Rect StaminBar;
 		
@@ -100,10 +109,15 @@ class Player
 		void Move(int Dir, Tile* tiles[]);
 		void Attack();
 		void CheckObjects();
-		int Health();
+		int Health(int hit);
 		int Energy(int action);
 		void Render(SDL_Renderer* Renderer, SDL_Rect* camera);
 		void Cleanup();
+		
+		bool destroyedDoor;
+		bool kiledDiver;
+		bool pickedUpSaw;
+		bool pickedUpSword;
 
 	protected:
 };

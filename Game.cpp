@@ -18,6 +18,8 @@ Tile* tileSet[TOTAL_TILES];
 
 Textures wallpaperTexture;
 Textures TextTexture;
+Textures TextGameOver1;
+Textures TextGameOver2;
 
 Game::Game()
 {
@@ -28,6 +30,8 @@ Game::Game()
 
     textColor = {255,0,0};
     countedFrames  = 0;
+	
+	_gamestate = running;
 }
 
 bool Game::Init()
@@ -132,6 +136,19 @@ void Game::FpsCap()
         SDL_Delay( TICK_PER_FRAME - frameTicks);
     }
 }
+void Game::GameOver()
+{
+	gameOverText1.str("Game Over");
+	gameOverText2.str("press q to Quit");
+	if(!TextGameOver1.LoadFromRenderedText(Renderer, Font, gameOverText1.str().c_str(), textColor))
+	{
+		cout << "Failed to render text texture!" << endl;
+	}
+	if(!TextGameOver2.LoadFromRenderedText(Renderer, Font, gameOverText2.str().c_str(), textColor))
+	{
+		cout << "Failed to render text texture!" << endl;
+	}
+}
 
 void Game::Input()
 {
@@ -140,35 +157,69 @@ void Game::Input()
 
 void Game::Loop()
 {
-	camera.Center(&player.playerRect);
+	switch(_gamestate)
+	{
+		case running:
+			camera.Center(&player.playerRect);
+			if(player.Health(0) < 1)
+			{
+				_gamestate = gameover;
+			}
+			break;
+		
+		case pause:
+			break;
+		
+		case gameover:
+			break;	
+	}
 }
 
 void Game::Render()
 {
-	//Set Default colors
-	SDL_SetRenderDrawColor(Renderer, 0xFF, 0xFF, 0xFF, 0xFF);
-	//Clear screen
-	SDL_RenderClear(Renderer);
-	//Render Texture to screen
-	wallpaperTexture.Render(Renderer, 0, 0);
-	//Render Tiles
-	world.Render(Renderer, &camera.cameraRect, tileSet);
-	//Render Player data
-	player.Render(Renderer, &camera.cameraRect);
-	//Render Objects
-	objects.Render(Renderer, &camera.cameraRect);
-	//Render Camara outline
-	camera.Render(Renderer);
-	//Render FPS text
-	TextTexture.Render(Renderer, WINDOW_WIDTH - TILE_SIZE, 0);
+	switch(_gamestate)
+	{
+		case running:
+			//Set Default colors
+			SDL_SetRenderDrawColor(Renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+			//Clear screen
+			SDL_RenderClear(Renderer);
+			//Render Texture to screen
+			wallpaperTexture.Render(Renderer, 0 - camera.cameraRect.x, 0 - camera.cameraRect.y);
+			//Render Tiles
+			world.Render(Renderer, &camera.cameraRect, tileSet);
+			//Render Player data
+			player.Render(Renderer, &camera.cameraRect);
+			//Render Objects
+			objects.Render(Renderer, &camera.cameraRect, player.destroyedDoor, player.kiledDiver, player.pickedUpSaw, player.pickedUpSword);
+			//Render Camara outline
+			camera.Render(Renderer);
+			//Render FPS text
+			TextTexture.Render(Renderer, WINDOW_WIDTH - TILE_SIZE, 0);
 
-	//Update screen
-	SDL_RenderPresent(Renderer);
+			//Update screen
+			SDL_RenderPresent(Renderer);
 
-	// frame counter for FPS
-	++countedFrames;
+			// frame counter for FPS
+			++countedFrames;
 
-	this->FpsCap();
+			this->FpsCap();
+			break;
+			
+		case pause:
+
+			break;
+		
+		case gameover:
+			this->GameOver();
+			//Render FPS text
+			TextGameOver1.Render(Renderer, WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
+			TextGameOver2.Render(Renderer, WINDOW_WIDTH/2 - TILE_SIZE/3, WINDOW_HEIGHT/2 + TILE_SIZE);
+			//Update screen
+			SDL_RenderPresent(Renderer);
+
+			break;			
+	}
 }
 
 void Game::Cleanup()

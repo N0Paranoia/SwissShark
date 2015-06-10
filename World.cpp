@@ -109,6 +109,11 @@ int World::LoadMedia(SDL_Renderer* Renderer, Tile* tiles[])
 		TileClips[TILE_INNER_LEFT_TOP].y = 1 * TILE_SIZE;
 		TileClips[TILE_INNER_LEFT_TOP].w = TILE_SIZE;
 		TileClips[TILE_INNER_LEFT_TOP].h = TILE_SIZE;
+		
+		TileClips[TILE_WATER].x = 3 * TILE_SIZE;
+		TileClips[TILE_WATER].y = 2 * TILE_SIZE;
+		TileClips[TILE_WATER].w = TILE_SIZE;
+		TileClips[TILE_WATER].h = TILE_SIZE;
 	}
 }
 

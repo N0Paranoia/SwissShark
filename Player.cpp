@@ -47,9 +47,6 @@ Player::Player()
 
 	isFalling = true;
 
-
-	canEnterDoor = true;
-
 	canJump = true;
 	isJumping = false;
 
@@ -67,7 +64,14 @@ Player::Player()
 	attackEnergy = 25;
 	blockEnergy = 25;
 
-	int _state = state_idle;
+	_state = state_idle;
+	
+	destroyedDoor = false;
+	kiledDiver = false;
+	pickedUpSaw = false;
+	pickedUpSword = false;
+	
+	_weaponType = noweapon;
 }
 
 Player::~Player()
@@ -233,6 +237,7 @@ void Player::Input(Tile* tiles[])
 					Xvel = -swimmingSpeed;
 				}
 				this->Move(left, tiles);
+				this->CheckObjects();
 				WalkingLeft = true;
 				FacingRight = false;
 				FacingLeft = true;
@@ -249,6 +254,7 @@ void Player::Input(Tile* tiles[])
 					Xvel = swimmingSpeed;
 				}
 				this->Move(right, tiles);
+				this->CheckObjects();
 				WalkingRight = true;
 				FacingLeft = false;
 				FacingRight = true;
@@ -311,9 +317,58 @@ void Player::Input(Tile* tiles[])
 
 void Player::CheckObjects()
 {
-	if(pCollision.VarCollision(SwordBox, pObjects.Door()))
+	if(pCollision.VarCollision(playerRect, pObjects.Fisherman()))
 	{
-		pObjects.Door();
+		this->Health(25);
+	}
+	switch(_weaponType)
+	{
+		case noweapon:
+			if(pCollision.VarCollision(playerRect, pObjects.Item_Saw()))
+			{
+				int pickupSaw = 1;
+				pObjects.Update(pickupSaw);
+				pickedUpSaw = true;
+				_weaponType = saw;
+			}
+			if(pCollision.VarCollision(playerRect, pObjects.Item_Sword()))
+			{
+				int pickupSword = 2;
+				pObjects.Update(pickupSword);
+				pickedUpSword = true;
+				_weaponType = sword;
+			}
+			break;
+		case saw:
+			if(pCollision.VarCollision(playerRect, pObjects.Item_Sword()))
+			{
+				int pickupSword = 2;
+				pObjects.Update(pickupSword);
+				pickedUpSword = true;
+				_weaponType = sword;
+			}
+			if(pCollision.VarCollision(AttackBox, pObjects.Door()))
+			{
+				int openDoor = 10;
+				pObjects.Update(openDoor);
+				destroyedDoor = true;
+			}
+			break;
+		case sword:
+			if(pCollision.VarCollision(playerRect, pObjects.Item_Saw()))
+			{
+				int pickupSaw = 1;
+				pObjects.Update(pickupSaw);
+				pickedUpSaw = true;
+				_weaponType = saw;
+			}
+			if(pCollision.VarCollision(AttackBox, pObjects.Diver()))
+			{
+				int killDiver = 11;
+				pObjects.Update(killDiver);
+				kiledDiver = true;
+			}
+			break;
 	}
 }
 
@@ -325,11 +380,17 @@ void Player::Attack()
 		{
 			if(FacingLeft)
 			{
-				SwordBox = {this->playerRect.x - TILE_SIZE, this->playerRect.y + (TILE_SIZE/2 - 5), TILE_SIZE, 10};
+				if(pickedUpSaw || pickedUpSword)
+				{
+					AttackBox = {this->playerRect.x - TILE_SIZE, this->playerRect.y + (TILE_SIZE/2 - 5), TILE_SIZE, 10};
+				}
 			}
 			else if(FacingRight)
 			{
-				SwordBox = {this->playerRect.x + this->playerRect.w, this->playerRect.y + (TILE_SIZE/2 - 5), TILE_SIZE, 10};
+				if(pickedUpSaw || pickedUpSword)
+				{
+					AttackBox = {this->playerRect.x + this->playerRect.w, this->playerRect.y + (TILE_SIZE/2 - 5), TILE_SIZE, 10};
+				}
 			}
 			if(!isAttacking)
 			{
@@ -342,17 +403,17 @@ void Player::Attack()
 		{
 			if(FacingLeft)
 			{
-				SwordBox = {this->playerRect.x - TILE_SIZE, this->playerRect.y + TILE_SIZE/2, NULL, NULL};
+				AttackBox = {this->playerRect.x - TILE_SIZE, this->playerRect.y + TILE_SIZE/2, NULL, NULL};
 			}
 			else if(FacingRight)
 			{
-				SwordBox = {this->playerRect.x + this->playerRect.w, this->playerRect.y + TILE_SIZE/2, NULL, NULL};
+				AttackBox = {this->playerRect.x + this->playerRect.w, this->playerRect.y + TILE_SIZE/2, NULL, NULL};
 			}
 		}
 	}
 	else
 	{
-		SwordBox = {NULL, NULL, NULL, NULL};
+		AttackBox = {NULL, NULL, NULL, NULL};
 		isAttacking = false;
 		_state = state_idle;
 		energyRecover = true;
@@ -366,7 +427,7 @@ void Player::Move(int Dir, Tile* tiles[])
 		playerRect.x += Xvel;
 	}
 	// Horizontal collision handling
-	if(playerRect.x < 0 || playerRect.x + playerRect.w > LEVEL_WIDTH*TILE_SIZE || pCollision.WallCollision(playerRect, tiles) || pCollision.VarCollision(playerRect, pObjects.Door()))
+	if(playerRect.x < 0 || playerRect.x + playerRect.w > LEVEL_WIDTH*TILE_SIZE || pCollision.WallCollision(playerRect, tiles) || pCollision.VarCollision(playerRect, pObjects.Door()) || pCollision.VarCollision(playerRect, pObjects.Diver()))
 	{
 		playerRect.x -= Xvel;
 	}
@@ -375,19 +436,20 @@ void Player::Move(int Dir, Tile* tiles[])
 		playerRect.y += Yvel;
 	}
 	// Vertical collision handling
-	if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE ||  pCollision.WallCollision(playerRect, tiles) || pCollision.VarCollision(playerRect, pObjects.Door()))
+	if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE ||  pCollision.WallCollision(playerRect, tiles) || pCollision.VarCollision(playerRect, pObjects.Door()) || pCollision.VarCollision(playerRect, pObjects.Diver()))
 	{
 		playerRect.y -= Yvel;
 	}
 }
 
-int Player::Health()
+int Player::Health(int hit)
 {
+	health = health - hit;
 	if(health <=0)
 	{
 		health =0;
 	}
-	return maxHealth;
+	return health;
 }
 
 int Player::Energy(int action)
@@ -448,16 +510,13 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 	}
 	//Show collsiion box
 	SDL_SetRenderDrawColor(Renderer, 0xff, 0x00, 0x00, 0xff);
-	//Create New REctangle for sword for the camera compisation
-	Sword = {SwordBox.x - camera->x, SwordBox.y - camera->y, SwordBox.w, SwordBox.h};
-	SDL_RenderFillRect(Renderer, &Sword);	
-	HealthBar = {10, 10, this->Health(), 10};
+	HealthBar = {10, 10, this->Health(0), 10};
 	StaminBar = {10, 25, this->Energy(NULL), 10};
 	SDL_RenderFillRect(Renderer, &HealthBar);
 	SDL_RenderDrawRect(Renderer, &playerRect);
 	SDL_SetRenderDrawColor(Renderer, 0x00, 0xff, 0x00, 0xFF );
 	SDL_RenderFillRect(Renderer, &StaminBar);
-	//Render Frameq
+	//Render Frame
 	if(FacingLeft)
 	{
 		SpriteSheetTexture.Render(Renderer, playerRect.x - camera->x, playerRect.y - camera->y, &PlayerClips[frame]);
@@ -466,7 +525,21 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 	{
 		SpriteSheetTexture.Render(Renderer, playerRect.x - TILE_SIZE - camera->x, playerRect.y - camera->y, &PlayerClips[frame]);
 	}		
-	SDL_SetRenderDrawColor(Renderer, 0x00, 0x00, 0xff, 0xff);
+	//Create New REctangle for weapon for the camera compisation
+	WeaponBox = {AttackBox.x - camera->x, AttackBox.y - camera->y, AttackBox.w, AttackBox.h};
+	
+	switch(_weaponType)
+	{
+		case saw:
+			SDL_SetRenderDrawColor(Renderer, 0xff, 0xff, 0x00, 0x00);
+			break;
+		case sword:
+			SDL_SetRenderDrawColor(Renderer, 0xff, 0x00, 0xff, 0x00);
+			break;
+		case noweapon:
+			break;
+	}
+	SDL_RenderFillRect(Renderer, &WeaponBox);
 }
 
 void Player::Cleanup()

@@ -9,14 +9,25 @@ class Objects
 public:
 	Objects();
 	~Objects();
-	SDL_Rect Chest();
 	SDL_Rect Door();
-	void Render(SDL_Renderer* Renderer, SDL_Rect* camera);
+	SDL_Rect Diver();
+	SDL_Rect Fisherman();
+	SDL_Rect Item_Saw();
+	SDL_Rect Item_Sword();
+	void Update(int action);
+	void Render(SDL_Renderer* Renderer, SDL_Rect* camera, bool doorStatus, bool diverStatus, bool sawStatus, bool swordStatus);
 	
 	SDL_Rect chest;
 	SDL_Rect door;
-	SDL_Rect test;
-	bool brokenDoor;
+	SDL_Rect doorSprite;
+	SDL_Rect fisherman;
+	SDL_Rect fishermanSprite;
+	SDL_Rect diver;
+	SDL_Rect diverSprite;
+	SDL_Rect item_saw;
+	SDL_Rect item_sawSprite;
+	SDL_Rect item_sword;
+	SDL_Rect item_swordSprite;
 };
 
 #endif // OBJECTS_H
