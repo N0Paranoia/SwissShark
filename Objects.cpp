@@ -11,7 +11,7 @@ Objects::Objects()
 	fisherman.w = TILE_SIZE/8;
 	fisherman.h = 6*TILE_SIZE;
 	
-	door.x = 22*TILE_SIZE; 
+	door.x = 21*TILE_SIZE + TILE_SIZE/2; 
 	door.y = 10*TILE_SIZE;
 	door.w = TILE_SIZE/2;
 	door.h = TILE_SIZE;

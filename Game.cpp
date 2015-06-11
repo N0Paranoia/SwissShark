@@ -17,6 +17,7 @@ Objects objects;
 Tile* tileSet[TOTAL_TILES];
 
 Textures wallpaperTexture;
+Textures foregroundTexture;
 Textures TextTexture;
 Textures TextGameOver1;
 Textures TextGameOver2;
@@ -81,7 +82,12 @@ bool Game::LoadMedia()
     //Load PNG background texture
     if((wallpaperTexture.LoadFromFile(Renderer, "../assets/background.png")) == NULL)
 	{
-		cout << "Unable to Load texture image! SDL_Error: " << SDL_GetError() << endl;
+		cout << "Unable to Load texture image! (background) SDL_Error: " << SDL_GetError() << endl;
+		return false;
+	}
+	if((foregroundTexture.LoadFromFile(Renderer, "../assets/foreground.png")) == NULL)
+	{
+		cout << "Unable to Load texture image! (foreground) SDL_Error: " << SDL_GetError() << endl;
 		return false;
 	}
     Font = TTF_OpenFont("../assets/FreePixel.ttf", 14);
@@ -196,6 +202,8 @@ void Game::Render()
 			camera.Render(Renderer);
 			//Render FPS text
 			TextTexture.Render(Renderer, WINDOW_WIDTH - TILE_SIZE, 0);
+			
+			foregroundTexture.Render(Renderer, 0 - camera.cameraRect.x, 0 - camera.cameraRect.y);
 
 			//Update screen
 			SDL_RenderPresent(Renderer);
