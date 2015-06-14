@@ -13,25 +13,25 @@ Player::Player()
 {
 	playerRect.x = 1*TILE_SIZE;
 	playerRect.y = 2*TILE_SIZE;
-	playerRect.w = 2*TILE_SIZE;
+	playerRect.w = 3*TILE_SIZE;
 	playerRect.h = TILE_SIZE;
 	
 	playerSprite.x = 1*TILE_SIZE;
 	playerSprite.y = 2*TILE_SIZE;
-	playerSprite.w = 3*TILE_SIZE;
-	playerSprite.h = TILE_SIZE;
+	playerSprite.w = 192;
+	playerSprite.h = 96;
 	
 	Xvel = 0;
 	Yvel = 0;
 	Jvel = 0;
 	swimmingSpeed = 8;
 	frame = 0;
-	StartFrameLeft = 7;
-	EndFrameLeft = 0;
-	StartFrameRight = 10;
-	EndFrameRight = 17;
-	IdleFrameLeft = 8;
-	IdleFrameRight = 9;
+	StartFrameLeft = 4;
+	EndFrameLeft = 7;
+	StartFrameRight = 0;
+	EndFrameRight = 3;
+	IdleFrameLeft = 4;
+	IdleFrameRight = 0;
 	frameCounter = 0;
 	frameSpeed = 12;
 	frameSwitch = 60;
@@ -82,7 +82,7 @@ Player::~Player()
 int Player::LoadMedia(SDL_Renderer* Renderer)
 {
 	//Load Player spritesheet
-	if((SpriteSheetTexture.LoadFromFile(Renderer, "../assets/spriteSheet48.png")) == NULL)
+	if((SpriteSheetTexture.LoadFromFile(Renderer, "../assets/spriteSheet.png")) == NULL)
 	{
 		cout << "Unable to load Player Texture! SDL_Error: " << SDL_GetError() << endl;
 		return false;
@@ -108,76 +108,26 @@ int Player::LoadMedia(SDL_Renderer* Renderer)
 		PlayerClips[3].y = 0 * playerSprite.h;
 		PlayerClips[3].w = playerSprite.w;
 		PlayerClips[3].h = playerSprite.h;
-
-		PlayerClips[4].x = 4 * playerSprite.w;
-		PlayerClips[4].y = 0 * playerSprite.h;
+		
+		PlayerClips[4].x = 0 * playerSprite.w;
+		PlayerClips[4].y = 1 * playerSprite.h;
 		PlayerClips[4].w = playerSprite.w;
 		PlayerClips[4].h = playerSprite.h;
 
-		PlayerClips[5].x = 5 * playerSprite.w;
-		PlayerClips[5].y = 0 * playerSprite.h;
+		PlayerClips[5].x = 1 * playerSprite.w;
+		PlayerClips[5].y = 1 * playerSprite.h;
 		PlayerClips[5].w = playerSprite.w;
 		PlayerClips[5].h = playerSprite.h;
 
-		PlayerClips[6].x = 6 * playerSprite.w;
-		PlayerClips[6].y = 0 * playerSprite.h;
+		PlayerClips[6].x = 2 * playerSprite.w;
+		PlayerClips[6].y = 1 * playerSprite.h;
 		PlayerClips[6].w = playerSprite.w;
 		PlayerClips[6].h = playerSprite.h;
 
-		PlayerClips[7].x = 7 * playerSprite.w;
-		PlayerClips[7].y = 0 * playerSprite.h;
+		PlayerClips[7].x = 3 * playerSprite.w;
+		PlayerClips[7].y = 1 * playerSprite.h;
 		PlayerClips[7].w = playerSprite.w;
 		PlayerClips[7].h = playerSprite.h;
-
-		PlayerClips[8].x = 8 * playerSprite.w;
-		PlayerClips[8].y = 0 * playerSprite.h;
-		PlayerClips[8].w = playerSprite.w;
-		PlayerClips[8].h = playerSprite.h;
-
-		PlayerClips[9].x = 0 * playerSprite.w;
-		PlayerClips[9].y = 1 * playerSprite.h;
-		PlayerClips[9].w = playerSprite.w;
-		PlayerClips[9].h = playerSprite.h;
-
-		PlayerClips[10].x = 1 * playerSprite.w;
-		PlayerClips[10].y = 1 * playerSprite.h;
-		PlayerClips[10].w = playerSprite.w;
-		PlayerClips[10].h = playerSprite.h;
-
-		PlayerClips[11].x = 2 * playerSprite.w;
-		PlayerClips[11].y = 1 * playerSprite.h;
-		PlayerClips[11].w = playerSprite.w;
-		PlayerClips[11].h = playerSprite.h;
-
-		PlayerClips[12].x = 3 * playerSprite.w;
-		PlayerClips[12].y = 1 * playerSprite.h;
-		PlayerClips[12].w = playerSprite.w;
-		PlayerClips[12].h = playerSprite.h;
-
-		PlayerClips[13].x = 4 * playerSprite.w;
-		PlayerClips[13].y = 1 * playerSprite.h;
-		PlayerClips[13].w = playerSprite.w;
-		PlayerClips[13].h = playerSprite.h;
-
-		PlayerClips[14].x = 5 * playerSprite.w;
-		PlayerClips[14].y = 1 * playerSprite.h;
-		PlayerClips[14].w = playerSprite.w;
-		PlayerClips[14].h = playerSprite.h;
-
-		PlayerClips[15].x = 6 * playerSprite.w;
-		PlayerClips[15].y = 1 * playerSprite.h;
-		PlayerClips[15].w = playerSprite.w;
-		PlayerClips[15].h = playerSprite.h;
-
-		PlayerClips[16].x = 7 * playerSprite.w;
-		PlayerClips[16].y = 1 * playerSprite.h;
-		PlayerClips[16].w = playerSprite.w;
-		PlayerClips[16].h = playerSprite.h;
-
-		PlayerClips[17].x = 8 * playerSprite.w;
-		PlayerClips[17].y = 1 * playerSprite.h;
-		PlayerClips[17].w = playerSprite.w;
-		PlayerClips[17].h = playerSprite.h;
 	}
 	return true;
 }
@@ -475,9 +425,9 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 		if(WalkingLeft)
 		{
 
-			frame --;
+			frame ++;
 			frameCounter = 0;
-			if(frame < EndFrameLeft || frame > StartFrameLeft)
+			if(frame > EndFrameLeft || frame < StartFrameLeft)
 			{
 				frame = StartFrameLeft;
 			}
@@ -519,11 +469,11 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 	//Render Frame
 	if(FacingLeft)
 	{
-		SpriteSheetTexture.Render(Renderer, playerRect.x - camera->x, playerRect.y - camera->y, &PlayerClips[frame]);
+		SpriteSheetTexture.Render(Renderer, playerRect.x - camera->x, (playerRect.y - TILE_SIZE/2) - camera->y, &PlayerClips[frame]);
 	}
 	else if(FacingRight)
 	{
-		SpriteSheetTexture.Render(Renderer, playerRect.x - TILE_SIZE - camera->x, playerRect.y - camera->y, &PlayerClips[frame]);
+		SpriteSheetTexture.Render(Renderer, playerRect.x - TILE_SIZE - camera->x, (playerRect.y - TILE_SIZE/2) - camera->y, &PlayerClips[frame]);
 	}		
 	//Create New REctangle for weapon for the camera compisation
 	WeaponBox = {AttackBox.x - camera->x, AttackBox.y - camera->y, AttackBox.w, AttackBox.h};
