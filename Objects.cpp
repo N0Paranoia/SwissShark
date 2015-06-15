@@ -29,7 +29,7 @@ Objects::Objects()
 	item_saw.h = TILE_SIZE;
 	
 	item_sword.x = 23*TILE_SIZE;
-	item_sword.y = 2 *TILE_SIZE;
+	item_sword.y = 2*TILE_SIZE;
 	item_sword.w = TILE_SIZE;
 	item_sword.h = TILE_SIZE;
 }
@@ -53,10 +53,10 @@ int Objects::LoadMedia(SDL_Renderer* Renderer)
 		ObjectClips[0].w = TILE_SIZE;
 		ObjectClips[0].h = TILE_SIZE;
 		
-		ObjectClips[1].x = TILE_SIZE;
-		ObjectClips[1].y = 0;
+		ObjectClips[1].x = 0;
+		ObjectClips[1].y = TILE_SIZE;
 		ObjectClips[1].w = TILE_SIZE;
-		ObjectClips[1].w = TILE_SIZE;
+		ObjectClips[1].h = TILE_SIZE;
 	}	
 	return true;
 }
@@ -127,7 +127,6 @@ void Objects::Render(SDL_Renderer* Renderer, SDL_Rect* camera, bool doorStatus, 
 	fishermanSprite = {fisherman.x - camera->x, fisherman.y - camera->y, fisherman.w, fisherman.h};
 	doorSprite = {door.x - camera->x, door.y - camera->y, door.w, door.h};
 	diverSprite = {diver.x - camera->x, diver.y - camera->y, diver.w, diver.h};
-	item_swordSprite = {item_sword.x - camera->x, item_sword.y - camera->y, item_sword.w, item_sword.h};
 	SDL_SetRenderDrawColor(Renderer, 0xff, 0xff, 0x00, 0x00);
 	if(!doorStatus)
 	{
@@ -137,17 +136,16 @@ void Objects::Render(SDL_Renderer* Renderer, SDL_Rect* camera, bool doorStatus, 
 	{
 		ItemSheetTexture.Render(Renderer, this->item_saw.x - camera->x, this->item_saw.y - camera->y, &ObjectClips[0]);
 	}
-
+	if(!swordStatus)
+	{
+		ItemSheetTexture.Render(Renderer, this->item_sword.x - camera->x, this->item_sword.y - camera->y, &ObjectClips[1]);
+	}
 	SDL_SetRenderDrawColor(Renderer, 0xff, 0x00, 0xff, 0x00);
 	if(!diverStatus)
 	{
 		SDL_RenderFillRect(Renderer, &diverSprite);
 	}
 	SDL_SetRenderDrawColor(Renderer, 0xff, 0x00, 0x00, 0x00);
-	if(!swordStatus)
-	{
-		ItemSheetTexture.Render(Renderer, this->item_sword.x - camera->x, this->item_sword.y - camera->y, &ObjectClips[1]);
-	}
 	SDL_RenderFillRect(Renderer, &fishermanSprite);
 }
 

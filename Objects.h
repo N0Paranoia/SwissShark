@@ -20,7 +20,7 @@ public:
 	
 	void Cleanup();
 	
-	SDL_Rect ObjectClips[2];
+	SDL_Rect ObjectClips[3];
 	
 	SDL_Rect chest;
 	SDL_Rect door;

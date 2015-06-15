@@ -18,13 +18,8 @@ Player::Player()
 	
 	playerSprite.x = 1*TILE_SIZE;
 	playerSprite.y = 2*TILE_SIZE;
-	playerSprite.w = 192;
+	playerSprite.w = 240;
 	playerSprite.h = 96;
-	
-	WeaponSprite.x = 1*TILE_SIZE;
-	WeaponSprite.y = 2*TILE_SIZE;
-	WeaponSprite.w = TILE_SIZE;
-	WeaponSprite.h = 20;
 	
 	Xvel = 0;
 	Yvel = 0;
@@ -33,10 +28,16 @@ Player::Player()
 	frame = 0;
 	StartFrameLeft = 4;
 	EndFrameLeft = 7;
+	StartFrameLeftSaw = 12;
+	EndFrameLeftSaw = 15;
 	StartFrameRight = 0;
 	EndFrameRight = 3;
+	StartFrameRightSaw = 8;
+	EndFrameRightSaw = 11;
 	IdleFrameLeft = 4;
+	IdleFrameLeftSaw = 12;
 	IdleFrameRight = 0;
+	IdleFrameRightSaw = 8;
 	frameCounter = 0;
 	frameSpeed = 12;
 	frameSwitch = 60;
@@ -138,45 +139,45 @@ int Player::LoadMedia(SDL_Renderer* Renderer)
 		PlayerClips[7].w = playerSprite.w;
 		PlayerClips[7].h = playerSprite.h;
 		
-		PlayerClips[8].x = 0 * WeaponSprite.w;
+		PlayerClips[8].x = 0 * playerSprite.w;
 		PlayerClips[8].y = 2 * playerSprite.h;
-		PlayerClips[8].w = WeaponSprite.w;
-		PlayerClips[8].h = WeaponSprite.h;
+		PlayerClips[8].w = playerSprite.w;
+		PlayerClips[8].h = playerSprite.h;
 		
-		PlayerClips[9].x = 1 * WeaponSprite.w;
+		PlayerClips[9].x = 1 * playerSprite.w;
 		PlayerClips[9].y = 2 * playerSprite.h;
-		PlayerClips[9].w = WeaponSprite.w;
-		PlayerClips[9].h = WeaponSprite.h;
+		PlayerClips[9].w = playerSprite.w;
+		PlayerClips[9].h = playerSprite.h;
 		
-		PlayerClips[10].x = 0 * WeaponSprite.w;
-		PlayerClips[10].y = 2 * playerSprite.h + 1*WeaponSprite.h;
-		PlayerClips[10].w = WeaponSprite.w;
-		PlayerClips[10].h = WeaponSprite.h;
+		PlayerClips[10].x = 2 * playerSprite.w;
+		PlayerClips[10].y = 2 * playerSprite.h;
+		PlayerClips[10].w = playerSprite.w;
+		PlayerClips[10].h = playerSprite.h;
 		
-		PlayerClips[11].x = 1 * WeaponSprite.w;
-		PlayerClips[11].y = 2 * playerSprite.h +1*WeaponSprite.h;
-		PlayerClips[11].w = WeaponSprite.w;
-		PlayerClips[11].h = WeaponSprite.h;
+		PlayerClips[11].x = 3 * playerSprite.w;
+		PlayerClips[11].y = 2 * playerSprite.h;
+		PlayerClips[11].w = playerSprite.w;
+		PlayerClips[11].h = playerSprite.h;
 		
-		PlayerClips[12].x = 3 * WeaponSprite.w;
-		PlayerClips[12].y = 2 * playerSprite.h;
-		PlayerClips[12].w = WeaponSprite.w;
-		PlayerClips[12].h = WeaponSprite.h;
+		PlayerClips[12].x = 0 * playerSprite.w;
+		PlayerClips[12].y = 3 * playerSprite.h;
+		PlayerClips[12].w = playerSprite.w;
+		PlayerClips[12].h = playerSprite.h;
 		
-		PlayerClips[13].x = 4 * WeaponSprite.w;
-		PlayerClips[13].y = 2 * playerSprite.h;
-		PlayerClips[13].w = WeaponSprite.w;
-		PlayerClips[13].h = WeaponSprite.h;
+		PlayerClips[13].x = 1 * playerSprite.w;
+		PlayerClips[13].y = 3 * playerSprite.h;
+		PlayerClips[13].w = playerSprite.w;
+		PlayerClips[13].h = playerSprite.h;
 		
-		PlayerClips[14].x = 3 * WeaponSprite.w;
-		PlayerClips[14].y = 2 * playerSprite.h + 1*WeaponSprite.h;
-		PlayerClips[14].w = WeaponSprite.w;
-		PlayerClips[14].h = WeaponSprite.h;
+		PlayerClips[14].x = 2 * playerSprite.w;
+		PlayerClips[14].y = 3 * playerSprite.h;
+		PlayerClips[14].w = playerSprite.w;
+		PlayerClips[14].h = playerSprite.h;
 		
-		PlayerClips[15].x = 4 * WeaponSprite.w;
-		PlayerClips[15].y = 2 * playerSprite.h +1*WeaponSprite.h;
-		PlayerClips[15].w = WeaponSprite.w;
-		PlayerClips[15].h = WeaponSprite.h;
+		PlayerClips[15].x = 3 * playerSprite.w;
+		PlayerClips[15].y = 3 * playerSprite.h;
+		PlayerClips[15].w = playerSprite.w;
+		PlayerClips[15].h = playerSprite.h;
 	}
 	return true;
 }
@@ -514,38 +515,78 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 	frameCounter += frameSpeed;
 	if(frameCounter > frameSwitch)
 	{
-		// Walking Animation
-		if(FacingLeft)
+		switch(_weaponType)
 		{
-			if(WalkingLeft || SwimmingUp || SwimmingDown)
-			{
-				frame ++;
-				frameCounter = 0;
-				if(frame > EndFrameLeft || frame < StartFrameLeft)
+			case noweapon:
+				// Walking Animation
+				if(FacingLeft)
 				{
-					frame = StartFrameLeft;
+					if(WalkingLeft || SwimmingUp || SwimmingDown)
+					{
+						frame ++;
+						frameCounter = 0;
+						if(frame > EndFrameLeft || frame < StartFrameLeft)
+						{
+							frame = StartFrameLeft;
+						}
+					}
+					else
+					{
+						frame = IdleFrameLeft;
+					}
 				}
-			}
-			else
-			{
-				frame = IdleFrameLeft;
-			}
-		}
-		if(FacingRight)
-		{
-			if(WalkingRight || SwimmingUp ||SwimmingDown)
-			{
-				frame ++;
-				frameCounter = 0;
-				if(frame > EndFrameRight || frame < StartFrameRight)
+				if(FacingRight)
 				{
-					frame = StartFrameRight;
+					if(WalkingRight || SwimmingUp ||SwimmingDown)
+					{
+						frame ++;
+						frameCounter = 0;
+						if(frame > EndFrameRight || frame < StartFrameRight)
+						{
+							frame = StartFrameRight;
+						}
+					}
+					else
+					{
+						frame = IdleFrameRight;
+					}
 				}
-			}
-			else
-			{
-				frame = IdleFrameRight;
-			}
+				break;
+			case saw:
+			// Walking Animation
+				if(FacingLeft)
+				{
+					if(WalkingLeft || SwimmingUp || SwimmingDown)
+					{
+						frame ++;
+						frameCounter = 0;
+						if(frame > EndFrameLeftSaw || frame < StartFrameLeftSaw)
+						{
+							frame = StartFrameLeftSaw;
+						}
+					}
+					else
+					{
+						frame = IdleFrameLeftSaw;
+					}
+				}
+				if(FacingRight)
+				{
+					if(WalkingRight || SwimmingUp ||SwimmingDown)
+					{
+						frame ++;
+						frameCounter = 0;
+						if(frame > EndFrameRightSaw || frame < StartFrameRightSaw)
+						{
+							frame = StartFrameRightSaw;
+						}
+					}
+					else
+					{
+						frame = IdleFrameRightSaw;
+					}
+				}
+				break;
 		}
 	}
 	//Show collsiion box
@@ -561,60 +602,10 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 	if(FacingLeft)
 	{
 		SpriteSheetTexture.Render(Renderer, playerRect.x - camera->x, (playerRect.y - 32) - camera->y, &PlayerClips[frame]);
-		switch(_weaponType)
-		{
-			case saw:
-				if(isAttacking)
-				{
-					SpriteSheetTexture.Render(Renderer, (this->playerRect.x - 40) - camera->x, (this->playerRect.y + (playerRect.h/2 - 8)) - camera->y, &PlayerClips[11]);
-				}
-				else
-				{
-					SpriteSheetTexture.Render(Renderer, (this->playerRect.x - 40) - camera->x, (this->playerRect.y + (playerRect.h/2 - 8)) - camera->y, &PlayerClips[10]);
-				}
-				break;
-			case sword:
-				if(isAttacking)
-				{
-					SpriteSheetTexture.Render(Renderer, (this->playerRect.x - 40) - camera->x, (this->playerRect.y + (playerRect.h/2 - 8)) - camera->y, &PlayerClips[15]);
-				}
-				else
-				{
-					SpriteSheetTexture.Render(Renderer, (this->playerRect.x - 40) - camera->x, (this->playerRect.y + (playerRect.h/2 - 8)) - camera->y, &PlayerClips[14]);
-				}
-				break;
-			case noweapon:
-				break;
-		}
 	}
 	else if(FacingRight)
 	{
 		SpriteSheetTexture.Render(Renderer, playerRect.x - TILE_SIZE - camera->x, (playerRect.y - 32) - camera->y, &PlayerClips[frame]);
-		switch(_weaponType)
-		{
-			case saw:
-				if(isAttacking)
-				{
-					SpriteSheetTexture.Render(Renderer, (this->playerRect.x + (this->playerRect.w - 8)) - camera->x, (this->playerRect.y + (playerRect.h/2 - 8)) - camera->y, &PlayerClips[9]);
-				}
-				else
-				{
-					SpriteSheetTexture.Render(Renderer, (this->playerRect.x + (this->playerRect.w - 8)) - camera->x, (this->playerRect.y + (playerRect.h/2 - 8)) - camera->y, &PlayerClips[8]);
-				}
-				break;
-			case sword:
-				if(isAttacking)
-				{
-					SpriteSheetTexture.Render(Renderer, (this->playerRect.x + (this->playerRect.w - 8)) - camera->x, (this->playerRect.y + (playerRect.h/2 - 8)) - camera->y, &PlayerClips[13]);
-				}
-				else
-				{
-					SpriteSheetTexture.Render(Renderer, (this->playerRect.x + (this->playerRect.w - 8)) - camera->x, (this->playerRect.y + (playerRect.h/2 - 8)) - camera->y, &PlayerClips[12]);
-				}
-				break;
-			case noweapon:
-				break;
-		}
 	}
 }
 

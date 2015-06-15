@@ -49,10 +49,16 @@ class Player
 		int frame;
 		int StartFrameLeft;
 		int EndFrameLeft;
+		int StartFrameLeftSaw;
+		int EndFrameLeftSaw;
 		int StartFrameRight;
 		int EndFrameRight;
+		int StartFrameRightSaw;
+		int EndFrameRightSaw;
 		int IdleFrameLeft;
+		int IdleFrameLeftSaw;
 		int IdleFrameRight;
+		int IdleFrameRightSaw;
 		int frameCounter;
 		int frameSpeed;
 		int frameSwitch;

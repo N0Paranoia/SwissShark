@@ -5,14 +5,14 @@
 ## Debug
 ProjectName            :=SwissShak
 ConfigurationName      :=Debug
-WorkspacePath          := "C:\Users\nsmm\C_C++\SwissShark"
-ProjectPath            := "C:\Users\nsmm\C_C++\SwissShark"
+WorkspacePath          := "C:\Users\Tijn\Documents\GitHub\SwissShark"
+ProjectPath            := "C:\Users\Tijn\Documents\GitHub\SwissShark"
 IntermediateDirectory  :=./Debug
 OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
-User                   :=nsmm
+User                   :=Tijn
 Date                   :=15/06/2015
 CodeLitePath           :="C:\Program Files\CodeLite"
 LinkerName             :=C:/Compilers/MinGW/bin/g++.exe
@@ -91,7 +91,7 @@ PreBuild:
 ## Objects
 ##
 $(IntermediateDirectory)/Camera.cpp$(ObjectSuffix): Camera.cpp $(IntermediateDirectory)/Camera.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/nsmm/C_C++/SwissShark/Camera.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Camera.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Tijn/Documents/GitHub/SwissShark/Camera.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Camera.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/Camera.cpp$(DependSuffix): Camera.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Camera.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Camera.cpp$(DependSuffix) -MM "Camera.cpp"
 
@@ -99,7 +99,7 @@ $(IntermediateDirectory)/Camera.cpp$(PreprocessSuffix): Camera.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Camera.cpp$(PreprocessSuffix) "Camera.cpp"
 
 $(IntermediateDirectory)/Collision.cpp$(ObjectSuffix): Collision.cpp $(IntermediateDirectory)/Collision.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/nsmm/C_C++/SwissShark/Collision.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Collision.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Tijn/Documents/GitHub/SwissShark/Collision.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Collision.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/Collision.cpp$(DependSuffix): Collision.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Collision.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Collision.cpp$(DependSuffix) -MM "Collision.cpp"
 
@@ -107,7 +107,7 @@ $(IntermediateDirectory)/Collision.cpp$(PreprocessSuffix): Collision.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Collision.cpp$(PreprocessSuffix) "Collision.cpp"
 
 $(IntermediateDirectory)/Doors.cpp$(ObjectSuffix): Doors.cpp $(IntermediateDirectory)/Doors.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/nsmm/C_C++/SwissShark/Doors.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Doors.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Tijn/Documents/GitHub/SwissShark/Doors.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Doors.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/Doors.cpp$(DependSuffix): Doors.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Doors.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Doors.cpp$(DependSuffix) -MM "Doors.cpp"
 
@@ -115,7 +115,7 @@ $(IntermediateDirectory)/Doors.cpp$(PreprocessSuffix): Doors.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Doors.cpp$(PreprocessSuffix) "Doors.cpp"
 
 $(IntermediateDirectory)/Player.cpp$(ObjectSuffix): Player.cpp $(IntermediateDirectory)/Player.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/nsmm/C_C++/SwissShark/Player.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Player.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Tijn/Documents/GitHub/SwissShark/Player.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Player.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/Player.cpp$(DependSuffix): Player.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Player.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Player.cpp$(DependSuffix) -MM "Player.cpp"
 
@@ -123,7 +123,7 @@ $(IntermediateDirectory)/Player.cpp$(PreprocessSuffix): Player.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Player.cpp$(PreprocessSuffix) "Player.cpp"
 
 $(IntermediateDirectory)/Textures.cpp$(ObjectSuffix): Textures.cpp $(IntermediateDirectory)/Textures.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/nsmm/C_C++/SwissShark/Textures.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Textures.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Tijn/Documents/GitHub/SwissShark/Textures.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Textures.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/Textures.cpp$(DependSuffix): Textures.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Textures.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Textures.cpp$(DependSuffix) -MM "Textures.cpp"
 
@@ -131,7 +131,7 @@ $(IntermediateDirectory)/Textures.cpp$(PreprocessSuffix): Textures.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Textures.cpp$(PreprocessSuffix) "Textures.cpp"
 
 $(IntermediateDirectory)/Tile.cpp$(ObjectSuffix): Tile.cpp $(IntermediateDirectory)/Tile.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/nsmm/C_C++/SwissShark/Tile.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Tile.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Tijn/Documents/GitHub/SwissShark/Tile.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Tile.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/Tile.cpp$(DependSuffix): Tile.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Tile.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Tile.cpp$(DependSuffix) -MM "Tile.cpp"
 
@@ -139,7 +139,7 @@ $(IntermediateDirectory)/Tile.cpp$(PreprocessSuffix): Tile.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Tile.cpp$(PreprocessSuffix) "Tile.cpp"
 
 $(IntermediateDirectory)/Timer.cpp$(ObjectSuffix): Timer.cpp $(IntermediateDirectory)/Timer.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/nsmm/C_C++/SwissShark/Timer.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Timer.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Tijn/Documents/GitHub/SwissShark/Timer.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Timer.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/Timer.cpp$(DependSuffix): Timer.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Timer.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Timer.cpp$(DependSuffix) -MM "Timer.cpp"
 
@@ -147,7 +147,7 @@ $(IntermediateDirectory)/Timer.cpp$(PreprocessSuffix): Timer.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Timer.cpp$(PreprocessSuffix) "Timer.cpp"
 
 $(IntermediateDirectory)/World.cpp$(ObjectSuffix): World.cpp $(IntermediateDirectory)/World.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/nsmm/C_C++/SwissShark/World.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/World.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Tijn/Documents/GitHub/SwissShark/World.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/World.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/World.cpp$(DependSuffix): World.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/World.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/World.cpp$(DependSuffix) -MM "World.cpp"
 
@@ -155,7 +155,7 @@ $(IntermediateDirectory)/World.cpp$(PreprocessSuffix): World.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/World.cpp$(PreprocessSuffix) "World.cpp"
 
 $(IntermediateDirectory)/Game.cpp$(ObjectSuffix): Game.cpp $(IntermediateDirectory)/Game.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/nsmm/C_C++/SwissShark/Game.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Game.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Tijn/Documents/GitHub/SwissShark/Game.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Game.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/Game.cpp$(DependSuffix): Game.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Game.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Game.cpp$(DependSuffix) -MM "Game.cpp"
 
@@ -163,7 +163,7 @@ $(IntermediateDirectory)/Game.cpp$(PreprocessSuffix): Game.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Game.cpp$(PreprocessSuffix) "Game.cpp"
 
 $(IntermediateDirectory)/Objects.cpp$(ObjectSuffix): Objects.cpp $(IntermediateDirectory)/Objects.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/nsmm/C_C++/SwissShark/Objects.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Objects.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Tijn/Documents/GitHub/SwissShark/Objects.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Objects.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/Objects.cpp$(DependSuffix): Objects.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Objects.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Objects.cpp$(DependSuffix) -MM "Objects.cpp"
 
