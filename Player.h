@@ -65,6 +65,8 @@ class Player
 
 		bool WalkingLeft;
 		bool WalkingRight;
+		bool SwimmingUp;
+		bool SwimmingDown;
 		bool FacingLeft;
 		bool FacingRight;
 		bool isRunning;
@@ -90,15 +92,19 @@ class Player
 		int health;
 		
 		SDL_Rect PlayerClips[18];
-		SDL_Rect AttackBox;
-		SDL_Rect WeaponBox;
+
 		SDL_Rect HealthBar;
 		SDL_Rect StaminBar;
+		SDL_Rect WinObjective;
 		
 	public:
 		//Collision box
 		SDL_Rect playerRect;
 		SDL_Rect playerSprite;
+		
+		SDL_Rect AttackBox;
+		SDL_Rect WeaponBox;
+		SDL_Rect WeaponSprite;
 
 		SDL_Rect collisionBox;
 		
@@ -108,11 +114,13 @@ class Player
 		int LoadMedia(SDL_Renderer* Renderer);
 		void Move(int Dir, Tile* tiles[]);
 		void Attack();
+		void SwitchWeapon();
 		void CheckObjects();
 		int Health(int hit);
 		int Energy(int action);
 		void Render(SDL_Renderer* Renderer, SDL_Rect* camera);
 		void Cleanup();
+		int CheckWinStatus();
 		
 		bool destroyedDoor;
 		bool kiledDiver;

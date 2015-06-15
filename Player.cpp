@@ -14,12 +14,17 @@ Player::Player()
 	playerRect.x = 1*TILE_SIZE;
 	playerRect.y = 2*TILE_SIZE;
 	playerRect.w = 3*TILE_SIZE;
-	playerRect.h = TILE_SIZE;
+	playerRect.h = 32;
 	
 	playerSprite.x = 1*TILE_SIZE;
 	playerSprite.y = 2*TILE_SIZE;
 	playerSprite.w = 192;
 	playerSprite.h = 96;
+	
+	WeaponSprite.x = 1*TILE_SIZE;
+	WeaponSprite.y = 2*TILE_SIZE;
+	WeaponSprite.w = TILE_SIZE;
+	WeaponSprite.h = 20;
 	
 	Xvel = 0;
 	Yvel = 0;
@@ -41,7 +46,9 @@ Player::Player()
 	jumpHeight = 60;
 
 	WalkingLeft = false;
-	WalkingLeft = false;
+	WalkingRight = false;
+	SwimmingUp =  false;
+	SwimmingDown = false;
 	FacingLeft = false;
 	FacingRight = true;
 
@@ -72,6 +79,8 @@ Player::Player()
 	pickedUpSword = false;
 	
 	_weaponType = noweapon;
+	
+	WinObjective = {43*TILE_SIZE,9*TILE_SIZE, TILE_SIZE,2*TILE_SIZE};
 }
 
 Player::~Player()
@@ -128,6 +137,46 @@ int Player::LoadMedia(SDL_Renderer* Renderer)
 		PlayerClips[7].y = 1 * playerSprite.h;
 		PlayerClips[7].w = playerSprite.w;
 		PlayerClips[7].h = playerSprite.h;
+		
+		PlayerClips[8].x = 0 * WeaponSprite.w;
+		PlayerClips[8].y = 2 * playerSprite.h;
+		PlayerClips[8].w = WeaponSprite.w;
+		PlayerClips[8].h = WeaponSprite.h;
+		
+		PlayerClips[9].x = 1 * WeaponSprite.w;
+		PlayerClips[9].y = 2 * playerSprite.h;
+		PlayerClips[9].w = WeaponSprite.w;
+		PlayerClips[9].h = WeaponSprite.h;
+		
+		PlayerClips[10].x = 0 * WeaponSprite.w;
+		PlayerClips[10].y = 2 * playerSprite.h + 1*WeaponSprite.h;
+		PlayerClips[10].w = WeaponSprite.w;
+		PlayerClips[10].h = WeaponSprite.h;
+		
+		PlayerClips[11].x = 1 * WeaponSprite.w;
+		PlayerClips[11].y = 2 * playerSprite.h +1*WeaponSprite.h;
+		PlayerClips[11].w = WeaponSprite.w;
+		PlayerClips[11].h = WeaponSprite.h;
+		
+		PlayerClips[12].x = 3 * WeaponSprite.w;
+		PlayerClips[12].y = 2 * playerSprite.h;
+		PlayerClips[12].w = WeaponSprite.w;
+		PlayerClips[12].h = WeaponSprite.h;
+		
+		PlayerClips[13].x = 4 * WeaponSprite.w;
+		PlayerClips[13].y = 2 * playerSprite.h;
+		PlayerClips[13].w = WeaponSprite.w;
+		PlayerClips[13].h = WeaponSprite.h;
+		
+		PlayerClips[14].x = 3 * WeaponSprite.w;
+		PlayerClips[14].y = 2 * playerSprite.h + 1*WeaponSprite.h;
+		PlayerClips[14].w = WeaponSprite.w;
+		PlayerClips[14].h = WeaponSprite.h;
+		
+		PlayerClips[15].x = 4 * WeaponSprite.w;
+		PlayerClips[15].y = 2 * playerSprite.h +1*WeaponSprite.h;
+		PlayerClips[15].w = WeaponSprite.w;
+		PlayerClips[15].h = WeaponSprite.h;
 	}
 	return true;
 }
@@ -144,6 +193,10 @@ void Player::Input(Tile* tiles[])
 		case state_idle:
 			Xvel = 0;
 			Yvel = 0;
+			SwimmingUp = false;
+			SwimmingDown = false;
+			WalkingLeft = false;
+			WalkingRight = false;
 			if(keyState[SDL_SCANCODE_A])
 			{
 				_state = state_walking;
@@ -171,6 +224,10 @@ void Player::Input(Tile* tiles[])
 			if(!keyState[SDL_SCANCODE_L])
 			{
 				isAttacking = false;
+			}
+			if(keyState[SDL_SCANCODE_E])
+			{
+				this->SwitchWeapon();
 			}
 			break;
 			
@@ -224,6 +281,8 @@ void Player::Input(Tile* tiles[])
 				{
 					Yvel = -swimmingSpeed;
 				}
+				SwimmingUp = true;
+				this->CheckObjects();
 				this->Move(up, tiles);
 			}
 			else if(keyState[SDL_SCANCODE_S])
@@ -237,6 +296,8 @@ void Player::Input(Tile* tiles[])
 				{
 					Yvel = swimmingSpeed;
 				}
+				SwimmingDown = true;
+				this->CheckObjects();
 				this->Move(down, tiles);
 			}			
 			else
@@ -246,6 +307,10 @@ void Player::Input(Tile* tiles[])
 			if(keyState[SDL_SCANCODE_L])
 			{
 				_state = state_attacking;
+			}
+			if(keyState[SDL_SCANCODE_E])
+			{
+				this->SwitchWeapon();
 			}
 			break;
 			
@@ -332,14 +397,14 @@ void Player::Attack()
 			{
 				if(pickedUpSaw || pickedUpSword)
 				{
-					AttackBox = {this->playerRect.x - TILE_SIZE, this->playerRect.y + (TILE_SIZE/2 - 5), TILE_SIZE, 10};
+					AttackBox = {this->playerRect.x - TILE_SIZE, this->playerRect.y + (playerRect.h/2 - 4), TILE_SIZE, 10};
 				}
 			}
 			else if(FacingRight)
 			{
 				if(pickedUpSaw || pickedUpSword)
 				{
-					AttackBox = {this->playerRect.x + this->playerRect.w, this->playerRect.y + (TILE_SIZE/2 - 5), TILE_SIZE, 10};
+					AttackBox = {this->playerRect.x + this->playerRect.w, this->playerRect.y + (playerRect.h/2 - 4), TILE_SIZE, 10};
 				}
 			}
 			if(!isAttacking)
@@ -353,11 +418,11 @@ void Player::Attack()
 		{
 			if(FacingLeft)
 			{
-				AttackBox = {this->playerRect.x - TILE_SIZE, this->playerRect.y + TILE_SIZE/2, NULL, NULL};
+				AttackBox = {this->playerRect.x - TILE_SIZE, this->playerRect.y + (playerRect.h/2 - 4), NULL, NULL};
 			}
 			else if(FacingRight)
 			{
-				AttackBox = {this->playerRect.x + this->playerRect.w, this->playerRect.y + TILE_SIZE/2, NULL, NULL};
+				AttackBox = {this->playerRect.x + this->playerRect.w, this->playerRect.y + (playerRect.h/2 - 4), NULL, NULL};
 			}
 		}
 	}
@@ -369,7 +434,35 @@ void Player::Attack()
 		energyRecover = true;
 	}
 }
-\
+
+void Player::SwitchWeapon()
+{
+	switch(_weaponType)
+	{
+		case saw:
+			if(pickedUpSword)
+			{
+				_weaponType = sword;
+			}
+			break;
+		case sword:
+			if(pickedUpSaw)
+			{
+				_weaponType = saw;
+			}
+			break;
+	}
+}
+
+int Player::CheckWinStatus()
+{
+	if(pCollision.VarCollision(playerRect, WinObjective))
+	{
+		return 1;
+	}
+	return 0;
+}
+
 void Player::Move(int Dir, Tile* tiles[])
 {
 	if(Dir == left || Dir == right)
@@ -422,37 +515,34 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 	if(frameCounter > frameSwitch)
 	{
 		// Walking Animation
-		if(WalkingLeft)
+		if(FacingLeft)
 		{
-
-			frame ++;
-			frameCounter = 0;
-			if(frame > EndFrameLeft || frame < StartFrameLeft)
+			if(WalkingLeft || SwimmingUp || SwimmingDown)
 			{
-				frame = StartFrameLeft;
+				frame ++;
+				frameCounter = 0;
+				if(frame > EndFrameLeft || frame < StartFrameLeft)
+				{
+					frame = StartFrameLeft;
+				}
 			}
-		}
-		else
-		{
-			//Idle frame left
-			if(FacingLeft)
+			else
 			{
 				frame = IdleFrameLeft;
 			}
 		}
-		if(WalkingRight)
+		if(FacingRight)
 		{
-			frame ++;
-			frameCounter = 0;
-			if(frame > EndFrameRight || frame < StartFrameRight)
+			if(WalkingRight || SwimmingUp ||SwimmingDown)
 			{
-				frame = StartFrameRight;
+				frame ++;
+				frameCounter = 0;
+				if(frame > EndFrameRight || frame < StartFrameRight)
+				{
+					frame = StartFrameRight;
+				}
 			}
-		}
-		else
-		{
-			//Idle frame right
-			if(FacingRight)
+			else
 			{
 				frame = IdleFrameRight;
 			}
@@ -466,30 +556,66 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 	SDL_RenderDrawRect(Renderer, &playerRect);
 	SDL_SetRenderDrawColor(Renderer, 0x00, 0xff, 0x00, 0xFF );
 	SDL_RenderFillRect(Renderer, &StaminBar);
+
 	//Render Frame
 	if(FacingLeft)
 	{
-		SpriteSheetTexture.Render(Renderer, playerRect.x - camera->x, (playerRect.y - TILE_SIZE/2) - camera->y, &PlayerClips[frame]);
+		SpriteSheetTexture.Render(Renderer, playerRect.x - camera->x, (playerRect.y - 32) - camera->y, &PlayerClips[frame]);
+		switch(_weaponType)
+		{
+			case saw:
+				if(isAttacking)
+				{
+					SpriteSheetTexture.Render(Renderer, (this->playerRect.x - 40) - camera->x, (this->playerRect.y + (playerRect.h/2 - 8)) - camera->y, &PlayerClips[11]);
+				}
+				else
+				{
+					SpriteSheetTexture.Render(Renderer, (this->playerRect.x - 40) - camera->x, (this->playerRect.y + (playerRect.h/2 - 8)) - camera->y, &PlayerClips[10]);
+				}
+				break;
+			case sword:
+				if(isAttacking)
+				{
+					SpriteSheetTexture.Render(Renderer, (this->playerRect.x - 40) - camera->x, (this->playerRect.y + (playerRect.h/2 - 8)) - camera->y, &PlayerClips[15]);
+				}
+				else
+				{
+					SpriteSheetTexture.Render(Renderer, (this->playerRect.x - 40) - camera->x, (this->playerRect.y + (playerRect.h/2 - 8)) - camera->y, &PlayerClips[14]);
+				}
+				break;
+			case noweapon:
+				break;
+		}
 	}
 	else if(FacingRight)
 	{
-		SpriteSheetTexture.Render(Renderer, playerRect.x - TILE_SIZE - camera->x, (playerRect.y - TILE_SIZE/2) - camera->y, &PlayerClips[frame]);
-	}		
-	//Create New REctangle for weapon for the camera compisation
-	WeaponBox = {AttackBox.x - camera->x, AttackBox.y - camera->y, AttackBox.w, AttackBox.h};
-	
-	switch(_weaponType)
-	{
-		case saw:
-			SDL_SetRenderDrawColor(Renderer, 0xff, 0xff, 0x00, 0x00);
-			break;
-		case sword:
-			SDL_SetRenderDrawColor(Renderer, 0xff, 0x00, 0xff, 0x00);
-			break;
-		case noweapon:
-			break;
+		SpriteSheetTexture.Render(Renderer, playerRect.x - TILE_SIZE - camera->x, (playerRect.y - 32) - camera->y, &PlayerClips[frame]);
+		switch(_weaponType)
+		{
+			case saw:
+				if(isAttacking)
+				{
+					SpriteSheetTexture.Render(Renderer, (this->playerRect.x + (this->playerRect.w - 8)) - camera->x, (this->playerRect.y + (playerRect.h/2 - 8)) - camera->y, &PlayerClips[9]);
+				}
+				else
+				{
+					SpriteSheetTexture.Render(Renderer, (this->playerRect.x + (this->playerRect.w - 8)) - camera->x, (this->playerRect.y + (playerRect.h/2 - 8)) - camera->y, &PlayerClips[8]);
+				}
+				break;
+			case sword:
+				if(isAttacking)
+				{
+					SpriteSheetTexture.Render(Renderer, (this->playerRect.x + (this->playerRect.w - 8)) - camera->x, (this->playerRect.y + (playerRect.h/2 - 8)) - camera->y, &PlayerClips[13]);
+				}
+				else
+				{
+					SpriteSheetTexture.Render(Renderer, (this->playerRect.x + (this->playerRect.w - 8)) - camera->x, (this->playerRect.y + (playerRect.h/2 - 8)) - camera->y, &PlayerClips[12]);
+				}
+				break;
+			case noweapon:
+				break;
+		}
 	}
-	SDL_RenderFillRect(Renderer, &WeaponBox);
 }
 
 void Player::Cleanup()

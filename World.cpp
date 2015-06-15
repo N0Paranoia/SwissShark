@@ -32,7 +32,7 @@ int World::LoadMedia(SDL_Renderer* Renderer, Tile* tiles[])
 		return false;
 	}
 	//Load Player spritesheet
-	if((TileSheetTexture.LoadFromFile(Renderer, "../assets/tileSheet48.png")) == NULL)
+	if((TileSheetTexture.LoadFromFile(Renderer, "../assets/tileSheet.png")) == NULL)
 	{
 		cout << "Unable to load Tile Texture! SDL_Error: " << SDL_GetError() << endl;
 		return false;
@@ -176,4 +176,9 @@ void World::Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[])
     {
         tiles[i]->Render(&TileSheetTexture, &TileClips[Type], Renderer, camera);
     }
+}
+
+void World::Cleanup()
+{
+	TileSheetTexture.Free();
 }

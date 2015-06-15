@@ -41,7 +41,10 @@ Debug/Objects.cpp.o: Objects.cpp Objects.h \
  C:/Compilers/MinGW/include/SDL2/SDL_render.h \
  C:/Compilers/MinGW/include/SDL2/SDL_system.h \
  C:/Compilers/MinGW/include/SDL2/SDL_timer.h \
- C:/Compilers/MinGW/include/SDL2/SDL_version.h Constants.h
+ C:/Compilers/MinGW/include/SDL2/SDL_version.h Constants.h Textures.h \
+ C:/Compilers/MinGW/include/SDL2/SDL_image.h \
+ C:/Compilers/MinGW/include/SDL2/SDL.h \
+ C:/Compilers/MinGW/include/SDL2/SDL_ttf.h
 
 Objects.h:
 
@@ -132,3 +135,11 @@ C:/Compilers/MinGW/include/SDL2/SDL_timer.h:
 C:/Compilers/MinGW/include/SDL2/SDL_version.h:
 
 Constants.h:
+
+Textures.h:
+
+C:/Compilers/MinGW/include/SDL2/SDL_image.h:
+
+C:/Compilers/MinGW/include/SDL2/SDL.h:
+
+C:/Compilers/MinGW/include/SDL2/SDL_ttf.h:

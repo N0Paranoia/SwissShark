@@ -15,6 +15,7 @@ using namespace std;
 std::stringstream timeText;
 std::stringstream gameOverText1;
 std::stringstream gameOverText2;
+std::stringstream winText;
 
 class Game
 {
@@ -24,39 +25,41 @@ private:
 		{
 			running,
 			pause,
-			gameover
+			gameover,
+			win
 		};
 		
 		int _gamestate;
-	
-        bool Running;
-        SDL_Window* Window ;
-        SDL_Renderer* Renderer;
-        SDL_Texture* Texture;
-        TTF_Font* Font;
-        SDL_Color textColor;
-        int countedFrames;
 
-        float avgFPS;
-        int frameTicks;
+		bool Running;
+		SDL_Window* Window ;
+		SDL_Renderer* Renderer;
+		SDL_Texture* Texture;
+		TTF_Font* Font;
+		SDL_Color textColor;
+		int countedFrames;
 
-    public:
-        Game();
-        int Execute();
+		float avgFPS;
+		int frameTicks;
 
-    public:
-        void Event(SDL_Event* Event);
-        void Fps();
+	public:
+		Game();
+		int Execute();
+
+	public:
+		void Event(SDL_Event* Event);
+		void Fps();
 		void GameOver();
-        void FpsCap();
-        bool Init();
-        bool LoadMedia();
-        //Loads individual image as texture
-        SDL_Texture* loadTexture(std::string path);
-        void Input();
-        void Loop();
-        void Render();
-        void Cleanup();
+		void Win();
+		void FpsCap();
+		bool Init();
+		bool LoadMedia();
+		//Loads individual image as texture
+		SDL_Texture* loadTexture(std::string path);
+		void Input();
+		void Loop();
+		void Render();
+		void Cleanup();
 };
 
 #endif // EQ_H

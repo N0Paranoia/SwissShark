@@ -9,6 +9,7 @@ class Objects
 public:
 	Objects();
 	~Objects();
+	int LoadMedia(SDL_Renderer* Renderer);
 	SDL_Rect Door();
 	SDL_Rect Diver();
 	SDL_Rect Fisherman();
@@ -16,6 +17,10 @@ public:
 	SDL_Rect Item_Sword();
 	void Update(int action);
 	void Render(SDL_Renderer* Renderer, SDL_Rect* camera, bool doorStatus, bool diverStatus, bool sawStatus, bool swordStatus);
+	
+	void Cleanup();
+	
+	SDL_Rect ObjectClips[2];
 	
 	SDL_Rect chest;
 	SDL_Rect door;
