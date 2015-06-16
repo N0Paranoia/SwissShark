@@ -66,7 +66,5 @@ void Camera::Follow()
 
 void Camera::Render(SDL_Renderer* Renderer)
 {
-    SDL_SetRenderDrawColor(Renderer, 0x00, 0x00, 0x00, 0xff);
-    test = {centerRect.x - cameraRect.x, centerRect.y - cameraRect.y, centerRect.w, centerRect.h};
-    SDL_RenderDrawRect(Renderer, &test);
+
 }

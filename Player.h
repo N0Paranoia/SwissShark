@@ -50,15 +50,21 @@ class Player
 		int StartFrameLeft;
 		int EndFrameLeft;
 		int StartFrameLeftSaw;
+		int StartFrameLeftSword;
 		int EndFrameLeftSaw;
+		int EndFrameLeftSword;
 		int StartFrameRight;
 		int EndFrameRight;
 		int StartFrameRightSaw;
+		int StartFrameRightSword;
 		int EndFrameRightSaw;
+		int EndFrameRightSword;
 		int IdleFrameLeft;
 		int IdleFrameLeftSaw;
+		int IdleFrameLeftSword;
 		int IdleFrameRight;
 		int IdleFrameRightSaw;
+		int IdleFrameRightSword;
 		int frameCounter;
 		int frameSpeed;
 		int frameSwitch;
@@ -97,7 +103,7 @@ class Player
 		int maxHealth;
 		int health;
 		
-		SDL_Rect PlayerClips[18];
+		SDL_Rect PlayerClips[24];
 
 		SDL_Rect HealthBar;
 		SDL_Rect StaminBar;

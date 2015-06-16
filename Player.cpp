@@ -25,19 +25,26 @@ Player::Player()
 	Yvel = 0;
 	Jvel = 0;
 	swimmingSpeed = 8;
+	
 	frame = 0;
 	StartFrameLeft = 4;
 	EndFrameLeft = 7;
 	StartFrameLeftSaw = 12;
+	StartFrameLeftSword = 20;
 	EndFrameLeftSaw = 15;
+	EndFrameLeftSword = 23;
 	StartFrameRight = 0;
 	EndFrameRight = 3;
 	StartFrameRightSaw = 8;
+	StartFrameRightSword = 16;
 	EndFrameRightSaw = 11;
+	EndFrameRightSword = 19;
 	IdleFrameLeft = 4;
 	IdleFrameLeftSaw = 12;
+	IdleFrameLeftSword = 20;
 	IdleFrameRight = 0;
 	IdleFrameRightSaw = 8;
+	IdleFrameRightSword = 16;
 	frameCounter = 0;
 	frameSpeed = 12;
 	frameSwitch = 60;
@@ -53,7 +60,7 @@ Player::Player()
 	FacingLeft = false;
 	FacingRight = true;
 
-	isFalling = true;
+	isFalling = true;   
 
 	canJump = true;
 	isJumping = false;
@@ -69,7 +76,7 @@ Player::Player()
 	energy = maxEnergy;
 	energyRecover = true;
 
-	attackEnergy = 25;
+	attackEnergy = 25;\
 	blockEnergy = 25;
 
 	_state = state_idle;
@@ -81,7 +88,7 @@ Player::Player()
 	
 	_weaponType = noweapon;
 	
-	WinObjective = {43*TILE_SIZE,9*TILE_SIZE, TILE_SIZE,2*TILE_SIZE};
+	WinObjective = {43*TILE_SIZE,9*TILE_SIZE, TILE_SIZE/4,2*TILE_SIZE};
 }
 
 Player::~Player()
@@ -178,6 +185,46 @@ int Player::LoadMedia(SDL_Renderer* Renderer)
 		PlayerClips[15].y = 3 * playerSprite.h;
 		PlayerClips[15].w = playerSprite.w;
 		PlayerClips[15].h = playerSprite.h;
+		
+		PlayerClips[16].x = 0 * playerSprite.w;
+		PlayerClips[16].y = 4 * playerSprite.h;
+		PlayerClips[16].w = playerSprite.w;
+		PlayerClips[16].h = playerSprite.h;
+		
+		PlayerClips[17].x = 1 * playerSprite.w;
+		PlayerClips[17].y = 4 * playerSprite.h;
+		PlayerClips[17].w = playerSprite.w;
+		PlayerClips[17].h = playerSprite.h;
+		
+		PlayerClips[18].x = 2 * playerSprite.w;
+		PlayerClips[18].y = 4 * playerSprite.h;
+		PlayerClips[18].w = playerSprite.w;
+		PlayerClips[18].h = playerSprite.h;
+		
+		PlayerClips[19].x = 3 * playerSprite.w;
+		PlayerClips[19].y = 4 * playerSprite.h;
+		PlayerClips[19].w = playerSprite.w;
+		PlayerClips[19].h = playerSprite.h;
+		
+		PlayerClips[20].x = 0 * playerSprite.w;
+		PlayerClips[20].y = 5 * playerSprite.h;
+		PlayerClips[20].w = playerSprite.w;
+		PlayerClips[20].h = playerSprite.h;
+		
+		PlayerClips[21].x = 1 * playerSprite.w;
+		PlayerClips[21].y = 5 * playerSprite.h;
+		PlayerClips[21].w = playerSprite.w;
+		PlayerClips[21].h = playerSprite.h;
+		
+		PlayerClips[22].x = 2 * playerSprite.w;
+		PlayerClips[22].y = 5 * playerSprite.h;
+		PlayerClips[22].w = playerSprite.w;
+		PlayerClips[22].h = playerSprite.h;
+		
+		PlayerClips[23].x = 3 * playerSprite.w;
+		PlayerClips[23].y = 5 * playerSprite.h;
+		PlayerClips[23].w = playerSprite.w;
+		PlayerClips[23].h = playerSprite.h;
 	}
 	return true;
 }
@@ -337,6 +384,10 @@ void Player::CheckObjects()
 	{
 		this->Health(25);
 	}
+	if(pCollision.VarCollision(playerRect, pObjects.Diver()))
+	{
+		this->Health(25);
+	}
 	switch(_weaponType)
 	{
 		case noweapon:
@@ -378,7 +429,7 @@ void Player::CheckObjects()
 				pickedUpSaw = true;
 				_weaponType = saw;
 			}
-			if(pCollision.VarCollision(AttackBox, pObjects.Diver()))
+			if(pCollision.VarCollision(AttackBox, pObjects.DiverHose()))
 			{
 				int killDiver = 11;
 				pObjects.Update(killDiver);
@@ -471,7 +522,7 @@ void Player::Move(int Dir, Tile* tiles[])
 		playerRect.x += Xvel;
 	}
 	// Horizontal collision handling
-	if(playerRect.x < 0 || playerRect.x + playerRect.w > LEVEL_WIDTH*TILE_SIZE || pCollision.WallCollision(playerRect, tiles) || pCollision.VarCollision(playerRect, pObjects.Door()) || pCollision.VarCollision(playerRect, pObjects.Diver()))
+	if(playerRect.x < 0 || playerRect.x + playerRect.w > LEVEL_WIDTH*TILE_SIZE || pCollision.WallCollision(playerRect, tiles) || pCollision.VarCollision(playerRect, pObjects.Door()) || pCollision.VarCollision(playerRect, pObjects.DiverHose()))
 	{
 		playerRect.x -= Xvel;
 	}
@@ -480,7 +531,7 @@ void Player::Move(int Dir, Tile* tiles[])
 		playerRect.y += Yvel;
 	}
 	// Vertical collision handling
-	if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE ||  pCollision.WallCollision(playerRect, tiles) || pCollision.VarCollision(playerRect, pObjects.Door()) || pCollision.VarCollision(playerRect, pObjects.Diver()))
+	if(playerRect.y < 0 || playerRect.y + playerRect.h > LEVEL_HEIGHT*TILE_SIZE ||  pCollision.WallCollision(playerRect, tiles) || pCollision.VarCollision(playerRect, pObjects.Door()) || pCollision.VarCollision(playerRect, pObjects.DiverHose()))
 	{
 		playerRect.y -= Yvel;
 	}
@@ -587,6 +638,41 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 					}
 				}
 				break;
+			case sword:
+			// Walking Animation
+				if(FacingLeft)
+				{
+					if(WalkingLeft || SwimmingUp || SwimmingDown)
+					{
+						frame ++;
+						frameCounter = 0;
+						if(frame > EndFrameLeftSword || frame < StartFrameLeftSword)
+						{
+							frame = StartFrameLeftSword;
+						}
+					}
+					else
+					{
+						frame = IdleFrameLeftSword;
+					}
+				}
+				if(FacingRight)
+				{
+					if(WalkingRight || SwimmingUp || SwimmingDown)
+					{
+						frame ++;
+						frameCounter = 0;
+						if(frame > EndFrameRightSword || frame < StartFrameRightSword)
+						{
+							frame = StartFrameRightSword;
+						}
+					}
+					else
+					{
+						frame = IdleFrameRightSword;
+					}
+				}
+				break;
 		}
 	}
 	//Show collsiion box
@@ -594,18 +680,17 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 	HealthBar = {10, 10, this->Health(0), 10};
 	StaminBar = {10, 25, this->Energy(NULL), 10};
 	SDL_RenderFillRect(Renderer, &HealthBar);
-	SDL_RenderDrawRect(Renderer, &playerRect);
 	SDL_SetRenderDrawColor(Renderer, 0x00, 0xff, 0x00, 0xFF );
 	SDL_RenderFillRect(Renderer, &StaminBar);
 
 	//Render Frame
 	if(FacingLeft)
 	{
-		SpriteSheetTexture.Render(Renderer, playerRect.x - camera->x, (playerRect.y - 32) - camera->y, &PlayerClips[frame]);
+		SpriteSheetTexture.Render(Renderer, (playerRect.x - TILE_SIZE) - camera->x, (playerRect.y - 32) - camera->y, &PlayerClips[frame]);
 	}
 	else if(FacingRight)
 	{
-		SpriteSheetTexture.Render(Renderer, playerRect.x - TILE_SIZE - camera->x, (playerRect.y - 32) - camera->y, &PlayerClips[frame]);
+		SpriteSheetTexture.Render(Renderer, (playerRect.x - TILE_SIZE) - camera->x, (playerRect.y - 32) - camera->y, &PlayerClips[frame]);
 	}
 }
 

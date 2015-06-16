@@ -190,6 +190,7 @@ void Game::Loop()
 			{
 				_gamestate = win;
 			}
+			objects.Move();
 			break;
 		
 		case pause:
