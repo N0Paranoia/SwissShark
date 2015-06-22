@@ -16,11 +16,12 @@ Camera camera;
 Objects objects;
 Tile* tileSet[TOTAL_TILES];
 
+
+Textures introScreenTexture1;
 Textures wallpaperTexture;
 Textures foregroundTexture;
+Textures gameOverTexture;
 Textures TextTexture;
-Textures TextGameOver1;
-Textures TextGameOver2;
 Textures TextWin;
 
 Game::Game()
@@ -33,7 +34,7 @@ Game::Game()
 	textColor = {255,0,0};
 	countedFrames  = 0;
 
-	_gamestate = running;
+	_gamestate = intro;
 }
 
 bool Game::Init()
@@ -85,6 +86,12 @@ bool Game::LoadMedia()
 	{
 		return false;
 	}
+	//Load Intro PNG's
+	if((introScreenTexture1.LoadFromFile(Renderer, "../assets/intro1.png")) == NULL)
+	{
+		cout << "Unable to Load texture image! (intro1) SDL_Error: " << SDL_GetError() << endl;
+		return false;
+	}
 	//Load PNG background texture
 	if((wallpaperTexture.LoadFromFile(Renderer, "../assets/background.png")) == NULL)
 	{
@@ -94,6 +101,12 @@ bool Game::LoadMedia()
 	if((foregroundTexture.LoadFromFile(Renderer, "../assets/foreground.png")) == NULL)
 	{
 		cout << "Unable to Load texture image! (foreground) SDL_Error: " << SDL_GetError() << endl;
+		return false;
+	}
+	//Game over texture
+	if((gameOverTexture.LoadFromFile(Renderer, "../assets/gameover.png")) == NULL)
+	{
+		cout << "Unable to Load texture image! (gameover) SDL_Error: " << SDL_GetError() << endl;
 		return false;
 	}
 	Font = TTF_OpenFont("../assets/FreePixel.ttf", 14);
@@ -119,6 +132,19 @@ void Game::Event(SDL_Event* event)
 			Running = false;
 			cout << "Quit by keyboard(q)" << endl;
 			break;
+		case SDLK_RETURN:
+			switch(_gamestate)
+			{
+				case intro:
+					_gamestate = running;
+					break;
+				case running:
+					break;
+				case gameover:
+					_gamestate = intro;
+					break;
+				break;
+			}
 		}
 	}
 }
@@ -148,19 +174,6 @@ void Game::FpsCap()
 		SDL_Delay( TICK_PER_FRAME - frameTicks);
 	}
 }
-void Game::GameOver()
-{
-	gameOverText1.str("Game Over");
-	gameOverText2.str("press q to Quit");
-	if(!TextGameOver1.LoadFromRenderedText(Renderer, Font, gameOverText1.str().c_str(), textColor))
-	{
-		cout << "Failed to render text texture!" << endl;
-	}
-	if(!TextGameOver2.LoadFromRenderedText(Renderer, Font, gameOverText2.str().c_str(), textColor))
-	{
-		cout << "Failed to render text texture!" << endl;
-	}
-}
 
 void Game::Win()
 {
@@ -173,13 +186,30 @@ void Game::Win()
 
 void Game::Input()
 {
-	player.Input(tileSet);
+	switch(_gamestate)
+	{
+		case intro:
+		
+			break;
+		case running:
+			player.Input(tileSet);
+			break;
+		case pause:
+		
+			break;
+		case gameover:
+			
+			break;
+	}
 }
 
 void Game::Loop()
 {
 	switch(_gamestate)
 	{
+		case intro:
+			player.InitPlayer();
+			break;
 		case running:
 			camera.Center(&player.playerRect);
 			if(player.Health(0) < 1)
@@ -205,6 +235,14 @@ void Game::Render()
 {
 	switch(_gamestate)
 	{
+		case intro:
+			//Clear screen
+			SDL_RenderClear(Renderer);
+			introScreenTexture1.Render(Renderer,0 ,0);
+			//Update screen
+			SDL_RenderPresent(Renderer);
+			
+			break;
 		case running:
 			//Set Default colors
 			SDL_SetRenderDrawColor(Renderer, 0xFF, 0xFF, 0xFF, 0xFF);
@@ -239,10 +277,9 @@ void Game::Render()
 			break;
 		
 		case gameover:
-			this->GameOver();
-			//Render FPS text
-			TextGameOver1.Render(Renderer, WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
-			TextGameOver2.Render(Renderer, WINDOW_WIDTH/2 - TILE_SIZE/3, WINDOW_HEIGHT/2 + TILE_SIZE);
+			//Clear screen
+			SDL_RenderClear(Renderer);
+			gameOverTexture.Render(Renderer,0 ,0);
 			//Update screen
 			SDL_RenderPresent(Renderer);
 

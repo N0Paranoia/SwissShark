@@ -23,6 +23,7 @@ private:
 		
 		enum Gamestates
 		{
+			intro,
 			running,
 			pause,
 			gameover,

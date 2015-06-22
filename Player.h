@@ -133,6 +133,7 @@ class Player
 		void Render(SDL_Renderer* Renderer, SDL_Rect* camera);
 		void Cleanup();
 		int CheckWinStatus();
+		void InitPlayer();
 		
 		bool destroyedDoor;
 		bool kiledDiver;
