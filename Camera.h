@@ -14,6 +14,7 @@ class Camera
 	public:
 		Camera();
 		virtual ~Camera();
+		void InitCam();
 		void Center(SDL_Rect* playerRect);
 		void Follow();
 		void Update(SDL_Rect* playerRect);

@@ -4,6 +4,16 @@
 
 Camera::Camera()
 {
+	this->InitCam();
+}
+
+Camera::~Camera()
+{
+    //dtor
+}
+
+void Camera::InitCam()
+{
 	centerRect.x = 0;
 	centerRect.y = 0;
 	centerRect.w = 2*TILE_SIZE;
@@ -13,11 +23,6 @@ Camera::Camera()
 	cameraRect.y = 0;
 	cameraRect.w = WINDOW_WIDTH;
 	cameraRect.h = WINDOW_HEIGHT;
-}
-
-Camera::~Camera()
-{
-    //dtor
 }
 
 void Camera::Center(SDL_Rect* playerRect)

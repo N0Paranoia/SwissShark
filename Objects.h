@@ -9,6 +9,7 @@ class Objects
 public:
 	Objects();
 	~Objects();
+	void InitObjects();
 	int LoadMedia(SDL_Renderer* Renderer);
 	void Update(int action);
 	void Move();

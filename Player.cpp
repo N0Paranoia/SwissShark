@@ -19,6 +19,90 @@ Player::~Player()
 	//dtor
 }
 
+void Player::InitPlayer()
+{
+	playerRect.x = 1*TILE_SIZE;
+	playerRect.y = 2*TILE_SIZE;
+	playerRect.w = 3*TILE_SIZE;
+	playerRect.h = 32;
+	
+	playerSprite.x = 1*TILE_SIZE;
+	playerSprite.y = 2*TILE_SIZE;
+	playerSprite.w = 240;
+	playerSprite.h = 96;
+	
+	Xvel = 0;
+	Yvel = 0;
+	Jvel = 0;
+	swimmingSpeed = 8;
+	
+	frame = 0;
+	StartFrameLeft = 4;
+	EndFrameLeft = 7;
+	StartFrameLeftSaw = 12;
+	StartFrameLeftSword = 20;
+	EndFrameLeftSaw = 15;
+	EndFrameLeftSword = 23;
+	StartFrameRight = 0;
+	EndFrameRight = 3;
+	StartFrameRightSaw = 8;
+	StartFrameRightSword = 16;
+	EndFrameRightSaw = 11;
+	EndFrameRightSword = 19;
+	IdleFrameLeft = 4;
+	IdleFrameLeftSaw = 12;
+	IdleFrameLeftSword = 20;
+	IdleFrameRight = 0;
+	IdleFrameRightSaw = 8;
+	IdleFrameRightSword = 16;
+	frameCounter = 0;
+	frameSpeed = 12;
+	frameSwitch = 60;
+
+	jumpSpeed = 8;
+	jumpCount = 0;
+	jumpHeight = 60;
+
+	WalkingLeft = false;
+	WalkingRight = false;
+	SwimmingUp =  false;
+	SwimmingDown = false;
+	FacingLeft = false;
+	FacingRight = true;
+
+	isFalling = true;   
+
+	canJump = true;
+	isJumping = false;
+
+	attack = false;
+	isAttacking = false;
+	block = false;
+	isBlocking = false;
+
+	maxHealth = 100;
+	health = maxHealth;
+	maxEnergy = 100;
+	energy = maxEnergy;
+	energyRecover = true;
+
+	attackEnergy = 25;
+	blockEnergy = 25;
+
+	_state = state_idle;
+	
+	destroyedDoor = false;
+	kiledDiver = false;
+	pickedUpSaw = false;
+	pickedUpSword = false;
+	
+	_weaponType = noweapon;
+	
+	WinObjective = {43*TILE_SIZE,9*TILE_SIZE, TILE_SIZE/4,2*TILE_SIZE};
+	
+	pObjects.InitObjects();
+}
+
 int Player::LoadMedia(SDL_Renderer* Renderer)
 {
 	//Load Player spritesheet
@@ -615,88 +699,6 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 	{
 		SpriteSheetTexture.Render(Renderer, (playerRect.x - TILE_SIZE) - camera->x, (playerRect.y - 32) - camera->y, &PlayerClips[frame]);
 	}
-}
-
-void Player::InitPlayer()
-{
-	playerRect.x = 1*TILE_SIZE;
-	playerRect.y = 2*TILE_SIZE;
-	playerRect.w = 3*TILE_SIZE;
-	playerRect.h = 32;
-	
-	playerSprite.x = 1*TILE_SIZE;
-	playerSprite.y = 2*TILE_SIZE;
-	playerSprite.w = 240;
-	playerSprite.h = 96;
-	
-	Xvel = 0;
-	Yvel = 0;
-	Jvel = 0;
-	swimmingSpeed = 8;
-	
-	frame = 0;
-	StartFrameLeft = 4;
-	EndFrameLeft = 7;
-	StartFrameLeftSaw = 12;
-	StartFrameLeftSword = 20;
-	EndFrameLeftSaw = 15;
-	EndFrameLeftSword = 23;
-	StartFrameRight = 0;
-	EndFrameRight = 3;
-	StartFrameRightSaw = 8;
-	StartFrameRightSword = 16;
-	EndFrameRightSaw = 11;
-	EndFrameRightSword = 19;
-	IdleFrameLeft = 4;
-	IdleFrameLeftSaw = 12;
-	IdleFrameLeftSword = 20;
-	IdleFrameRight = 0;
-	IdleFrameRightSaw = 8;
-	IdleFrameRightSword = 16;
-	frameCounter = 0;
-	frameSpeed = 12;
-	frameSwitch = 60;
-
-	jumpSpeed = 8;
-	jumpCount = 0;
-	jumpHeight = 60;
-
-	WalkingLeft = false;
-	WalkingRight = false;
-	SwimmingUp =  false;
-	SwimmingDown = false;
-	FacingLeft = false;
-	FacingRight = true;
-
-	isFalling = true;   
-
-	canJump = true;
-	isJumping = false;
-
-	attack = false;
-	isAttacking = false;
-	block = false;
-	isBlocking = false;
-
-	maxHealth = 100;
-	health = maxHealth;
-	maxEnergy = 100;
-	energy = maxEnergy;
-	energyRecover = true;
-
-	attackEnergy = 25;\
-	blockEnergy = 25;
-
-	_state = state_idle;
-	
-	destroyedDoor = false;
-	kiledDiver = false;
-	pickedUpSaw = false;
-	pickedUpSword = false;
-	
-	_weaponType = noweapon;
-	
-	WinObjective = {43*TILE_SIZE,9*TILE_SIZE, TILE_SIZE/4,2*TILE_SIZE};
 }
 
 void Player::Cleanup()

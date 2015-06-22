@@ -50,8 +50,6 @@ private:
 	public:
 		void Event(SDL_Event* Event);
 		void Fps();
-		void GameOver();
-		void Win();
 		void FpsCap();
 		bool Init();
 		bool LoadMedia();

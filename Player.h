@@ -122,6 +122,7 @@ class Player
 		
 		Player();
 		virtual ~Player();
+		void InitPlayer();
 		void Input(Tile* tiles[]);
 		int LoadMedia(SDL_Renderer* Renderer);
 		void Move(int Dir, Tile* tiles[]);
@@ -133,7 +134,6 @@ class Player
 		void Render(SDL_Renderer* Renderer, SDL_Rect* camera);
 		void Cleanup();
 		int CheckWinStatus();
-		void InitPlayer();
 		
 		bool destroyedDoor;
 		bool kiledDiver;

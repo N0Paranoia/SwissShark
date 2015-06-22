@@ -20,6 +20,7 @@ Tile* tileSet[TOTAL_TILES];
 Textures introScreenTexture1;
 Textures wallpaperTexture;
 Textures foregroundTexture;
+Textures youWinTexture;
 Textures gameOverTexture;
 Textures TextTexture;
 Textures TextWin;
@@ -103,6 +104,12 @@ bool Game::LoadMedia()
 		cout << "Unable to Load texture image! (foreground) SDL_Error: " << SDL_GetError() << endl;
 		return false;
 	}
+	//you win texture
+	if((youWinTexture.LoadFromFile(Renderer, "../assets/youwin.png")) == NULL)
+	{
+		cout << "Unable to Load texture image! (gameover) SDL_Error: " << SDL_GetError() << endl;
+		return false;
+	}
 	//Game over texture
 	if((gameOverTexture.LoadFromFile(Renderer, "../assets/gameover.png")) == NULL)
 	{
@@ -143,7 +150,9 @@ void Game::Event(SDL_Event* event)
 				case gameover:
 					_gamestate = intro;
 					break;
-				break;
+				case win:
+					_gamestate = intro;
+					break;
 			}
 		}
 	}
@@ -175,15 +184,6 @@ void Game::FpsCap()
 	}
 }
 
-void Game::Win()
-{
-	winText.str("You Win!!!");
-	if(!TextWin.LoadFromRenderedText(Renderer, Font, winText.str().c_str(), textColor))
-	{
-		cout << "Failed to render text texture!" << endl;
-	}
-}
-
 void Game::Input()
 {
 	switch(_gamestate)
@@ -208,7 +208,9 @@ void Game::Loop()
 	switch(_gamestate)
 	{
 		case intro:
+			camera.InitCam();
 			player.InitPlayer();
+			objects.InitObjects();
 			break;
 		case running:
 			camera.Center(&player.playerRect);
@@ -279,15 +281,15 @@ void Game::Render()
 		case gameover:
 			//Clear screen
 			SDL_RenderClear(Renderer);
-			gameOverTexture.Render(Renderer,0 ,0);
+			gameOverTexture.Render(Renderer, 0 ,0);
 			//Update screen
 			SDL_RenderPresent(Renderer);
 
 			break;
 		case win:
-			this->Win();
-			//Render FPS text
-			TextWin.Render(Renderer, WINDOW_WIDTH/2, WINDOW_HEIGHT/2);
+			//Clear screen
+			SDL_RenderClear(Renderer);
+			youWinTexture.Render(Renderer, 0, 0);
 			//Update screen
 			SDL_RenderPresent(Renderer);
 

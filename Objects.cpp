@@ -8,6 +8,15 @@ Textures ItemSheetTexture;
 
 Objects::Objects()
 {
+	this->InitObjects();
+}
+
+Objects::~Objects()
+{
+}
+
+void Objects::InitObjects()
+{
 	frameHose = 2;
 	frameCounterHose = 0;
 	startFrameHose = 3;
@@ -56,10 +65,6 @@ Objects::Objects()
 	item_sword.y = 2*TILE_SIZE;
 	item_sword.w = TILE_SIZE;
 	item_sword.h = TILE_SIZE;
-}
-
-Objects::~Objects()
-{
 }
 
 int Objects::LoadMedia(SDL_Renderer* Renderer)
