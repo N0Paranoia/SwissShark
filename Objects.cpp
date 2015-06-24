@@ -31,6 +31,8 @@ void Objects::InitObjects()
 	frameSpeed = 12;
 	frameSwitch = 60;
 	
+	framePlant = 12;
+	
 	goingUp = false;
 	goingDown = true;
 	
@@ -65,6 +67,16 @@ void Objects::InitObjects()
 	item_sword.y = 2*TILE_SIZE;
 	item_sword.w = TILE_SIZE;
 	item_sword.h = TILE_SIZE;
+	
+	plantSprite1.x = 14*TILE_SIZE;
+	plantSprite1.y = 9*TILE_SIZE;
+	plantSprite1.w = 2*TILE_SIZE;
+	plantSprite1.h = 2*TILE_SIZE;
+	
+	plantSprite2.x = 24*TILE_SIZE;
+	plantSprite2.y = 1*TILE_SIZE;
+	plantSprite2.w = 2*TILE_SIZE;
+	plantSprite2.h = 2*TILE_SIZE;
 }
 
 int Objects::LoadMedia(SDL_Renderer* Renderer)
@@ -134,8 +146,13 @@ int Objects::LoadMedia(SDL_Renderer* Renderer)
 		
 		ObjectClips[11].x = 1*TILE_SIZE;
 		ObjectClips[11].y = 2*TILE_SIZE;
-		ObjectClips[11].w = TILE_SIZE;
+		ObjectClips[11].w = 2*TILE_SIZE;
 		ObjectClips[11].h = 2*TILE_SIZE;
+						
+		ObjectClips[12].x = 3*TILE_SIZE;
+		ObjectClips[12].y = 2*TILE_SIZE;
+		ObjectClips[12].w = 2*TILE_SIZE;
+		ObjectClips[12].h = 2*TILE_SIZE;
 	}	
 	return true;
 }
@@ -273,6 +290,8 @@ void Objects::Render(SDL_Renderer* Renderer, SDL_Rect* camera, bool doorStatus, 
 	}
 	ItemSheetTexture.Render(Renderer, this->diverHose.x - camera->x, this->diverHose.y - camera->y, &ObjectClips[frameHose]);
 	ItemSheetTexture.Render(Renderer, this->diver.x - camera->x, this->diver.y - camera->y, &ObjectClips[frameDiver]);
+	ItemSheetTexture.Render(Renderer, this->plantSprite1.x - camera->x, this->plantSprite1.y - camera->y, &ObjectClips[framePlant]);
+	ItemSheetTexture.Render(Renderer, this->plantSprite2.x - camera->x, this->plantSprite2.y - camera->y, &ObjectClips[framePlant]);
 	SDL_SetRenderDrawColor(Renderer, 0xff, 0x00, 0x00, 0x00);
 	SDL_RenderFillRect(Renderer, &fishermanSprite);
 }

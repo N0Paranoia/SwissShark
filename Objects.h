@@ -23,7 +23,7 @@ public:
 	
 	void Cleanup();
 	
-	SDL_Rect ObjectClips[12];
+	SDL_Rect ObjectClips[13];
 	
 	SDL_Rect chest;
 	SDL_Rect door;
@@ -34,10 +34,14 @@ public:
 	SDL_Rect diverSprite;
 	SDL_Rect diverHose;
 	SDL_Rect diverHoseSprite;
+	SDL_Rect plantSprite1;
+	SDL_Rect plantSprite2;
 	SDL_Rect item_saw;
 	SDL_Rect item_sawSprite;
 	SDL_Rect item_sword;
 	SDL_Rect item_swordSprite;
+	
+	int framePlant;
 	
 	int frameHose;
 	int frameCounterHose;

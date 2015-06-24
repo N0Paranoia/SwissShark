@@ -46,8 +46,10 @@ void Player::InitPlayer()
 	StartFrameRight = 0;
 	EndFrameRight = 3;
 	StartFrameRightSaw = 8;
+	StartFrameRightSawAttack =24;
 	StartFrameRightSword = 16;
 	EndFrameRightSaw = 11;
+	EndFrameRightSawAttack = 25;
 	EndFrameRightSword = 19;
 	IdleFrameLeft = 4;
 	IdleFrameLeftSaw = 12;
@@ -232,6 +234,48 @@ int Player::LoadMedia(SDL_Renderer* Renderer)
 		PlayerClips[23].y = 5 * playerSprite.h;
 		PlayerClips[23].w = playerSprite.w;
 		PlayerClips[23].h = playerSprite.h;
+		
+		//Attack Animation saw Right
+		PlayerClips[24].x = 4 * playerSprite.w;
+		PlayerClips[24].y = 2 * playerSprite.h;
+		PlayerClips[24].w = playerSprite.w;
+		PlayerClips[24].h = playerSprite.h;
+		
+		PlayerClips[25].x = 5 * playerSprite.w;
+		PlayerClips[25].y = 2 * playerSprite.h;
+		PlayerClips[25].w = playerSprite.w;
+		PlayerClips[25].h = playerSprite.h;
+		//Attack Animation saw Left
+		PlayerClips[26].x = 4 * playerSprite.w;
+		PlayerClips[26].y = 3 * playerSprite.h;
+		PlayerClips[26].w = playerSprite.w;
+		PlayerClips[26].h = playerSprite.h;
+		
+		PlayerClips[27].x = 5 * playerSprite.w;
+		PlayerClips[27].y = 3 * playerSprite.h;
+		PlayerClips[27].w = playerSprite.w;
+		PlayerClips[27].h = playerSprite.h;
+		
+		//Attack Animation sword Right
+		PlayerClips[28].x = 4 * playerSprite.w;
+		PlayerClips[28].y = 4 * playerSprite.h;
+		PlayerClips[28].w = playerSprite.w;
+		PlayerClips[28].h = playerSprite.h;
+		
+		PlayerClips[29].x = 5 * playerSprite.w;
+		PlayerClips[29].y = 4 * playerSprite.h;
+		PlayerClips[29].w = playerSprite.w;
+		PlayerClips[29].h = playerSprite.h;
+		//Attack Animation sword Left
+		PlayerClips[30].x = 4 * playerSprite.w;
+		PlayerClips[30].y = 5 * playerSprite.h;
+		PlayerClips[30].w = playerSprite.w;
+		PlayerClips[30].h = playerSprite.h;
+		
+		PlayerClips[31].x = 5 * playerSprite.w;
+		PlayerClips[31].y = 5 * playerSprite.h;
+		PlayerClips[31].w = playerSprite.w;
+		PlayerClips[31].h = playerSprite.h;
 	}
 	return true;
 }
@@ -637,6 +681,15 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 						if(frame > EndFrameRightSaw || frame < StartFrameRightSaw)
 						{
 							frame = StartFrameRightSaw;
+						}
+					}
+					else if(isAttacking)
+					{
+						frame ++;
+						frameCounter = 0;
+						if(frame > EndFrameRightSawAttack || frame < StartFrameRightSawAttack)
+						{
+							frame = StartFrameRightSawAttack;
 						}
 					}
 					else

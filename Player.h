@@ -56,8 +56,10 @@ class Player
 		int StartFrameRight;
 		int EndFrameRight;
 		int StartFrameRightSaw;
+		int StartFrameRightSawAttack;
 		int StartFrameRightSword;
 		int EndFrameRightSaw;
+		int EndFrameRightSawAttack;
 		int EndFrameRightSword;
 		int IdleFrameLeft;
 		int IdleFrameLeftSaw;
@@ -103,7 +105,7 @@ class Player
 		int maxHealth;
 		int health;
 		
-		SDL_Rect PlayerClips[24];
+		SDL_Rect PlayerClips[32];
 
 		SDL_Rect HealthBar;
 		SDL_Rect StaminBar;
