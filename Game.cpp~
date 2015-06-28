@@ -265,6 +265,8 @@ void Game::Render()
 			TextTexture.Render(Renderer, WINDOW_WIDTH - TILE_SIZE, 0);
 			
 			foregroundTexture.Render(Renderer, 0 - camera.cameraRect.x, 0 - camera.cameraRect.y);
+			//For the moving collision
+			cout << objects.fisherman.h << endl;
 			//Update screen
 			SDL_RenderPresent(Renderer);
 

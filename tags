@@ -4,22 +4,13 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-AR	.\SwissShak.mk	/^AR       := C:\/Compilers\/MinGW\/bin\/ar.exe rcu$/;"	m
-AS	.\SwissShak.mk	/^AS       := C:\/Compilers\/MinGW\/bin\/as.exe$/;"	m
-ASFLAGS	.\SwissShak.mk	/^ASFLAGS  := $/;"	m
-ArLibs	.\SwissShak.mk	/^ArLibs                 :=  $/;"	m
-ArchiveOutputSwitch	.\SwissShak.mk	/^ArchiveOutputSwitch    := $/;"	m
 Attack	.\Player.cpp	/^void Player::Attack()$/;"	f	class:Player	signature:()
 Attack	.\Player.h	/^		void Attack();$/;"	p	class:Player	access:public	signature:()
 AttackBox	.\Player.h	/^		SDL_Rect AttackBox;$/;"	m	class:Player	access:public
 CAMERA_H	.\Camera.h	2;"	d
 CAPtimer	.\Game.cpp	/^Timer CAPtimer;$/;"	v
-CC	.\SwissShak.mk	/^CC       := C:\/Compilers\/MinGW\/bin\/gcc.exe$/;"	m
-CFLAGS	.\SwissShak.mk	/^CFLAGS   :=  -g -O0 -std=c++11 -Wall $(Preprocessors)$/;"	m
 COLLISION_H	.\Collision.h	2;"	d
 CONSTANTS_H_INCLUDED	.\Constants.h	2;"	d
-CXX	.\SwissShak.mk	/^CXX      := C:\/Compilers\/MinGW\/bin\/g++.exe$/;"	m
-CXXFLAGS	.\SwissShak.mk	/^CXXFLAGS :=  -g -O0 -std=c++11 -Wall $(Preprocessors)$/;"	m
 Camera	.\Camera.cpp	/^Camera::Camera()$/;"	f	class:Camera	signature:()
 Camera	.\Camera.h	/^		Camera();$/;"	p	class:Camera	access:public	signature:()
 Camera	.\Camera.h	/^class Camera$/;"	c
@@ -42,6 +33,8 @@ Center	.\Camera.cpp	/^void Camera::Center(SDL_Rect* playerRect)$/;"	f	class:Came
 Center	.\Camera.h	/^		void Center(SDL_Rect* playerRect);$/;"	p	class:Camera	access:public	signature:(SDL_Rect* playerRect)
 CheckCollision	.\Collision.cpp	/^bool Collision::CheckCollision(SDL_Rect a, SDL_Rect b)$/;"	f	class:Collision	signature:(SDL_Rect a, SDL_Rect b)
 CheckCollision	.\Collision.h	/^		bool CheckCollision(SDL_Rect a, SDL_Rect b);$/;"	p	class:Collision	access:public	signature:(SDL_Rect a, SDL_Rect b)
+CheckMovingObjects	.\Player.cpp	/^void Player::CheckMovingObjects(int ObjX, int ObjY, int ObjW, int ObjH)$/;"	f	class:Player	signature:(int ObjX, int ObjY, int ObjW, int ObjH)
+CheckMovingObjects	.\Player.h	/^		void CheckMovingObjects(int ObjX, int ObjY, int ObjW, int ObjH);$/;"	p	class:Player	access:public	signature:(int ObjX, int ObjY, int ObjW, int ObjH)
 CheckObjects	.\Player.cpp	/^void Player::CheckObjects()$/;"	f	class:Player	signature:()
 CheckObjects	.\Player.h	/^		void CheckObjects();$/;"	p	class:Player	access:public	signature:()
 CheckWinStatus	.\Player.cpp	/^int Player::CheckWinStatus()$/;"	f	class:Player	signature:()
@@ -54,8 +47,6 @@ Cleanup	.\Player.cpp	/^void Player::Cleanup()$/;"	f	class:Player	signature:()
 Cleanup	.\Player.h	/^		void Cleanup();$/;"	p	class:Player	access:public	signature:()
 Cleanup	.\World.cpp	/^void World::Cleanup()$/;"	f	class:World	signature:()
 Cleanup	.\World.h	/^		void Cleanup();$/;"	p	class:World	access:public	signature:()
-CodeLiteDir	.\SwissShak.mk	/^CodeLiteDir:=C:\\Program Files\\CodeLite$/;"	m
-CodeLitePath	.\SwissShak.mk	/^CodeLitePath           :="C:\\Program Files\\CodeLite"$/;"	m
 Collision	.\Collision.cpp	/^Collision::Collision()$/;"	f	class:Collision	signature:()
 Collision	.\Collision.h	/^		Collision();$/;"	p	class:Collision	access:public	signature:()
 Collision	.\Collision.h	/^class Collision$/;"	c
@@ -78,16 +69,9 @@ Collision::topA	.\Collision.h	/^		int topA, topB;$/;"	m	class:Collision	access:p
 Collision::topB	.\Collision.h	/^		int topA, topB;$/;"	m	class:Collision	access:private
 Collision::~Collision	.\Collision.cpp	/^Collision::~Collision()$/;"	f	class:Collision	signature:()
 Collision::~Collision	.\Collision.h	/^		virtual ~Collision();$/;"	p	class:Collision	access:public	signature:()
-ConfigurationName	.\SwissShak.mk	/^ConfigurationName      :=Debug$/;"	m
 Connection	.\Doors.cpp	/^void Doors::Connection(SDL_Rect* player, int z)$/;"	f	class:Doors	signature:(SDL_Rect* player, int z)
 Connection	.\Doors.h	/^        void Connection(SDL_Rect* player, int z);$/;"	p	class:Doors	access:public	signature:(SDL_Rect* player, int z)
-CurrentFileFullPath	.\SwissShak.mk	/^CurrentFileFullPath    :=$/;"	m
-CurrentFileName	.\SwissShak.mk	/^CurrentFileName        :=$/;"	m
-CurrentFilePath	.\SwissShak.mk	/^CurrentFilePath        :=$/;"	m
 DOORS_H	.\Doors.h	2;"	d
-Date	.\SwissShak.mk	/^Date                   :=24\/06\/2015$/;"	m
-DebugSwitch	.\SwissShak.mk	/^DebugSwitch            :=-g $/;"	m
-DependSuffix	.\SwissShak.mk	/^DependSuffix           :=.o.d$/;"	m
 Direction	.\Player.h	/^		enum Direction$/;"	g	class:Player	access:private
 Diver	.\Objects.cpp	/^SDL_Rect Objects::Diver()$/;"	f	class:Objects	signature:()
 Diver	.\Objects.h	/^	SDL_Rect Diver();$/;"	p	class:Objects	access:public	signature:()
@@ -188,9 +172,6 @@ IdleFrameLeftSword	.\Player.h	/^		int IdleFrameLeftSword;$/;"	m	class:Player	acc
 IdleFrameRight	.\Player.h	/^		int IdleFrameRight;$/;"	m	class:Player	access:private
 IdleFrameRightSaw	.\Player.h	/^		int IdleFrameRightSaw;$/;"	m	class:Player	access:private
 IdleFrameRightSword	.\Player.h	/^		int IdleFrameRightSword;$/;"	m	class:Player	access:private
-IncludePCH	.\SwissShak.mk	/^IncludePCH             := $/;"	m
-IncludePath	.\SwissShak.mk	/^IncludePath            :=  $(IncludeSwitch). $(IncludeSwitch). $(IncludeSwitch)C:\/Compilers\/MinGW\/include\/SDL2 $/;"	m
-IncludeSwitch	.\SwissShak.mk	/^IncludeSwitch          :=-I$/;"	m
 Init	.\Game.cpp	/^bool Game::Init()$/;"	f	class:Game	signature:()
 Init	.\Game.h	/^		bool Init();$/;"	p	class:Game	access:public	signature:()
 Init	.\World.cpp	/^int World::Init(int x, int y, int TileType)$/;"	f	class:World	signature:(int x, int y, int TileType)
@@ -205,7 +186,6 @@ Input	.\Game.cpp	/^void Game::Input()$/;"	f	class:Game	signature:()
 Input	.\Game.h	/^		void Input();$/;"	p	class:Game	access:public	signature:()
 Input	.\Player.cpp	/^void Player::Input(Tile* tiles[])$/;"	f	class:Player	signature:(Tile* tiles[])
 Input	.\Player.h	/^		void Input(Tile* tiles[]);$/;"	p	class:Player	access:public	signature:(Tile* tiles[])
-IntermediateDirectory	.\SwissShak.mk	/^IntermediateDirectory  :=.\/Debug$/;"	m
 Item_Saw	.\Objects.cpp	/^SDL_Rect Objects::Item_Saw()$/;"	f	class:Objects	signature:()
 Item_Saw	.\Objects.h	/^	SDL_Rect Item_Saw();$/;"	p	class:Objects	access:public	signature:()
 Item_Sword	.\Objects.cpp	/^SDL_Rect Objects::Item_Sword()$/;"	f	class:Objects	signature:()
@@ -213,12 +193,6 @@ Item_Sword	.\Objects.h	/^	SDL_Rect Item_Sword();$/;"	p	class:Objects	access:publ
 Jvel	.\Player.h	/^		int Jvel;$/;"	m	class:Player	access:private
 LEVEL_HEIGHT	.\Constants.h	/^const int LEVEL_HEIGHT = 12;$/;"	v
 LEVEL_WIDTH	.\Constants.h	/^const int LEVEL_WIDTH = 44;$/;"	v
-LibPath	.\SwissShak.mk	/^LibPath                := $(LibraryPathSwitch). $(LibraryPathSwitch)C:\/Compilers\/MinGW\/bin $/;"	m
-LibraryPathSwitch	.\SwissShak.mk	/^LibraryPathSwitch      :=-L$/;"	m
-LibrarySwitch	.\SwissShak.mk	/^LibrarySwitch          :=-l$/;"	m
-Libs	.\SwissShak.mk	/^Libs                   := $/;"	m
-LinkOptions	.\SwissShak.mk	/^LinkOptions            :=  -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf$/;"	m
-LinkerName	.\SwissShak.mk	/^LinkerName             :=C:\/Compilers\/MinGW\/bin\/g++.exe$/;"	m
 LoadFromFile	.\Textures.cpp	/^bool Textures::LoadFromFile(SDL_Renderer* Renderer, std::string path)$/;"	f	class:Textures	signature:(SDL_Renderer* Renderer, std::string path)
 LoadFromFile	.\Textures.h	/^        bool LoadFromFile(SDL_Renderer* Renderer, std::string path);$/;"	p	class:Textures	access:public	signature:(SDL_Renderer* Renderer, std::string path)
 LoadFromRenderedText	.\Textures.cpp	/^bool Textures::LoadFromRenderedText(SDL_Renderer* Renderer, TTF_Font* Font, std::string textureText, SDL_Color textColor)$/;"	f	class:Textures	signature:(SDL_Renderer* Renderer, TTF_Font* Font, std::string textureText, SDL_Color textColor)
@@ -233,20 +207,15 @@ LoadMedia	.\World.cpp	/^int World::LoadMedia(SDL_Renderer* Renderer, Tile* tiles
 LoadMedia	.\World.h	/^		int LoadMedia(SDL_Renderer* Renderer, Tile* tiles[]);$/;"	p	class:World	access:public	signature:(SDL_Renderer* Renderer, Tile* tiles[])
 Loop	.\Game.cpp	/^void Game::Loop()$/;"	f	class:Game	signature:()
 Loop	.\Game.h	/^		void Loop();$/;"	p	class:Game	access:public	signature:()
-MakeDirCommand	.\SwissShak.mk	/^MakeDirCommand         :=makedir$/;"	m
 Move	.\Objects.cpp	/^void Objects::Move()$/;"	f	class:Objects	signature:()
 Move	.\Objects.h	/^	void Move();$/;"	p	class:Objects	access:public	signature:()
 Move	.\Player.cpp	/^void Player::Move(int Dir, Tile* tiles[])$/;"	f	class:Player	signature:(int Dir, Tile* tiles[])
 Move	.\Player.h	/^		void Move(int Dir, Tile* tiles[]);$/;"	p	class:Player	access:public	signature:(int Dir, Tile* tiles[])
 OBJECTS_H	.\Objects.h	2;"	d
 ObjectClips	.\Objects.h	/^	SDL_Rect ObjectClips[13];$/;"	m	class:Objects	access:public
-ObjectSuffix	.\SwissShak.mk	/^ObjectSuffix           :=.o$/;"	m
-ObjectSwitch	.\SwissShak.mk	/^ObjectSwitch           :=-o $/;"	m
 Objects	.\Objects.cpp	/^Objects::Objects()$/;"	f	class:Objects	signature:()
 Objects	.\Objects.h	/^	Objects();$/;"	p	class:Objects	access:public	signature:()
 Objects	.\Objects.h	/^class Objects$/;"	c
-Objects	.\SwissShak.mk	/^Objects=$(Objects0) $/;"	m
-Objects0	.\SwissShak.mk	/^Objects0=$(IntermediateDirectory)\/Camera.cpp$(ObjectSuffix) $(IntermediateDirectory)\/Collision.cpp$(ObjectSuffix) $(IntermediateDirectory)\/Doors.cpp$(ObjectSuffix) $(IntermediateDirectory)\/Player.cpp$(ObjectSuffix) $(IntermediateDirectory)\/Textures.cpp$(ObjectSuffix) $(IntermediateDirectory)\/Tile.cpp$(ObjectSuffix) $(IntermediateDirectory)\/Timer.cpp$(ObjectSuffix) $(IntermediateDirectory)\/World.cpp$(ObjectSuffix) $(IntermediateDirectory)\/Game.cpp$(ObjectSuffix) $(IntermediateDirectory)\/Objects.cpp$(ObjectSuffix) \\$/;"	m
 Objects::Cleanup	.\Objects.cpp	/^void Objects::Cleanup()$/;"	f	class:Objects	signature:()
 Objects::Cleanup	.\Objects.h	/^	void Cleanup();$/;"	p	class:Objects	access:public	signature:()
 Objects::Diver	.\Objects.cpp	/^SDL_Rect Objects::Diver()$/;"	f	class:Objects	signature:()
@@ -306,11 +275,6 @@ Objects::startFrameDiver	.\Objects.h	/^	int startFrameDiver;$/;"	m	class:Objects
 Objects::startFrameHose	.\Objects.h	/^	int startFrameHose;$/;"	m	class:Objects	access:public
 Objects::~Objects	.\Objects.cpp	/^Objects::~Objects()$/;"	f	class:Objects	signature:()
 Objects::~Objects	.\Objects.h	/^	~Objects();$/;"	p	class:Objects	access:public	signature:()
-ObjectsFileList	.\SwissShak.mk	/^ObjectsFileList        :="SwissShak.txt"$/;"	m
-OutDir	.\SwissShak.mk	/^OutDir                 := $(IntermediateDirectory)$/;"	m
-OutputFile	.\SwissShak.mk	/^OutputFile             :=$(IntermediateDirectory)\/$(ProjectName)$/;"	m
-OutputSwitch	.\SwissShak.mk	/^OutputSwitch           :=-o $/;"	m
-PCHCompileFlags	.\SwissShak.mk	/^PCHCompileFlags        :=$/;"	m
 PLAYER_H	.\Player.h	2;"	d
 Pause	.\Timer.cpp	/^void Timer::Pause()$/;"	f	class:Timer	signature:()
 Pause	.\Timer.h	/^        void Pause();$/;"	p	class:Timer	access:public	signature:()
@@ -322,6 +286,8 @@ Player	.\Player.h	/^class Player$/;"	c
 Player::Attack	.\Player.cpp	/^void Player::Attack()$/;"	f	class:Player	signature:()
 Player::Attack	.\Player.h	/^		void Attack();$/;"	p	class:Player	access:public	signature:()
 Player::AttackBox	.\Player.h	/^		SDL_Rect AttackBox;$/;"	m	class:Player	access:public
+Player::CheckMovingObjects	.\Player.cpp	/^void Player::CheckMovingObjects(int ObjX, int ObjY, int ObjW, int ObjH)$/;"	f	class:Player	signature:(int ObjX, int ObjY, int ObjW, int ObjH)
+Player::CheckMovingObjects	.\Player.h	/^		void CheckMovingObjects(int ObjX, int ObjY, int ObjW, int ObjH);$/;"	p	class:Player	access:public	signature:(int ObjX, int ObjY, int ObjW, int ObjH)
 Player::CheckObjects	.\Player.cpp	/^void Player::CheckObjects()$/;"	f	class:Player	signature:()
 Player::CheckObjects	.\Player.h	/^		void CheckObjects();$/;"	p	class:Player	access:public	signature:()
 Player::CheckWinStatus	.\Player.cpp	/^int Player::CheckWinStatus()$/;"	f	class:Player	signature:()
@@ -435,15 +401,6 @@ Player::up	.\Player.h	/^			up,$/;"	e	enum:Player::Direction
 Player::~Player	.\Player.cpp	/^Player::~Player()$/;"	f	class:Player	signature:()
 Player::~Player	.\Player.h	/^		virtual ~Player();$/;"	p	class:Player	access:public	signature:()
 PlayerClips	.\Player.h	/^		SDL_Rect PlayerClips[32];$/;"	m	class:Player	access:private
-PreprocessOnlySwitch	.\SwissShak.mk	/^PreprocessOnlySwitch   :=-E$/;"	m
-PreprocessSuffix	.\SwissShak.mk	/^PreprocessSuffix       :=.i$/;"	m
-PreprocessorSwitch	.\SwissShak.mk	/^PreprocessorSwitch     :=-D$/;"	m
-Preprocessors	.\SwissShak.mk	/^Preprocessors          :=$/;"	m
-ProjectName	.\SwissShak.mk	/^ProjectName            :=SwissShak$/;"	m
-ProjectPath	.\SwissShak.mk	/^ProjectPath            := "C:\\Users\\Tijn\\Documents\\GitHub\\SwissShark"$/;"	m
-RcCmpOptions	.\SwissShak.mk	/^RcCmpOptions           := $/;"	m
-RcCompilerName	.\SwissShak.mk	/^RcCompilerName         :=C:\/Compilers\/MinGW\/bin\/windres.exe$/;"	m
-RcIncludePath	.\SwissShak.mk	/^RcIncludePath          := $/;"	m
 Render	.\Camera.cpp	/^void Camera::Render(SDL_Renderer* Renderer)$/;"	f	class:Camera	signature:(SDL_Renderer* Renderer)
 Render	.\Camera.h	/^		void Render(SDL_Renderer* Renderer);$/;"	p	class:Camera	access:public	signature:(SDL_Renderer* Renderer)
 Render	.\Game.cpp	/^void Game::Render()$/;"	f	class:Game	signature:()
@@ -462,8 +419,6 @@ Renderer	.\Game.h	/^		SDL_Renderer* Renderer;$/;"	m	class:Game	access:private
 Running	.\Game.h	/^		bool Running;$/;"	m	class:Game	access:private
 SetTiles	.\World.cpp	/^bool World::SetTiles(Tile* tiles[])$/;"	f	class:World	signature:(Tile* tiles[])
 SetTiles	.\World.h	/^		bool SetTiles(Tile* tiles[]);$/;"	p	class:World	access:public	signature:(Tile* tiles[])
-SharedObjectLinkerName	.\SwissShak.mk	/^SharedObjectLinkerName :=C:\/Compilers\/MinGW\/bin\/g++.exe -shared -fPIC$/;"	m
-SourceSwitch	.\SwissShak.mk	/^SourceSwitch           :=-c $/;"	m
 SpriteSheetTexture	.\Player.cpp	/^Textures SpriteSheetTexture;$/;"	v
 StaminBar	.\Player.h	/^		SDL_Rect StaminBar;$/;"	m	class:Player	access:private
 Start	.\Timer.cpp	/^void Timer::Start()$/;"	f	class:Timer	signature:()
@@ -582,7 +537,6 @@ Unpause	.\Timer.h	/^        void Unpause();$/;"	p	class:Timer	access:public	sign
 Update	.\Camera.h	/^		void Update(SDL_Rect* playerRect);$/;"	p	class:Camera	access:public	signature:(SDL_Rect* playerRect)
 Update	.\Objects.cpp	/^void Objects::Update(int action)$/;"	f	class:Objects	signature:(int action)
 Update	.\Objects.h	/^	void Update(int action);$/;"	p	class:Objects	access:public	signature:(int action)
-User	.\SwissShak.mk	/^User                   :=Tijn$/;"	m
 VarCollision	.\Collision.cpp	/^bool Collision::VarCollision(SDL_Rect cBoxA, SDL_Rect cBoxB)$/;"	f	class:Collision	signature:(SDL_Rect cBoxA, SDL_Rect cBoxB)
 VarCollision	.\Collision.h	/^		bool VarCollision(SDL_Rect cBoxA, SDL_Rect cBoxB);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBoxA, SDL_Rect cBoxB)
 WINDOW_HEIGHT	.\Constants.h	/^const int WINDOW_HEIGHT = 576;$/;"	v
@@ -597,7 +551,6 @@ WeaponBox	.\Player.h	/^		SDL_Rect WeaponBox;$/;"	m	class:Player	access:public
 WeaponSprite	.\Player.h	/^		SDL_Rect WeaponSprite;$/;"	m	class:Player	access:public
 WinObjective	.\Player.h	/^		SDL_Rect WinObjective;$/;"	m	class:Player	access:private
 Window	.\Game.h	/^		SDL_Window* Window ;$/;"	m	class:Game	access:private
-WorkspacePath	.\SwissShak.mk	/^WorkspacePath          := "C:\\Users\\Tijn\\Documents\\GitHub\\SwissShark"$/;"	m
 World	.\World.cpp	/^World::World()$/;"	f	class:World	signature:()
 World	.\World.h	/^		World();$/;"	p	class:World	access:public	signature:()
 World	.\World.h	/^class World$/;"	c

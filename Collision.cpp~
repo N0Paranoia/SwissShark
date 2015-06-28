@@ -52,6 +52,7 @@ bool Collision::VarCollision(SDL_Rect cBoxA, SDL_Rect cBoxB)
 
 bool Collision::CustomCollision(SDL_Rect cBoxA, int x, int y, int w, int h)
 {
+	cout << "test = " << h << endl;
 	customRect = {x ,y, w, h};
 	if(this->CheckCollision(cBoxA, customRect))
 	{
