@@ -88,35 +88,35 @@ bool Game::LoadMedia()
 		return false;
 	}
 	//Load Intro PNG's
-	if((introScreenTexture1.LoadFromFile(Renderer, "../assets/intro1.png")) == NULL)
+	if((introScreenTexture1.LoadFromFile(Renderer, "assets/intro1.png")) == NULL)
 	{
 		cout << "Unable to Load texture image! (intro1) SDL_Error: " << SDL_GetError() << endl;
 		return false;
 	}
 	//Load PNG background texture
-	if((wallpaperTexture.LoadFromFile(Renderer, "../assets/background.png")) == NULL)
+	if((wallpaperTexture.LoadFromFile(Renderer, "assets/background.png")) == NULL)
 	{
 		cout << "Unable to Load texture image! (background) SDL_Error: " << SDL_GetError() << endl;
 		return false;
 	}
-	if((foregroundTexture.LoadFromFile(Renderer, "../assets/foreground.png")) == NULL)
+	if((foregroundTexture.LoadFromFile(Renderer, "assets/foreground.png")) == NULL)
 	{
 		cout << "Unable to Load texture image! (foreground) SDL_Error: " << SDL_GetError() << endl;
 		return false;
 	}
 	//you win texture
-	if((youWinTexture.LoadFromFile(Renderer, "../assets/youwin.png")) == NULL)
+	if((youWinTexture.LoadFromFile(Renderer, "assets/youwin.png")) == NULL)
 	{
 		cout << "Unable to Load texture image! (gameover) SDL_Error: " << SDL_GetError() << endl;
 		return false;
 	}
 	//Game over texture
-	if((gameOverTexture.LoadFromFile(Renderer, "../assets/gameover.png")) == NULL)
+	if((gameOverTexture.LoadFromFile(Renderer, "assets/gameover.png")) == NULL)
 	{
 		cout << "Unable to Load texture image! (gameover) SDL_Error: " << SDL_GetError() << endl;
 		return false;
 	}
-	Font = TTF_OpenFont("../assets/FreePixel.ttf", 14);
+	Font = TTF_OpenFont("assets/FreePixel.ttf", 14);
 	if(Font == NULL)
 	{
 		cout << "Unable to Load font! SDL_Error: " << TTF_GetError() << endl;

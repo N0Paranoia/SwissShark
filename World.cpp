@@ -32,7 +32,7 @@ int World::LoadMedia(SDL_Renderer* Renderer, Tile* tiles[])
 		return false;
 	}
 	//Load Player spritesheet
-	if((TileSheetTexture.LoadFromFile(Renderer, "../assets/tileSheet.png")) == NULL)
+	if((TileSheetTexture.LoadFromFile(Renderer, "assets/tileSheet.png")) == NULL)
 	{
 		cout << "Unable to load Tile Texture! SDL_Error: " << SDL_GetError() << endl;
 		return false;
@@ -122,7 +122,7 @@ bool World::SetTiles(Tile* tiles[])
     int x = 0;
     int y = 0;
 
-    std::ifstream map("../assets/level.map");
+    std::ifstream map("assets/level.map");
 
     if (map == NULL)
     {

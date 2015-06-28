@@ -82,7 +82,7 @@ void Objects::InitObjects()
 int Objects::LoadMedia(SDL_Renderer* Renderer)
 {
 	//Load Item sheet
-	if((ItemSheetTexture.LoadFromFile(Renderer, "../assets/objectSheet.png")) == NULL)
+	if((ItemSheetTexture.LoadFromFile(Renderer, "assets/objectSheet.png")) == NULL)
 	{
 		cout << "Unable to load Item Texture! SDL_Error: " << SDL_GetError() << endl;
 		return false;

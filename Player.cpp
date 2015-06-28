@@ -108,7 +108,7 @@ void Player::InitPlayer()
 int Player::LoadMedia(SDL_Renderer* Renderer)
 {
 	//Load Player spritesheet
-	if((SpriteSheetTexture.LoadFromFile(Renderer, "../assets/spriteSheet.png")) == NULL)
+	if((SpriteSheetTexture.LoadFromFile(Renderer, "assets/spriteSheet.png")) == NULL)
 	{
 		cout << "Unable to load Player Texture! SDL_Error: " << SDL_GetError() << endl;
 		return false;
