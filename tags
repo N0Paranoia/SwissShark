@@ -54,12 +54,15 @@ Collision::CheckCollision	.\Collision.cpp	/^bool Collision::CheckCollision(SDL_R
 Collision::CheckCollision	.\Collision.h	/^		bool CheckCollision(SDL_Rect a, SDL_Rect b);$/;"	p	class:Collision	access:public	signature:(SDL_Rect a, SDL_Rect b)
 Collision::Collision	.\Collision.cpp	/^Collision::Collision()$/;"	f	class:Collision	signature:()
 Collision::Collision	.\Collision.h	/^		Collision();$/;"	p	class:Collision	access:public	signature:()
+Collision::CustomCollision	.\Collision.cpp	/^bool Collision::CustomCollision(SDL_Rect cBoxA, int x, int y, int w, int h)$/;"	f	class:Collision	signature:(SDL_Rect cBoxA, int x, int y, int w, int h)
+Collision::CustomCollision	.\Collision.h	/^		bool CustomCollision(SDL_Rect cBoxA, int x, int y, int w, int h);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBoxA, int x, int y, int w, int h)
 Collision::VarCollision	.\Collision.cpp	/^bool Collision::VarCollision(SDL_Rect cBoxA, SDL_Rect cBoxB)$/;"	f	class:Collision	signature:(SDL_Rect cBoxA, SDL_Rect cBoxB)
 Collision::VarCollision	.\Collision.h	/^		bool VarCollision(SDL_Rect cBoxA, SDL_Rect cBoxB);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBoxA, SDL_Rect cBoxB)
 Collision::WallCollision	.\Collision.cpp	/^bool Collision::WallCollision(SDL_Rect cBox, Tile* tiles[])$/;"	f	class:Collision	signature:(SDL_Rect cBox, Tile* tiles[])
 Collision::WallCollision	.\Collision.h	/^		bool WallCollision(SDL_Rect cBox, Tile* tiles[]);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBox, Tile* tiles[])
 Collision::bottomA	.\Collision.h	/^		int bottomA, bottomB;$/;"	m	class:Collision	access:private
 Collision::bottomB	.\Collision.h	/^		int bottomA, bottomB;$/;"	m	class:Collision	access:private
+Collision::customRect	.\Collision.h	/^		SDL_Rect customRect;$/;"	m	class:Collision	access:private
 Collision::distanceSquared	.\Collision.h	/^		double distanceSquared( int x1, int y1, int x2, int y2 );$/;"	p	class:Collision	access:public	signature:( int x1, int y1, int x2, int y2 )
 Collision::leftA	.\Collision.h	/^		int leftA, leftB;$/;"	m	class:Collision	access:private
 Collision::leftB	.\Collision.h	/^		int leftA, leftB;$/;"	m	class:Collision	access:private
@@ -71,6 +74,8 @@ Collision::~Collision	.\Collision.cpp	/^Collision::~Collision()$/;"	f	class:Coll
 Collision::~Collision	.\Collision.h	/^		virtual ~Collision();$/;"	p	class:Collision	access:public	signature:()
 Connection	.\Doors.cpp	/^void Doors::Connection(SDL_Rect* player, int z)$/;"	f	class:Doors	signature:(SDL_Rect* player, int z)
 Connection	.\Doors.h	/^        void Connection(SDL_Rect* player, int z);$/;"	p	class:Doors	access:public	signature:(SDL_Rect* player, int z)
+CustomCollision	.\Collision.cpp	/^bool Collision::CustomCollision(SDL_Rect cBoxA, int x, int y, int w, int h)$/;"	f	class:Collision	signature:(SDL_Rect cBoxA, int x, int y, int w, int h)
+CustomCollision	.\Collision.h	/^		bool CustomCollision(SDL_Rect cBoxA, int x, int y, int w, int h);$/;"	p	class:Collision	access:public	signature:(SDL_Rect cBoxA, int x, int y, int w, int h)
 DOORS_H	.\Doors.h	2;"	d
 Direction	.\Player.h	/^		enum Direction$/;"	g	class:Player	access:private
 Diver	.\Objects.cpp	/^SDL_Rect Objects::Diver()$/;"	f	class:Objects	signature:()
@@ -592,6 +597,7 @@ climbingSpeed	.\Player.h	/^		int climbingSpeed;$/;"	m	class:Player	access:privat
 collision	.\Tile.cpp	/^Collision collision;$/;"	v
 collisionBox	.\Player.h	/^		SDL_Rect collisionBox;$/;"	m	class:Player	access:public
 countedFrames	.\Game.h	/^		int countedFrames;$/;"	m	class:Game	access:private
+customRect	.\Collision.h	/^		SDL_Rect customRect;$/;"	m	class:Collision	access:private
 destroyedDoor	.\Player.h	/^		bool destroyedDoor;$/;"	m	class:Player	access:public
 distanceSquared	.\Collision.h	/^		double distanceSquared( int x1, int y1, int x2, int y2 );$/;"	p	class:Collision	access:public	signature:( int x1, int y1, int x2, int y2 )
 diver	.\Objects.h	/^	SDL_Rect diver;$/;"	m	class:Objects	access:public
