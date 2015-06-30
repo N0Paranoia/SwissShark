@@ -45,13 +45,12 @@ void Objects::InitObjects()
 	OBJ_DOOR = 10;
 	OBJ_DOOR_OPEN = 11;
 	OBJ_PLANT = 12;
-	
-	OBJ_FISHINGROD;
+	OBJ_FISHINGROD = 13;
 	
 	fisherman.x = 16*TILE_SIZE + TILE_SIZE/2;
-	fisherman.y = 0*TILE_SIZE;
+	fisherman.y =-10*TILE_SIZE;
 	fisherman.w = TILE_SIZE/8;
-	fisherman.h = 5*TILE_SIZE;
+	fisherman.h = 12*TILE_SIZE;
 	
 	door.x = 21*TILE_SIZE + TILE_SIZE/2; 
 	door.y = 9*TILE_SIZE;
@@ -160,14 +159,14 @@ int Objects::LoadMedia(SDL_Renderer* Renderer)
 		ObjectClips[11].h = 2*TILE_SIZE;
 						
 		ObjectClips[OBJ_PLANT].x = 3*TILE_SIZE;
-		ObjectClips[OBJ_PLANT].y = 2*TILE_SIZE;
+		ObjectClips[OBJ_PLANT].y = 4*TILE_SIZE;
 		ObjectClips[OBJ_PLANT].w = 2*TILE_SIZE;
 		ObjectClips[OBJ_PLANT].h = 2*TILE_SIZE;
 		
 		ObjectClips[OBJ_FISHINGROD].x = 0*TILE_SIZE; 
 		ObjectClips[OBJ_FISHINGROD].y = 4*TILE_SIZE;
 		ObjectClips[OBJ_FISHINGROD].w = 1*TILE_SIZE;
-		ObjectClips[OBJ_FISHINGROD].h = 5*TILE_SIZE;
+		ObjectClips[OBJ_FISHINGROD].h = 12*TILE_SIZE;
 	}	
 	return true;
 }
@@ -247,8 +246,8 @@ void Objects::Move()
 {
 	if(goingDown)
 	{
-		fisherman.h ++;
-		if(fisherman.h == 11*TILE_SIZE)
+		fisherman.y ++;
+		if((fisherman.y + fisherman.h) == 11*TILE_SIZE)
 		{
 			goingDown = false;
 			goingUp = true;
@@ -256,8 +255,8 @@ void Objects::Move()
 	}
 	else if(goingUp)
 	{
-		fisherman.h --;
-		if(fisherman.h == 2*TILE_SIZE)
+		fisherman.y --;
+		if((fisherman.y + fisherman.h) == 2*TILE_SIZE)
 		{
 			goingUp = false;
 			goingDown = true;
@@ -307,8 +306,6 @@ void Objects::Render(SDL_Renderer* Renderer, SDL_Rect* camera, bool doorStatus, 
 	ItemSheetTexture.Render(Renderer, this->diver.x - camera->x, this->diver.y - camera->y, &ObjectClips[OBJ_DIVER]);
 	ItemSheetTexture.Render(Renderer, this->plantSprite1.x - camera->x, this->plantSprite1.y - camera->y, &ObjectClips[OBJ_PLANT]);
 	ItemSheetTexture.Render(Renderer, this->plantSprite2.x - camera->x, this->plantSprite2.y - camera->y, &ObjectClips[OBJ_PLANT]);
-	SDL_SetRenderDrawColor(Renderer, 0xff, 0x00, 0x00, 0x00);
-	SDL_RenderFillRect(Renderer, &fishermanSprite);
 	ItemSheetTexture.Render(Renderer, this->fishermanSprite.x - camera->x, this->fishermanSprite.y - camera->y, &ObjectClips[OBJ_FISHINGROD]);
 }
 
