@@ -60,6 +60,15 @@ public:
 	bool killedDiver;
 	bool goingUp;
 	bool goingDown;
+
+	int OBJ_SAW;
+	int OBJ_SWORD;
+	int OBJ_DIVER;
+	int OBJ_HOSE;
+	int OBJ_PLANT;
+	int OBJ_DOOR;
+	int OBJ_DOOR_OPEN;
+	int OBJ_FISHINGROD;
 };
 
 #endif // OBJECTS_H

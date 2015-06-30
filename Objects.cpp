@@ -37,6 +37,16 @@ void Objects::InitObjects()
 	goingDown = true;
 	
 	killedDiver = false;
+
+	OBJ_SAW = 0;
+	OBJ_SWORD = 1;
+	OBJ_HOSE = 2;
+	OBJ_DIVER = 6;
+	OBJ_DOOR = 10;
+	OBJ_DOOR_OPEN = 11;
+	OBJ_PLANT = 12;
+	
+	OBJ_FISHINGROD;
 	
 	fisherman.x = 16*TILE_SIZE + TILE_SIZE/2;
 	fisherman.y = 0*TILE_SIZE;
@@ -89,20 +99,20 @@ int Objects::LoadMedia(SDL_Renderer* Renderer)
 	}
 	else
 	{
-		ObjectClips[0].x = 0;
-		ObjectClips[0].y = 0;
-		ObjectClips[0].w = TILE_SIZE;
-		ObjectClips[0].h = TILE_SIZE;
+		ObjectClips[OBJ_SAW].x = 0;
+		ObjectClips[OBJ_SAW].y = 0;
+		ObjectClips[OBJ_SAW].w = TILE_SIZE;
+		ObjectClips[OBJ_SAW].h = TILE_SIZE;
 		
-		ObjectClips[1].x = 0;
-		ObjectClips[1].y = TILE_SIZE;
-		ObjectClips[1].w = TILE_SIZE;
-		ObjectClips[1].h = TILE_SIZE;
+		ObjectClips[OBJ_SWORD].x = 0;
+		ObjectClips[OBJ_SWORD].y = TILE_SIZE;
+		ObjectClips[OBJ_SWORD].w = TILE_SIZE;
+		ObjectClips[OBJ_SWORD].h = TILE_SIZE;
 		
-		ObjectClips[2].x = 7*TILE_SIZE;
-		ObjectClips[2].y = 0;
-		ObjectClips[2].w = TILE_SIZE;
-		ObjectClips[2].h = 9*TILE_SIZE;
+		ObjectClips[OBJ_HOSE].x = 7*TILE_SIZE;
+		ObjectClips[OBJ_HOSE].y = 0;
+		ObjectClips[OBJ_HOSE].w = TILE_SIZE;
+		ObjectClips[OBJ_HOSE].h = 9*TILE_SIZE;
 		
 		ObjectClips[3].x = 8*TILE_SIZE;
 		ObjectClips[3].y = 0;
@@ -119,10 +129,10 @@ int Objects::LoadMedia(SDL_Renderer* Renderer)
 		ObjectClips[5].w = TILE_SIZE;
 		ObjectClips[5].h = 9*TILE_SIZE;
 		
-		ObjectClips[6].x = 3*TILE_SIZE;
-		ObjectClips[6].y = 0;
-		ObjectClips[6].w = TILE_SIZE;
-		ObjectClips[6].h = 2*TILE_SIZE;
+		ObjectClips[OBJ_DIVER].x = 3*TILE_SIZE;
+		ObjectClips[OBJ_DIVER].y = 0;
+		ObjectClips[OBJ_DIVER].w = TILE_SIZE;
+		ObjectClips[OBJ_DIVER].h = 2*TILE_SIZE;
 		
 		ObjectClips[7].x = 4*TILE_SIZE;
 		ObjectClips[7].y = 0;
@@ -139,20 +149,25 @@ int Objects::LoadMedia(SDL_Renderer* Renderer)
 		ObjectClips[9].w = TILE_SIZE;
 		ObjectClips[9].h = 2*TILE_SIZE;
 				
-		ObjectClips[10].x = 0*TILE_SIZE;
-		ObjectClips[10].y = 2*TILE_SIZE;
-		ObjectClips[10].w = TILE_SIZE;
-		ObjectClips[10].h = 2*TILE_SIZE;
+		ObjectClips[OBJ_DOOR].x = 0*TILE_SIZE;
+		ObjectClips[OBJ_DOOR].y = 2*TILE_SIZE;
+		ObjectClips[OBJ_DOOR].w = TILE_SIZE;
+		ObjectClips[OBJ_DOOR].h = 2*TILE_SIZE;
 		
 		ObjectClips[11].x = 1*TILE_SIZE;
 		ObjectClips[11].y = 2*TILE_SIZE;
-		ObjectClips[11].w = 2*TILE_SIZE;
+		ObjectClips[11].w = TILE_SIZE;
 		ObjectClips[11].h = 2*TILE_SIZE;
 						
-		ObjectClips[12].x = 3*TILE_SIZE;
-		ObjectClips[12].y = 2*TILE_SIZE;
-		ObjectClips[12].w = 2*TILE_SIZE;
-		ObjectClips[12].h = 2*TILE_SIZE;
+		ObjectClips[OBJ_PLANT].x = 3*TILE_SIZE;
+		ObjectClips[OBJ_PLANT].y = 2*TILE_SIZE;
+		ObjectClips[OBJ_PLANT].w = 2*TILE_SIZE;
+		ObjectClips[OBJ_PLANT].h = 2*TILE_SIZE;
+		
+		ObjectClips[OBJ_FISHINGROD].x = 0*TILE_SIZE; 
+		ObjectClips[OBJ_FISHINGROD].y = 4*TILE_SIZE;
+		ObjectClips[OBJ_FISHINGROD].w = 1*TILE_SIZE;
+		ObjectClips[OBJ_FISHINGROD].h = 5*TILE_SIZE;
 	}	
 	return true;
 }
@@ -255,19 +270,19 @@ void Objects::Render(SDL_Renderer* Renderer, SDL_Rect* camera, bool doorStatus, 
 	fishermanSprite = {fisherman.x - camera->x, fisherman.y - camera->y, fisherman.w, fisherman.h};
 	if(!doorStatus)
 	{
-		ItemSheetTexture.Render(Renderer, this->door.x - camera->x, this->door.y - camera->y, &ObjectClips[10]);
+		ItemSheetTexture.Render(Renderer, this->door.x - camera->x, this->door.y - camera->y, &ObjectClips[OBJ_DOOR]);
 	}
 	else
 	{
-		ItemSheetTexture.Render(Renderer, this->door.x - camera->x, this->door.y - camera->y, &ObjectClips[11]);
+		ItemSheetTexture.Render(Renderer, this->door.x - camera->x, this->door.y - camera->y, &ObjectClips[OBJ_DOOR_OPEN]);
 	}
 	if(!sawStatus)
 	{
-		ItemSheetTexture.Render(Renderer, this->item_saw.x - camera->x, this->item_saw.y - camera->y, &ObjectClips[0]);
+		ItemSheetTexture.Render(Renderer, this->item_saw.x - camera->x, this->item_saw.y - camera->y, &ObjectClips[OBJ_SAW]);
 	}
 	if(!swordStatus)
 	{
-		ItemSheetTexture.Render(Renderer, this->item_sword.x - camera->x, this->item_sword.y - camera->y, &ObjectClips[1]);
+		ItemSheetTexture.Render(Renderer, this->item_sword.x - camera->x, this->item_sword.y - camera->y, &ObjectClips[OBJ_SWORD]);
 	}
 	SDL_SetRenderDrawColor(Renderer, 0xff, 0x00, 0xff, 0x00);
 	if(diverStatus)
@@ -288,12 +303,13 @@ void Objects::Render(SDL_Renderer* Renderer, SDL_Rect* camera, bool doorStatus, 
 			}
 		}
 	}
-	ItemSheetTexture.Render(Renderer, this->diverHose.x - camera->x, this->diverHose.y - camera->y, &ObjectClips[frameHose]);
-	ItemSheetTexture.Render(Renderer, this->diver.x - camera->x, this->diver.y - camera->y, &ObjectClips[frameDiver]);
-	ItemSheetTexture.Render(Renderer, this->plantSprite1.x - camera->x, this->plantSprite1.y - camera->y, &ObjectClips[framePlant]);
-	ItemSheetTexture.Render(Renderer, this->plantSprite2.x - camera->x, this->plantSprite2.y - camera->y, &ObjectClips[framePlant]);
+	ItemSheetTexture.Render(Renderer, this->diverHose.x - camera->x, this->diverHose.y - camera->y, &ObjectClips[OBJ_HOSE]);
+	ItemSheetTexture.Render(Renderer, this->diver.x - camera->x, this->diver.y - camera->y, &ObjectClips[OBJ_DIVER]);
+	ItemSheetTexture.Render(Renderer, this->plantSprite1.x - camera->x, this->plantSprite1.y - camera->y, &ObjectClips[OBJ_PLANT]);
+	ItemSheetTexture.Render(Renderer, this->plantSprite2.x - camera->x, this->plantSprite2.y - camera->y, &ObjectClips[OBJ_PLANT]);
 	SDL_SetRenderDrawColor(Renderer, 0xff, 0x00, 0x00, 0x00);
 	SDL_RenderFillRect(Renderer, &fishermanSprite);
+	ItemSheetTexture.Render(Renderer, this->fishermanSprite.x - camera->x, this->fishermanSprite.y - camera->y, &ObjectClips[OBJ_FISHINGROD]);
 }
 
 void Objects::Cleanup()
