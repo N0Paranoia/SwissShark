@@ -57,9 +57,11 @@ class Player
 		int EndFrameRight;
 		int StartFrameRightSaw;
 		int StartFrameRightSawAttack;
+		int StartFrameLeftSawAttack;
 		int StartFrameRightSword;
 		int EndFrameRightSaw;
 		int EndFrameRightSawAttack;
+		int EndFrameLeftSawAttack;
 		int EndFrameRightSword;
 		int IdleFrameLeft;
 		int IdleFrameLeftSaw;

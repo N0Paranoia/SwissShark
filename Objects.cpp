@@ -266,7 +266,6 @@ void Objects::Move()
 
 void Objects::Render(SDL_Renderer* Renderer, SDL_Rect* camera, bool doorStatus, bool diverStatus, bool sawStatus, bool swordStatus)
 {
-	fishermanSprite = {fisherman.x - camera->x, fisherman.y - camera->y, fisherman.w, fisherman.h};
 	if(!doorStatus)
 	{
 		ItemSheetTexture.Render(Renderer, this->door.x - camera->x, this->door.y - camera->y, &ObjectClips[OBJ_DOOR]);
@@ -306,7 +305,7 @@ void Objects::Render(SDL_Renderer* Renderer, SDL_Rect* camera, bool doorStatus, 
 	ItemSheetTexture.Render(Renderer, this->diver.x - camera->x, this->diver.y - camera->y, &ObjectClips[OBJ_DIVER]);
 	ItemSheetTexture.Render(Renderer, this->plantSprite1.x - camera->x, this->plantSprite1.y - camera->y, &ObjectClips[OBJ_PLANT]);
 	ItemSheetTexture.Render(Renderer, this->plantSprite2.x - camera->x, this->plantSprite2.y - camera->y, &ObjectClips[OBJ_PLANT]);
-	ItemSheetTexture.Render(Renderer, this->fishermanSprite.x - camera->x, this->fishermanSprite.y - camera->y, &ObjectClips[OBJ_FISHINGROD]);
+	ItemSheetTexture.Render(Renderer, this->fisherman.x - camera->x, this->fisherman.y - camera->y, &ObjectClips[OBJ_FISHINGROD]);
 }
 
 void Objects::Cleanup()

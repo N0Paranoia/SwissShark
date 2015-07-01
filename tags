@@ -98,6 +98,7 @@ Doors::~Doors	.\Doors.h	/^        virtual ~Doors();$/;"	p	class:Doors	access:pub
 EQ_H	.\Game.h	2;"	d
 EndFrameLeft	.\Player.h	/^		int EndFrameLeft;$/;"	m	class:Player	access:private
 EndFrameLeftSaw	.\Player.h	/^		int EndFrameLeftSaw;$/;"	m	class:Player	access:private
+EndFrameLeftSawAttack	.\Player.h	/^		int EndFrameLeftSawAttack;$/;"	m	class:Player	access:private
 EndFrameLeftSword	.\Player.h	/^		int EndFrameLeftSword;$/;"	m	class:Player	access:private
 EndFrameRight	.\Player.h	/^		int EndFrameRight;$/;"	m	class:Player	access:private
 EndFrameRightSaw	.\Player.h	/^		int EndFrameRightSaw;$/;"	m	class:Player	access:private
@@ -217,6 +218,14 @@ Move	.\Objects.h	/^	void Move();$/;"	p	class:Objects	access:public	signature:()
 Move	.\Player.cpp	/^void Player::Move(int Dir, Tile* tiles[])$/;"	f	class:Player	signature:(int Dir, Tile* tiles[])
 Move	.\Player.h	/^		void Move(int Dir, Tile* tiles[]);$/;"	p	class:Player	access:public	signature:(int Dir, Tile* tiles[])
 OBJECTS_H	.\Objects.h	2;"	d
+OBJ_DIVER	.\Objects.h	/^	int OBJ_DIVER;$/;"	m	class:Objects	access:public
+OBJ_DOOR	.\Objects.h	/^	int OBJ_DOOR;$/;"	m	class:Objects	access:public
+OBJ_DOOR_OPEN	.\Objects.h	/^	int OBJ_DOOR_OPEN;$/;"	m	class:Objects	access:public
+OBJ_FISHINGROD	.\Objects.h	/^	int OBJ_FISHINGROD;$/;"	m	class:Objects	access:public
+OBJ_HOSE	.\Objects.h	/^	int OBJ_HOSE;$/;"	m	class:Objects	access:public
+OBJ_PLANT	.\Objects.h	/^	int OBJ_PLANT;$/;"	m	class:Objects	access:public
+OBJ_SAW	.\Objects.h	/^	int OBJ_SAW;$/;"	m	class:Objects	access:public
+OBJ_SWORD	.\Objects.h	/^	int OBJ_SWORD;$/;"	m	class:Objects	access:public
 ObjectClips	.\Objects.h	/^	SDL_Rect ObjectClips[13];$/;"	m	class:Objects	access:public
 Objects	.\Objects.cpp	/^Objects::Objects()$/;"	f	class:Objects	signature:()
 Objects	.\Objects.h	/^	Objects();$/;"	p	class:Objects	access:public	signature:()
@@ -241,6 +250,14 @@ Objects::LoadMedia	.\Objects.cpp	/^int Objects::LoadMedia(SDL_Renderer* Renderer
 Objects::LoadMedia	.\Objects.h	/^	int LoadMedia(SDL_Renderer* Renderer);$/;"	p	class:Objects	access:public	signature:(SDL_Renderer* Renderer)
 Objects::Move	.\Objects.cpp	/^void Objects::Move()$/;"	f	class:Objects	signature:()
 Objects::Move	.\Objects.h	/^	void Move();$/;"	p	class:Objects	access:public	signature:()
+Objects::OBJ_DIVER	.\Objects.h	/^	int OBJ_DIVER;$/;"	m	class:Objects	access:public
+Objects::OBJ_DOOR	.\Objects.h	/^	int OBJ_DOOR;$/;"	m	class:Objects	access:public
+Objects::OBJ_DOOR_OPEN	.\Objects.h	/^	int OBJ_DOOR_OPEN;$/;"	m	class:Objects	access:public
+Objects::OBJ_FISHINGROD	.\Objects.h	/^	int OBJ_FISHINGROD;$/;"	m	class:Objects	access:public
+Objects::OBJ_HOSE	.\Objects.h	/^	int OBJ_HOSE;$/;"	m	class:Objects	access:public
+Objects::OBJ_PLANT	.\Objects.h	/^	int OBJ_PLANT;$/;"	m	class:Objects	access:public
+Objects::OBJ_SAW	.\Objects.h	/^	int OBJ_SAW;$/;"	m	class:Objects	access:public
+Objects::OBJ_SWORD	.\Objects.h	/^	int OBJ_SWORD;$/;"	m	class:Objects	access:public
 Objects::ObjectClips	.\Objects.h	/^	SDL_Rect ObjectClips[13];$/;"	m	class:Objects	access:public
 Objects::Objects	.\Objects.cpp	/^Objects::Objects()$/;"	f	class:Objects	signature:()
 Objects::Objects	.\Objects.h	/^	Objects();$/;"	p	class:Objects	access:public	signature:()
@@ -302,6 +319,7 @@ Player::Cleanup	.\Player.h	/^		void Cleanup();$/;"	p	class:Player	access:public	
 Player::Direction	.\Player.h	/^		enum Direction$/;"	g	class:Player	access:private
 Player::EndFrameLeft	.\Player.h	/^		int EndFrameLeft;$/;"	m	class:Player	access:private
 Player::EndFrameLeftSaw	.\Player.h	/^		int EndFrameLeftSaw;$/;"	m	class:Player	access:private
+Player::EndFrameLeftSawAttack	.\Player.h	/^		int EndFrameLeftSawAttack;$/;"	m	class:Player	access:private
 Player::EndFrameLeftSword	.\Player.h	/^		int EndFrameLeftSword;$/;"	m	class:Player	access:private
 Player::EndFrameRight	.\Player.h	/^		int EndFrameRight;$/;"	m	class:Player	access:private
 Player::EndFrameRightSaw	.\Player.h	/^		int EndFrameRightSaw;$/;"	m	class:Player	access:private
@@ -337,6 +355,7 @@ Player::Render	.\Player.h	/^		void Render(SDL_Renderer* Renderer, SDL_Rect* came
 Player::StaminBar	.\Player.h	/^		SDL_Rect StaminBar;$/;"	m	class:Player	access:private
 Player::StartFrameLeft	.\Player.h	/^		int StartFrameLeft;$/;"	m	class:Player	access:private
 Player::StartFrameLeftSaw	.\Player.h	/^		int StartFrameLeftSaw;$/;"	m	class:Player	access:private
+Player::StartFrameLeftSawAttack	.\Player.h	/^		int StartFrameLeftSawAttack;$/;"	m	class:Player	access:private
 Player::StartFrameLeftSword	.\Player.h	/^		int StartFrameLeftSword;$/;"	m	class:Player	access:private
 Player::StartFrameRight	.\Player.h	/^		int StartFrameRight;$/;"	m	class:Player	access:private
 Player::StartFrameRightSaw	.\Player.h	/^		int StartFrameRightSaw;$/;"	m	class:Player	access:private
@@ -430,6 +449,7 @@ Start	.\Timer.cpp	/^void Timer::Start()$/;"	f	class:Timer	signature:()
 Start	.\Timer.h	/^        void Start();$/;"	p	class:Timer	access:public	signature:()
 StartFrameLeft	.\Player.h	/^		int StartFrameLeft;$/;"	m	class:Player	access:private
 StartFrameLeftSaw	.\Player.h	/^		int StartFrameLeftSaw;$/;"	m	class:Player	access:private
+StartFrameLeftSawAttack	.\Player.h	/^		int StartFrameLeftSawAttack;$/;"	m	class:Player	access:private
 StartFrameLeftSword	.\Player.h	/^		int StartFrameLeftSword;$/;"	m	class:Player	access:private
 StartFrameRight	.\Player.h	/^		int StartFrameRight;$/;"	m	class:Player	access:private
 StartFrameRightSaw	.\Player.h	/^		int StartFrameRightSaw;$/;"	m	class:Player	access:private

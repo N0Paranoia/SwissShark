@@ -9,7 +9,7 @@ CXX = g++
 INCLUDE_PATHS = -IC:\Compilers\MinGW\include\SDL2
 
 #LIBRARY_PATHS specifies the additional library paths we'll need
-LIBRARY_PATHS = -LC:\Compilers\MinGw\mingw_dev_lib\lib
+LIBRARY_PATHS = -LC:\Compilers\MinGw\lib
 
 #COMPILER_FLAGS specifies the additional compilation options we're using
 # -w suppresses all warnings

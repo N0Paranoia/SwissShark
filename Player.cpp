@@ -47,9 +47,11 @@ void Player::InitPlayer()
 	EndFrameRight = 3;
 	StartFrameRightSaw = 8;
 	StartFrameRightSawAttack =24;
+	StartFrameLeftSawAttack =26;
 	StartFrameRightSword = 16;
 	EndFrameRightSaw = 11;
 	EndFrameRightSawAttack = 25;
+	EndFrameLeftSawAttack = 27;
 	EndFrameRightSword = 19;
 	IdleFrameLeft = 4;
 	IdleFrameLeftSaw = 12;
@@ -236,25 +238,25 @@ int Player::LoadMedia(SDL_Renderer* Renderer)
 		PlayerClips[23].h = playerSprite.h;
 		
 		//Attack Animation saw Right
-		PlayerClips[24].x = 4 * playerSprite.w;
-		PlayerClips[24].y = 2 * playerSprite.h;
-		PlayerClips[24].w = playerSprite.w;
-		PlayerClips[24].h = playerSprite.h;
+		PlayerClips[StartFrameRightSaw].x = 4 * playerSprite.w;
+		PlayerClips[StartFrameRightSaw].y = 2 * playerSprite.h;
+		PlayerClips[StartFrameRightSaw].w = playerSprite.w;
+		PlayerClips[StartFrameRightSaw].h = playerSprite.h;
 		
-		PlayerClips[25].x = 5 * playerSprite.w;
-		PlayerClips[25].y = 2 * playerSprite.h;
-		PlayerClips[25].w = playerSprite.w;
-		PlayerClips[25].h = playerSprite.h;
+		PlayerClips[EndFrameRightSaw].x = 5 * playerSprite.w;
+		PlayerClips[EndFrameRightSaw].y = 2 * playerSprite.h;
+		PlayerClips[EndFrameRightSaw].w = playerSprite.w;
+		PlayerClips[EndFrameRightSaw].h = playerSprite.h;
 		//Attack Animation saw Left
-		PlayerClips[26].x = 4 * playerSprite.w;
-		PlayerClips[26].y = 3 * playerSprite.h;
-		PlayerClips[26].w = playerSprite.w;
-		PlayerClips[26].h = playerSprite.h;
+		PlayerClips[StartFrameLeftSaw].x = 4 * playerSprite.w;
+		PlayerClips[StartFrameLeftSaw].y = 3 * playerSprite.h;
+		PlayerClips[StartFrameLeftSaw].w = playerSprite.w;
+		PlayerClips[StartFrameLeftSaw].h = playerSprite.h;
 		
-		PlayerClips[27].x = 5 * playerSprite.w;
-		PlayerClips[27].y = 3 * playerSprite.h;
-		PlayerClips[27].w = playerSprite.w;
-		PlayerClips[27].h = playerSprite.h;
+		PlayerClips[EndFrameLeftSaw].x = 5 * playerSprite.w;
+		PlayerClips[EndFrameLeftSaw].y = 3 * playerSprite.h;
+		PlayerClips[EndFrameLeftSaw].w = playerSprite.w;
+		PlayerClips[EndFrameLeftSaw].h = playerSprite.h;
 		
 		//Attack Animation sword Right
 		PlayerClips[28].x = 4 * playerSprite.w;
@@ -673,6 +675,15 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 						if(frame > EndFrameLeftSaw || frame < StartFrameLeftSaw)
 						{
 							frame = StartFrameLeftSaw;
+						}
+					}
+					else if(isAttacking)
+					{
+						frame ++;
+						frameCounter = 0;
+						if(frame > EndFrameLeftSawAttack || frame < StartFrameLeftSawAttack)
+						{
+							frame = StartFrameLeftSawAttack;
 						}
 					}
 					else
