@@ -98,20 +98,20 @@ int Objects::LoadMedia(SDL_Renderer* Renderer)
 	}
 	else
 	{
-		ObjectClips[OBJ_SAW].x = 0;
-		ObjectClips[OBJ_SAW].y = 0;
-		ObjectClips[OBJ_SAW].w = TILE_SIZE;
-		ObjectClips[OBJ_SAW].h = TILE_SIZE;
+		ObjectClips[0].x = 0;
+		ObjectClips[0].y = 0;
+		ObjectClips[0].w = TILE_SIZE;
+		ObjectClips[0].h = TILE_SIZE;
 		
-		ObjectClips[OBJ_SWORD].x = 0;
-		ObjectClips[OBJ_SWORD].y = TILE_SIZE;
-		ObjectClips[OBJ_SWORD].w = TILE_SIZE;
-		ObjectClips[OBJ_SWORD].h = TILE_SIZE;
+		ObjectClips[1].x = 0;
+		ObjectClips[1].y = TILE_SIZE;
+		ObjectClips[1].w = TILE_SIZE;
+		ObjectClips[1].h = TILE_SIZE;
 		
-		ObjectClips[OBJ_HOSE].x = 7*TILE_SIZE;
-		ObjectClips[OBJ_HOSE].y = 0;
-		ObjectClips[OBJ_HOSE].w = TILE_SIZE;
-		ObjectClips[OBJ_HOSE].h = 9*TILE_SIZE;
+		ObjectClips[2].x = 7*TILE_SIZE;
+		ObjectClips[2].y = 0;
+		ObjectClips[2].w = TILE_SIZE;
+		ObjectClips[2].h = 9*TILE_SIZE;
 		
 		ObjectClips[3].x = 8*TILE_SIZE;
 		ObjectClips[3].y = 0;
@@ -128,10 +128,10 @@ int Objects::LoadMedia(SDL_Renderer* Renderer)
 		ObjectClips[5].w = TILE_SIZE;
 		ObjectClips[5].h = 9*TILE_SIZE;
 		
-		ObjectClips[OBJ_DIVER].x = 3*TILE_SIZE;
-		ObjectClips[OBJ_DIVER].y = 0;
-		ObjectClips[OBJ_DIVER].w = TILE_SIZE;
-		ObjectClips[OBJ_DIVER].h = 2*TILE_SIZE;
+		ObjectClips[6].x = 3*TILE_SIZE;
+		ObjectClips[6].y = 0;
+		ObjectClips[6].w = TILE_SIZE;
+		ObjectClips[6].h = 2*TILE_SIZE;
 		
 		ObjectClips[7].x = 4*TILE_SIZE;
 		ObjectClips[7].y = 0;
@@ -148,25 +148,25 @@ int Objects::LoadMedia(SDL_Renderer* Renderer)
 		ObjectClips[9].w = TILE_SIZE;
 		ObjectClips[9].h = 2*TILE_SIZE;
 				
-		ObjectClips[OBJ_DOOR].x = 0*TILE_SIZE;
-		ObjectClips[OBJ_DOOR].y = 2*TILE_SIZE;
-		ObjectClips[OBJ_DOOR].w = TILE_SIZE;
-		ObjectClips[OBJ_DOOR].h = 2*TILE_SIZE;
+		ObjectClips[10].x = 0*TILE_SIZE;
+		ObjectClips[10].y = 2*TILE_SIZE;
+		ObjectClips[10].w = TILE_SIZE;
+		ObjectClips[10].h = 2*TILE_SIZE;
 		
 		ObjectClips[11].x = 1*TILE_SIZE;
 		ObjectClips[11].y = 2*TILE_SIZE;
 		ObjectClips[11].w = TILE_SIZE;
 		ObjectClips[11].h = 2*TILE_SIZE;
 						
-		ObjectClips[OBJ_PLANT].x = 3*TILE_SIZE;
-		ObjectClips[OBJ_PLANT].y = 4*TILE_SIZE;
-		ObjectClips[OBJ_PLANT].w = 2*TILE_SIZE;
-		ObjectClips[OBJ_PLANT].h = 2*TILE_SIZE;
+		ObjectClips[12].x = 3*TILE_SIZE;
+		ObjectClips[12].y = 4*TILE_SIZE;
+		ObjectClips[12].w = 2*TILE_SIZE;
+		ObjectClips[12].h = 2*TILE_SIZE;
 		
-		ObjectClips[OBJ_FISHINGROD].x = 0*TILE_SIZE; 
-		ObjectClips[OBJ_FISHINGROD].y = 4*TILE_SIZE;
-		ObjectClips[OBJ_FISHINGROD].w = 1*TILE_SIZE;
-		ObjectClips[OBJ_FISHINGROD].h = 12*TILE_SIZE;
+		ObjectClips[13].x = 0*TILE_SIZE; 
+		ObjectClips[13].y = 4*TILE_SIZE;
+		ObjectClips[13].w = 1*TILE_SIZE;
+		ObjectClips[13].h = 12*TILE_SIZE;
 	}	
 	return true;
 }
@@ -282,7 +282,6 @@ void Objects::Render(SDL_Renderer* Renderer, SDL_Rect* camera, bool doorStatus, 
 	{
 		ItemSheetTexture.Render(Renderer, this->item_sword.x - camera->x, this->item_sword.y - camera->y, &ObjectClips[OBJ_SWORD]);
 	}
-	SDL_SetRenderDrawColor(Renderer, 0xff, 0x00, 0xff, 0x00);
 	if(diverStatus)
 	{
 		frameCounter += frameSpeed;
@@ -301,7 +300,7 @@ void Objects::Render(SDL_Renderer* Renderer, SDL_Rect* camera, bool doorStatus, 
 			}
 		}
 	}
-	ItemSheetTexture.Render(Renderer, this->diverHose.x - camera->x, this->diverHose.y - camera->y, &ObjectClips[OBJ_HOSE]);
+	ItemSheetTexture.Render(Renderer, this->diverHose.x - camera->x, this->diverHose.y - camera->y, &ObjectClips[frameHose]);
 	ItemSheetTexture.Render(Renderer, this->diver.x - camera->x, this->diver.y - camera->y, &ObjectClips[OBJ_DIVER]);
 	ItemSheetTexture.Render(Renderer, this->plantSprite1.x - camera->x, this->plantSprite1.y - camera->y, &ObjectClips[OBJ_PLANT]);
 	ItemSheetTexture.Render(Renderer, this->plantSprite2.x - camera->x, this->plantSprite2.y - camera->y, &ObjectClips[OBJ_PLANT]);
