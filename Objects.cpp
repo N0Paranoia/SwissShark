@@ -129,22 +129,22 @@ int Objects::LoadMedia(SDL_Renderer* Renderer)
 		ObjectClips[5].h = 8*TILE_SIZE;
 		// Diver sprite 
 		ObjectClips[6].x = 1*TILE_SIZE;
-		ObjectClips[6].y = 8*TILE_SIZE;
+		ObjectClips[6].y = 9*TILE_SIZE;
 		ObjectClips[6].w = 2*TILE_SIZE;
 		ObjectClips[6].h = 4*TILE_SIZE;
 		
 		ObjectClips[7].x = 3*TILE_SIZE;
-		ObjectClips[7].y = 8*TILE_SIZE;
+		ObjectClips[7].y = 9*TILE_SIZE;
 		ObjectClips[7].w = 2*TILE_SIZE;
 		ObjectClips[7].h = 4*TILE_SIZE;
 		
 		ObjectClips[8].x = 5*TILE_SIZE;
-		ObjectClips[8].y = 8*TILE_SIZE;
+		ObjectClips[8].y = 9*TILE_SIZE;
 		ObjectClips[8].w = 2*TILE_SIZE;
 		ObjectClips[8].h = 4*TILE_SIZE;
 		
 		ObjectClips[9].x = 7*TILE_SIZE;
-		ObjectClips[9].y = 8*TILE_SIZE;
+		ObjectClips[9].y = 9*TILE_SIZE;
 		ObjectClips[9].w = 2*TILE_SIZE;
 		ObjectClips[9].h = 4*TILE_SIZE;
 		// Diver sprite		
