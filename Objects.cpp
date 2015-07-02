@@ -58,14 +58,14 @@ void Objects::InitObjects()
 	door.h = 2*TILE_SIZE;
 	
 	diver.x = 35*TILE_SIZE;
-	diver.y = 9*TILE_SIZE;
-	diver.w = TILE_SIZE;
-	diver.h = 2*TILE_SIZE;
+	diver.y = 7*TILE_SIZE;
+	diver.w = 2*TILE_SIZE;
+	diver.h = 4*TILE_SIZE;
 	
 	diverHose.x = 35*TILE_SIZE;
 	diverHose.y = 0*TILE_SIZE;
 	diverHose.w = TILE_SIZE/4;
-	diverHose.h = 9*TILE_SIZE;
+	diverHose.h = 8*TILE_SIZE;
 	
 	item_saw.x = 13*TILE_SIZE;
 	item_saw.y = 10*TILE_SIZE;
@@ -107,47 +107,47 @@ int Objects::LoadMedia(SDL_Renderer* Renderer)
 		ObjectClips[1].y = TILE_SIZE;
 		ObjectClips[1].w = TILE_SIZE;
 		ObjectClips[1].h = TILE_SIZE;
-		
+		// Hose sprite
 		ObjectClips[2].x = 7*TILE_SIZE;
 		ObjectClips[2].y = 0;
 		ObjectClips[2].w = TILE_SIZE;
-		ObjectClips[2].h = 9*TILE_SIZE;
+		ObjectClips[2].h = 8*TILE_SIZE;
 		
 		ObjectClips[3].x = 8*TILE_SIZE;
 		ObjectClips[3].y = 0;
 		ObjectClips[3].w = TILE_SIZE;
-		ObjectClips[3].h = 9*TILE_SIZE;
+		ObjectClips[3].h = 8*TILE_SIZE;
 		
 		ObjectClips[4].x = 9*TILE_SIZE;
 		ObjectClips[4].y = 0;
 		ObjectClips[4].w = TILE_SIZE;
-		ObjectClips[4].h = 9*TILE_SIZE;
+		ObjectClips[4].h = 8*TILE_SIZE;
 		
 		ObjectClips[5].x = 10*TILE_SIZE;
 		ObjectClips[5].y = 0;
 		ObjectClips[5].w = TILE_SIZE;
-		ObjectClips[5].h = 9*TILE_SIZE;
+		ObjectClips[5].h = 8*TILE_SIZE;
+		// Diver sprite 
+		ObjectClips[6].x = 1*TILE_SIZE;
+		ObjectClips[6].y = 8*TILE_SIZE;
+		ObjectClips[6].w = 2*TILE_SIZE;
+		ObjectClips[6].h = 4*TILE_SIZE;
 		
-		ObjectClips[6].x = 3*TILE_SIZE;
-		ObjectClips[6].y = 0;
-		ObjectClips[6].w = TILE_SIZE;
-		ObjectClips[6].h = 2*TILE_SIZE;
-		
-		ObjectClips[7].x = 4*TILE_SIZE;
-		ObjectClips[7].y = 0;
-		ObjectClips[7].w = TILE_SIZE;
-		ObjectClips[7].h = 2*TILE_SIZE;
+		ObjectClips[7].x = 3*TILE_SIZE;
+		ObjectClips[7].y = 8*TILE_SIZE;
+		ObjectClips[7].w = 2*TILE_SIZE;
+		ObjectClips[7].h = 4*TILE_SIZE;
 		
 		ObjectClips[8].x = 5*TILE_SIZE;
-		ObjectClips[8].y = 0;
-		ObjectClips[8].w = TILE_SIZE;
-		ObjectClips[8].h = 2*TILE_SIZE;
+		ObjectClips[8].y = 8*TILE_SIZE;
+		ObjectClips[8].w = 2*TILE_SIZE;
+		ObjectClips[8].h = 4*TILE_SIZE;
 		
-		ObjectClips[9].x = 6*TILE_SIZE;
-		ObjectClips[9].y = 0;
-		ObjectClips[9].w = TILE_SIZE;
-		ObjectClips[9].h = 2*TILE_SIZE;
-				
+		ObjectClips[9].x = 7*TILE_SIZE;
+		ObjectClips[9].y = 8*TILE_SIZE;
+		ObjectClips[9].w = 2*TILE_SIZE;
+		ObjectClips[9].h = 4*TILE_SIZE;
+		// Diver sprite		
 		ObjectClips[10].x = 0*TILE_SIZE;
 		ObjectClips[10].y = 2*TILE_SIZE;
 		ObjectClips[10].w = TILE_SIZE;
@@ -301,7 +301,7 @@ void Objects::Render(SDL_Renderer* Renderer, SDL_Rect* camera, bool doorStatus, 
 		}
 	}
 	ItemSheetTexture.Render(Renderer, this->diverHose.x - camera->x, this->diverHose.y - camera->y, &ObjectClips[frameHose]);
-	ItemSheetTexture.Render(Renderer, this->diver.x - camera->x, this->diver.y - camera->y, &ObjectClips[OBJ_DIVER]);
+	ItemSheetTexture.Render(Renderer, this->diver.x - camera->x, this->diver.y - camera->y, &ObjectClips[frameDiver]);
 	ItemSheetTexture.Render(Renderer, this->plantSprite1.x - camera->x, this->plantSprite1.y - camera->y, &ObjectClips[OBJ_PLANT]);
 	ItemSheetTexture.Render(Renderer, this->plantSprite2.x - camera->x, this->plantSprite2.y - camera->y, &ObjectClips[OBJ_PLANT]);
 	ItemSheetTexture.Render(Renderer, this->fisherman.x - camera->x, this->fisherman.y - camera->y, &ObjectClips[OBJ_FISHINGROD]);

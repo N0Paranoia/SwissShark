@@ -55,8 +55,8 @@ void Player::InitPlayer()
 	EndFrameRightSawAttack = 25;
 	EndFrameLeftSawAttack = 27;
 	EndFrameRightSword = 19;
-	EndFrameRightSawAttack = 29;
-	EndFrameLeftSawAttack = 31;
+	EndFrameRightSwordAttack = 29;
+	EndFrameLeftSwordAttack = 31;
 	IdleFrameLeft = 4;
 	IdleFrameLeftSaw = 12;
 	IdleFrameLeftSword = 20;
@@ -775,7 +775,6 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 				}
 				break;
 		}
-		cout << "Frame = " << frame << endl;
 	}
 	//Show collsiion box
 	SDL_SetRenderDrawColor(Renderer, 0xff, 0x00, 0x00, 0xff);
