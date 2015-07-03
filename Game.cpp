@@ -253,12 +253,14 @@ void Game::Render()
 			SDL_RenderClear(Renderer);
 			//Render Texture to screen
 			wallpaperTexture.Render(Renderer, 0 - camera.cameraRect.x, 0 - camera.cameraRect.y);
-			//Render Tiles
-			world.Render(Renderer, &camera.cameraRect, tileSet);
+			//Render Objecdts in background
+			objects.RenderBackground(Renderer, &camera.cameraRect, player.destroyedDoor, player.kiledDiver, player.pickedUpSaw, player.pickedUpSword);
 			//Render Player data
 			player.Render(Renderer, &camera.cameraRect);
-			//Render Objects
-			objects.Render(Renderer, &camera.cameraRect, player.destroyedDoor, player.kiledDiver, player.pickedUpSaw, player.pickedUpSword);
+			//Render Objects in background
+			objects.RenderForeground(Renderer, &camera.cameraRect, player.destroyedDoor, player.kiledDiver, player.pickedUpSaw, player.pickedUpSword);
+			//Render Tiles
+			world.Render(Renderer, &camera.cameraRect, tileSet);
 			//Render Camara outline
 			camera.Render(Renderer);
 			//Render FPS text

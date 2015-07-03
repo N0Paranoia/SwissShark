@@ -264,7 +264,7 @@ void Objects::Move()
 	}
 }
 
-void Objects::Render(SDL_Renderer* Renderer, SDL_Rect* camera, bool doorStatus, bool diverStatus, bool sawStatus, bool swordStatus)
+void Objects::RenderForeground(SDL_Renderer* Renderer, SDL_Rect* camera, bool doorStatus, bool diverStatus, bool sawStatus, bool swordStatus)
 {
 	if(!doorStatus)
 	{
@@ -282,6 +282,13 @@ void Objects::Render(SDL_Renderer* Renderer, SDL_Rect* camera, bool doorStatus, 
 	{
 		ItemSheetTexture.Render(Renderer, this->item_sword.x - camera->x, this->item_sword.y - camera->y, &ObjectClips[OBJ_SWORD]);
 	}
+	ItemSheetTexture.Render(Renderer, this->plantSprite1.x - camera->x, this->plantSprite1.y - camera->y, &ObjectClips[OBJ_PLANT]);
+	ItemSheetTexture.Render(Renderer, this->plantSprite2.x - camera->x, this->plantSprite2.y - camera->y, &ObjectClips[OBJ_PLANT]);
+	ItemSheetTexture.Render(Renderer, this->fisherman.x - camera->x, this->fisherman.y - camera->y, &ObjectClips[OBJ_FISHINGROD]);
+}
+
+void Objects::RenderBackground(SDL_Renderer* Renderer, SDL_Rect* camera, bool doorStatus, bool diverStatus, bool sawStatus, bool swordStatus)
+{
 	if(diverStatus)
 	{
 		frameCounter += frameSpeed;
@@ -302,9 +309,6 @@ void Objects::Render(SDL_Renderer* Renderer, SDL_Rect* camera, bool doorStatus, 
 	}
 	ItemSheetTexture.Render(Renderer, this->diverHose.x - camera->x, this->diverHose.y - camera->y, &ObjectClips[frameHose]);
 	ItemSheetTexture.Render(Renderer, this->diver.x - camera->x, this->diver.y - camera->y, &ObjectClips[frameDiver]);
-	ItemSheetTexture.Render(Renderer, this->plantSprite1.x - camera->x, this->plantSprite1.y - camera->y, &ObjectClips[OBJ_PLANT]);
-	ItemSheetTexture.Render(Renderer, this->plantSprite2.x - camera->x, this->plantSprite2.y - camera->y, &ObjectClips[OBJ_PLANT]);
-	ItemSheetTexture.Render(Renderer, this->fisherman.x - camera->x, this->fisherman.y - camera->y, &ObjectClips[OBJ_FISHINGROD]);
 }
 
 void Objects::Cleanup()

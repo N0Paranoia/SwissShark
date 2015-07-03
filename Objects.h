@@ -13,7 +13,8 @@ public:
 	int LoadMedia(SDL_Renderer* Renderer);
 	void Update(int action);
 	void Move();
-	void Render(SDL_Renderer* Renderer, SDL_Rect* camera, bool doorStatus, bool diverStatus, bool sawStatus, bool swordStatus);
+	void RenderForeground(SDL_Renderer* Renderer, SDL_Rect* camera, bool doorStatus, bool diverStatus, bool sawStatus, bool swordStatus);
+	void RenderBackground(SDL_Renderer* Renderer, SDL_Rect* camera, bool doorStatus, bool diverStatus, bool sawStatus, bool swordStatus);
 	SDL_Rect Door();
 	SDL_Rect Diver();
 	SDL_Rect DiverHose();
