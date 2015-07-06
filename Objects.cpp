@@ -62,7 +62,7 @@ void Objects::InitObjects()
 	diver.w = 2*TILE_SIZE;
 	diver.h = 4*TILE_SIZE;
 	
-	diverHose.x = 35*TILE_SIZE;
+	diverHose.x = 35*TILE_SIZE + TILE_SIZE/2;
 	diverHose.y = 0*TILE_SIZE;
 	diverHose.w = TILE_SIZE/4;
 	diverHose.h = 8*TILE_SIZE;
