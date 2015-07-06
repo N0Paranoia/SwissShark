@@ -135,7 +135,7 @@ class Player
 		int LoadMedia(SDL_Renderer* Renderer);
 		void Move(int Dir, Tile* tiles[]);
 		void Attack();
-		void SwitchWeapon();
+		void SwitchWeapon(int type);
 		void CheckObjects();
 		void CheckMovingObjects(int ObjX, int ObjY, int ObjW, int ObjH);
 		int Health(int hit);

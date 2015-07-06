@@ -332,7 +332,11 @@ void Player::Input(Tile* tiles[])
 			}
 			if(keyState[SDL_SCANCODE_E])
 			{
-				this->SwitchWeapon();
+				this->SwitchWeapon(sword);
+			}
+			if(keyState[SDL_SCANCODE_Q])
+			{
+				this->SwitchWeapon(saw);
 			}
 			break;
 			
@@ -415,7 +419,11 @@ void Player::Input(Tile* tiles[])
 			}
 			if(keyState[SDL_SCANCODE_E])
 			{
-				this->SwitchWeapon();
+				this->SwitchWeapon(sword);
+			}
+			if(keyState[SDL_SCANCODE_Q])
+			{
+				this->SwitchWeapon(saw);
 			}
 			break;
 			
@@ -552,9 +560,9 @@ void Player::Attack()
 	}
 }
 
-void Player::SwitchWeapon()
+void Player::SwitchWeapon(int type)
 {
-	switch(_weaponType)
+	switch(type)
 	{
 		case saw:
 			if(pickedUpSword)
@@ -776,14 +784,6 @@ void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)
 				break;
 		}
 	}
-	//Show collsiion box
-	SDL_SetRenderDrawColor(Renderer, 0xff, 0x00, 0x00, 0xff);
-	HealthBar = {10, 10, this->Health(0), 10};
-	StaminBar = {10, 25, this->Energy(NULL), 10};
-	SDL_RenderFillRect(Renderer, &HealthBar);
-	SDL_SetRenderDrawColor(Renderer, 0x00, 0xff, 0x00, 0xFF );
-	SDL_RenderFillRect(Renderer, &StaminBar);
-
 	//Render Frame
 	if(FacingLeft)
 	{

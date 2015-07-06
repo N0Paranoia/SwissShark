@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "Timer.h"
 #include "Player.h"
+#include "Hud.h"
 #include "Textures.h"
 #include "Camera.h"
 #include "Objects.h"
@@ -11,6 +12,7 @@
 Timer FPStimer;
 Timer CAPtimer;
 Player player;
+Hud hud;
 World world;
 Camera camera;
 Objects objects;
@@ -135,9 +137,9 @@ void Game::Event(SDL_Event* event)
 	{
 		switch(event->key.keysym.sym)
 		{
-		case SDLK_q:
+		case SDLK_ESCAPE:
 			Running = false;
-			cout << "Quit by keyboard(q)" << endl;
+			cout << "Quit by keyboard(Esc)" << endl;
 			break;
 		case SDLK_RETURN:
 			switch(_gamestate)
@@ -265,8 +267,10 @@ void Game::Render()
 			camera.Render(Renderer);
 			//Render FPS text
 			TextTexture.Render(Renderer, WINDOW_WIDTH - TILE_SIZE, 0);
-			
+			//Render Objects in foreground
 			foregroundTexture.Render(Renderer, 0 - camera.cameraRect.x, 0 - camera.cameraRect.y);
+			//Hud
+			hud.Render(Renderer, player.Health(NULL), player.Energy(NULL));
 			//Update screen
 			SDL_RenderPresent(Renderer);
 

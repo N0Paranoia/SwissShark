@@ -95,15 +95,16 @@ Doors::doorA	.\Doors.h	/^        SDL_Rect doorA[TOTAL_DOORS];$/;"	m	class:Doors	
 Doors::doorB	.\Doors.h	/^        SDL_Rect doorB[TOTAL_DOORS];$/;"	m	class:Doors	access:private
 Doors::~Doors	.\Doors.cpp	/^Doors::~Doors()$/;"	f	class:Doors	signature:()
 Doors::~Doors	.\Doors.h	/^        virtual ~Doors();$/;"	p	class:Doors	access:public	signature:()
-EQ_H	.\Game.h	2;"	d
 EndFrameLeft	.\Player.h	/^		int EndFrameLeft;$/;"	m	class:Player	access:private
 EndFrameLeftSaw	.\Player.h	/^		int EndFrameLeftSaw;$/;"	m	class:Player	access:private
 EndFrameLeftSawAttack	.\Player.h	/^		int EndFrameLeftSawAttack;$/;"	m	class:Player	access:private
 EndFrameLeftSword	.\Player.h	/^		int EndFrameLeftSword;$/;"	m	class:Player	access:private
+EndFrameLeftSwordAttack	.\Player.h	/^		int EndFrameLeftSwordAttack;$/;"	m	class:Player	access:private
 EndFrameRight	.\Player.h	/^		int EndFrameRight;$/;"	m	class:Player	access:private
 EndFrameRightSaw	.\Player.h	/^		int EndFrameRightSaw;$/;"	m	class:Player	access:private
 EndFrameRightSawAttack	.\Player.h	/^		int EndFrameRightSawAttack;$/;"	m	class:Player	access:private
 EndFrameRightSword	.\Player.h	/^		int EndFrameRightSword;$/;"	m	class:Player	access:private
+EndFrameRightSwordAttack	.\Player.h	/^		int EndFrameRightSwordAttack;$/;"	m	class:Player	access:private
 Energy	.\Player.cpp	/^int Player::Energy(int action)$/;"	f	class:Player	signature:(int action)
 Energy	.\Player.h	/^		int Energy(int action);$/;"	p	class:Player	access:public	signature:(int action)
 Event	.\Game.cpp	/^void Game::Event(SDL_Event* event)$/;"	f	class:Game	signature:(SDL_Event* event)
@@ -125,6 +126,7 @@ FpsCap	.\Game.cpp	/^void Game::FpsCap()$/;"	f	class:Game	signature:()
 FpsCap	.\Game.h	/^		void FpsCap();$/;"	p	class:Game	access:public	signature:()
 Free	.\Textures.cpp	/^void Textures::Free()$/;"	f	class:Textures	signature:()
 Free	.\Textures.h	/^        void Free();$/;"	p	class:Textures	access:public	signature:()
+GAME_H	.\Game.h	2;"	d
 GRAVITY	.\Constants.h	/^const int GRAVITY = 4;$/;"	v
 Game	.\Game.cpp	/^Game::Game()$/;"	f	class:Game	signature:()
 Game	.\Game.h	/^		Game();$/;"	p	class:Game	access:public	signature:()
@@ -169,9 +171,21 @@ Game::running	.\Game.h	/^			running,$/;"	e	enum:Game::Gamestates
 Game::textColor	.\Game.h	/^		SDL_Color textColor;$/;"	m	class:Game	access:private
 Game::win	.\Game.h	/^			win$/;"	e	enum:Game::Gamestates
 Gamestates	.\Game.h	/^		enum Gamestates$/;"	g	class:Game	access:private
+HUD_H	.\Hud.h	2;"	d
 Health	.\Player.cpp	/^int Player::Health(int hit)$/;"	f	class:Player	signature:(int hit)
 Health	.\Player.h	/^		int Health(int hit);$/;"	p	class:Player	access:public	signature:(int hit)
 HealthBar	.\Player.h	/^		SDL_Rect HealthBar;$/;"	m	class:Player	access:private
+Hud	.\Hud.cpp	/^Hud::Hud()$/;"	f	class:Hud	signature:()
+Hud	.\Hud.h	/^		Hud();$/;"	p	class:Hud	access:public	signature:()
+Hud	.\Hud.h	/^class Hud$/;"	c
+Hud::Hud	.\Hud.cpp	/^Hud::Hud()$/;"	f	class:Hud	signature:()
+Hud::Hud	.\Hud.h	/^		Hud();$/;"	p	class:Hud	access:public	signature:()
+Hud::Render	.\Hud.cpp	/^void Hud::Render(int health, int energy)$/;"	f	class:Hud	signature:(int health, int energy)
+Hud::Render	.\Hud.h	/^		void Render(int health, int energy);$/;"	p	class:Hud	access:public	signature:(int health, int energy)
+Hud::energyRect	.\Hud.h	/^		SDL_Rect energyRect;$/;"	m	class:Hud	access:private
+Hud::healtRect	.\Hud.h	/^		SDL_Rect healtRect;$/;"	m	class:Hud	access:private
+Hud::~Hud	.\Hud.cpp	/^Hud::~Hud()$/;"	f	class:Hud	signature:()
+Hud::~Hud	.\Hud.h	/^		~Hud();$/;"	p	class:Hud	access:public	signature:()
 IdleFrameLeft	.\Player.h	/^		int IdleFrameLeft;$/;"	m	class:Player	access:private
 IdleFrameLeftSaw	.\Player.h	/^		int IdleFrameLeftSaw;$/;"	m	class:Player	access:private
 IdleFrameLeftSword	.\Player.h	/^		int IdleFrameLeftSword;$/;"	m	class:Player	access:private
@@ -261,8 +275,10 @@ Objects::OBJ_SWORD	.\Objects.h	/^	int OBJ_SWORD;$/;"	m	class:Objects	access:publ
 Objects::ObjectClips	.\Objects.h	/^	SDL_Rect ObjectClips[13];$/;"	m	class:Objects	access:public
 Objects::Objects	.\Objects.cpp	/^Objects::Objects()$/;"	f	class:Objects	signature:()
 Objects::Objects	.\Objects.h	/^	Objects();$/;"	p	class:Objects	access:public	signature:()
-Objects::Render	.\Objects.cpp	/^void Objects::Render(SDL_Renderer* Renderer, SDL_Rect* camera, bool doorStatus, bool diverStatus, bool sawStatus, bool swordStatus)$/;"	f	class:Objects	signature:(SDL_Renderer* Renderer, SDL_Rect* camera, bool doorStatus, bool diverStatus, bool sawStatus, bool swordStatus)
-Objects::Render	.\Objects.h	/^	void Render(SDL_Renderer* Renderer, SDL_Rect* camera, bool doorStatus, bool diverStatus, bool sawStatus, bool swordStatus);$/;"	p	class:Objects	access:public	signature:(SDL_Renderer* Renderer, SDL_Rect* camera, bool doorStatus, bool diverStatus, bool sawStatus, bool swordStatus)
+Objects::RenderBackground	.\Objects.cpp	/^void Objects::RenderBackground(SDL_Renderer* Renderer, SDL_Rect* camera, bool doorStatus, bool diverStatus, bool sawStatus, bool swordStatus)$/;"	f	class:Objects	signature:(SDL_Renderer* Renderer, SDL_Rect* camera, bool doorStatus, bool diverStatus, bool sawStatus, bool swordStatus)
+Objects::RenderBackground	.\Objects.h	/^	void RenderBackground(SDL_Renderer* Renderer, SDL_Rect* camera, bool doorStatus, bool diverStatus, bool sawStatus, bool swordStatus);$/;"	p	class:Objects	access:public	signature:(SDL_Renderer* Renderer, SDL_Rect* camera, bool doorStatus, bool diverStatus, bool sawStatus, bool swordStatus)
+Objects::RenderForeground	.\Objects.cpp	/^void Objects::RenderForeground(SDL_Renderer* Renderer, SDL_Rect* camera, bool doorStatus, bool diverStatus, bool sawStatus, bool swordStatus)$/;"	f	class:Objects	signature:(SDL_Renderer* Renderer, SDL_Rect* camera, bool doorStatus, bool diverStatus, bool sawStatus, bool swordStatus)
+Objects::RenderForeground	.\Objects.h	/^	void RenderForeground(SDL_Renderer* Renderer, SDL_Rect* camera, bool doorStatus, bool diverStatus, bool sawStatus, bool swordStatus);$/;"	p	class:Objects	access:public	signature:(SDL_Renderer* Renderer, SDL_Rect* camera, bool doorStatus, bool diverStatus, bool sawStatus, bool swordStatus)
 Objects::Update	.\Objects.cpp	/^void Objects::Update(int action)$/;"	f	class:Objects	signature:(int action)
 Objects::Update	.\Objects.h	/^	void Update(int action);$/;"	p	class:Objects	access:public	signature:(int action)
 Objects::chest	.\Objects.h	/^	SDL_Rect chest;$/;"	m	class:Objects	access:public
@@ -321,10 +337,12 @@ Player::EndFrameLeft	.\Player.h	/^		int EndFrameLeft;$/;"	m	class:Player	access:
 Player::EndFrameLeftSaw	.\Player.h	/^		int EndFrameLeftSaw;$/;"	m	class:Player	access:private
 Player::EndFrameLeftSawAttack	.\Player.h	/^		int EndFrameLeftSawAttack;$/;"	m	class:Player	access:private
 Player::EndFrameLeftSword	.\Player.h	/^		int EndFrameLeftSword;$/;"	m	class:Player	access:private
+Player::EndFrameLeftSwordAttack	.\Player.h	/^		int EndFrameLeftSwordAttack;$/;"	m	class:Player	access:private
 Player::EndFrameRight	.\Player.h	/^		int EndFrameRight;$/;"	m	class:Player	access:private
 Player::EndFrameRightSaw	.\Player.h	/^		int EndFrameRightSaw;$/;"	m	class:Player	access:private
 Player::EndFrameRightSawAttack	.\Player.h	/^		int EndFrameRightSawAttack;$/;"	m	class:Player	access:private
 Player::EndFrameRightSword	.\Player.h	/^		int EndFrameRightSword;$/;"	m	class:Player	access:private
+Player::EndFrameRightSwordAttack	.\Player.h	/^		int EndFrameRightSwordAttack;$/;"	m	class:Player	access:private
 Player::Energy	.\Player.cpp	/^int Player::Energy(int action)$/;"	f	class:Player	signature:(int action)
 Player::Energy	.\Player.h	/^		int Energy(int action);$/;"	p	class:Player	access:public	signature:(int action)
 Player::FacingLeft	.\Player.h	/^		bool FacingLeft;$/;"	m	class:Player	access:private
@@ -349,7 +367,7 @@ Player::Move	.\Player.cpp	/^void Player::Move(int Dir, Tile* tiles[])$/;"	f	clas
 Player::Move	.\Player.h	/^		void Move(int Dir, Tile* tiles[]);$/;"	p	class:Player	access:public	signature:(int Dir, Tile* tiles[])
 Player::Player	.\Player.cpp	/^Player::Player()$/;"	f	class:Player	signature:()
 Player::Player	.\Player.h	/^		Player();$/;"	p	class:Player	access:public	signature:()
-Player::PlayerClips	.\Player.h	/^		SDL_Rect PlayerClips[32];$/;"	m	class:Player	access:private
+Player::PlayerClips	.\Player.h	/^		SDL_Rect PlayerClips[42];$/;"	m	class:Player	access:private
 Player::Render	.\Player.cpp	/^void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)$/;"	f	class:Player	signature:(SDL_Renderer* Renderer, SDL_Rect* camera)
 Player::Render	.\Player.h	/^		void Render(SDL_Renderer* Renderer, SDL_Rect* camera);$/;"	p	class:Player	access:public	signature:(SDL_Renderer* Renderer, SDL_Rect* camera)
 Player::StaminBar	.\Player.h	/^		SDL_Rect StaminBar;$/;"	m	class:Player	access:private
@@ -357,15 +375,17 @@ Player::StartFrameLeft	.\Player.h	/^		int StartFrameLeft;$/;"	m	class:Player	acc
 Player::StartFrameLeftSaw	.\Player.h	/^		int StartFrameLeftSaw;$/;"	m	class:Player	access:private
 Player::StartFrameLeftSawAttack	.\Player.h	/^		int StartFrameLeftSawAttack;$/;"	m	class:Player	access:private
 Player::StartFrameLeftSword	.\Player.h	/^		int StartFrameLeftSword;$/;"	m	class:Player	access:private
+Player::StartFrameLeftSwordAttack	.\Player.h	/^		int StartFrameLeftSwordAttack;$/;"	m	class:Player	access:private
 Player::StartFrameRight	.\Player.h	/^		int StartFrameRight;$/;"	m	class:Player	access:private
 Player::StartFrameRightSaw	.\Player.h	/^		int StartFrameRightSaw;$/;"	m	class:Player	access:private
 Player::StartFrameRightSawAttack	.\Player.h	/^		int StartFrameRightSawAttack;$/;"	m	class:Player	access:private
 Player::StartFrameRightSword	.\Player.h	/^		int StartFrameRightSword;$/;"	m	class:Player	access:private
+Player::StartFrameRightSwordAttack	.\Player.h	/^		int StartFrameRightSwordAttack;$/;"	m	class:Player	access:private
 Player::State	.\Player.h	/^		enum State$/;"	g	class:Player	access:private
 Player::SwimmingDown	.\Player.h	/^		bool SwimmingDown;$/;"	m	class:Player	access:private
 Player::SwimmingUp	.\Player.h	/^		bool SwimmingUp;$/;"	m	class:Player	access:private
-Player::SwitchWeapon	.\Player.cpp	/^void Player::SwitchWeapon()$/;"	f	class:Player	signature:()
-Player::SwitchWeapon	.\Player.h	/^		void SwitchWeapon();$/;"	p	class:Player	access:public	signature:()
+Player::SwitchWeapon	.\Player.cpp	/^void Player::SwitchWeapon(int type)$/;"	f	class:Player	signature:(int type)
+Player::SwitchWeapon	.\Player.h	/^		void SwitchWeapon(int type);$/;"	p	class:Player	access:public	signature:(int type)
 Player::WalkingLeft	.\Player.h	/^		bool WalkingLeft;$/;"	m	class:Player	access:private
 Player::WalkingRight	.\Player.h	/^		bool WalkingRight;$/;"	m	class:Player	access:private
 Player::Weapon	.\Player.h	/^		enum Weapon$/;"	g	class:Player	access:private
@@ -424,13 +444,13 @@ Player::sword	.\Player.h	/^			sword$/;"	e	enum:Player::Weapon
 Player::up	.\Player.h	/^			up,$/;"	e	enum:Player::Direction
 Player::~Player	.\Player.cpp	/^Player::~Player()$/;"	f	class:Player	signature:()
 Player::~Player	.\Player.h	/^		virtual ~Player();$/;"	p	class:Player	access:public	signature:()
-PlayerClips	.\Player.h	/^		SDL_Rect PlayerClips[32];$/;"	m	class:Player	access:private
+PlayerClips	.\Player.h	/^		SDL_Rect PlayerClips[42];$/;"	m	class:Player	access:private
 Render	.\Camera.cpp	/^void Camera::Render(SDL_Renderer* Renderer)$/;"	f	class:Camera	signature:(SDL_Renderer* Renderer)
 Render	.\Camera.h	/^		void Render(SDL_Renderer* Renderer);$/;"	p	class:Camera	access:public	signature:(SDL_Renderer* Renderer)
 Render	.\Game.cpp	/^void Game::Render()$/;"	f	class:Game	signature:()
 Render	.\Game.h	/^		void Render();$/;"	p	class:Game	access:public	signature:()
-Render	.\Objects.cpp	/^void Objects::Render(SDL_Renderer* Renderer, SDL_Rect* camera, bool doorStatus, bool diverStatus, bool sawStatus, bool swordStatus)$/;"	f	class:Objects	signature:(SDL_Renderer* Renderer, SDL_Rect* camera, bool doorStatus, bool diverStatus, bool sawStatus, bool swordStatus)
-Render	.\Objects.h	/^	void Render(SDL_Renderer* Renderer, SDL_Rect* camera, bool doorStatus, bool diverStatus, bool sawStatus, bool swordStatus);$/;"	p	class:Objects	access:public	signature:(SDL_Renderer* Renderer, SDL_Rect* camera, bool doorStatus, bool diverStatus, bool sawStatus, bool swordStatus)
+Render	.\Hud.cpp	/^void Hud::Render(int health, int energy)$/;"	f	class:Hud	signature:(int health, int energy)
+Render	.\Hud.h	/^		void Render(int health, int energy);$/;"	p	class:Hud	access:public	signature:(int health, int energy)
 Render	.\Player.cpp	/^void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)$/;"	f	class:Player	signature:(SDL_Renderer* Renderer, SDL_Rect* camera)
 Render	.\Player.h	/^		void Render(SDL_Renderer* Renderer, SDL_Rect* camera);$/;"	p	class:Player	access:public	signature:(SDL_Renderer* Renderer, SDL_Rect* camera)
 Render	.\Textures.cpp	/^void Textures::Render(SDL_Renderer* Renderer,int x ,int y, SDL_Rect* clip)$/;"	f	class:Textures	signature:(SDL_Renderer* Renderer,int x ,int y, SDL_Rect* clip)
@@ -439,6 +459,10 @@ Render	.\Tile.cpp	/^void Tile::Render(Textures* textures, SDL_Rect* clips, SDL_R
 Render	.\Tile.h	/^		void Render(Textures* textures, SDL_Rect* clips, SDL_Renderer* Renderer, SDL_Rect* camera);$/;"	p	class:Tile	access:public	signature:(Textures* textures, SDL_Rect* clips, SDL_Renderer* Renderer, SDL_Rect* camera)
 Render	.\World.cpp	/^void World::Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[])$/;"	f	class:World	signature:(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[])
 Render	.\World.h	/^		void Render(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[]);$/;"	p	class:World	access:public	signature:(SDL_Renderer* Renderer, SDL_Rect* camera, Tile* tiles[])
+RenderBackground	.\Objects.cpp	/^void Objects::RenderBackground(SDL_Renderer* Renderer, SDL_Rect* camera, bool doorStatus, bool diverStatus, bool sawStatus, bool swordStatus)$/;"	f	class:Objects	signature:(SDL_Renderer* Renderer, SDL_Rect* camera, bool doorStatus, bool diverStatus, bool sawStatus, bool swordStatus)
+RenderBackground	.\Objects.h	/^	void RenderBackground(SDL_Renderer* Renderer, SDL_Rect* camera, bool doorStatus, bool diverStatus, bool sawStatus, bool swordStatus);$/;"	p	class:Objects	access:public	signature:(SDL_Renderer* Renderer, SDL_Rect* camera, bool doorStatus, bool diverStatus, bool sawStatus, bool swordStatus)
+RenderForeground	.\Objects.cpp	/^void Objects::RenderForeground(SDL_Renderer* Renderer, SDL_Rect* camera, bool doorStatus, bool diverStatus, bool sawStatus, bool swordStatus)$/;"	f	class:Objects	signature:(SDL_Renderer* Renderer, SDL_Rect* camera, bool doorStatus, bool diverStatus, bool sawStatus, bool swordStatus)
+RenderForeground	.\Objects.h	/^	void RenderForeground(SDL_Renderer* Renderer, SDL_Rect* camera, bool doorStatus, bool diverStatus, bool sawStatus, bool swordStatus);$/;"	p	class:Objects	access:public	signature:(SDL_Renderer* Renderer, SDL_Rect* camera, bool doorStatus, bool diverStatus, bool sawStatus, bool swordStatus)
 Renderer	.\Game.h	/^		SDL_Renderer* Renderer;$/;"	m	class:Game	access:private
 Running	.\Game.h	/^		bool Running;$/;"	m	class:Game	access:private
 SetTiles	.\World.cpp	/^bool World::SetTiles(Tile* tiles[])$/;"	f	class:World	signature:(Tile* tiles[])
@@ -451,10 +475,12 @@ StartFrameLeft	.\Player.h	/^		int StartFrameLeft;$/;"	m	class:Player	access:priv
 StartFrameLeftSaw	.\Player.h	/^		int StartFrameLeftSaw;$/;"	m	class:Player	access:private
 StartFrameLeftSawAttack	.\Player.h	/^		int StartFrameLeftSawAttack;$/;"	m	class:Player	access:private
 StartFrameLeftSword	.\Player.h	/^		int StartFrameLeftSword;$/;"	m	class:Player	access:private
+StartFrameLeftSwordAttack	.\Player.h	/^		int StartFrameLeftSwordAttack;$/;"	m	class:Player	access:private
 StartFrameRight	.\Player.h	/^		int StartFrameRight;$/;"	m	class:Player	access:private
 StartFrameRightSaw	.\Player.h	/^		int StartFrameRightSaw;$/;"	m	class:Player	access:private
 StartFrameRightSawAttack	.\Player.h	/^		int StartFrameRightSawAttack;$/;"	m	class:Player	access:private
 StartFrameRightSword	.\Player.h	/^		int StartFrameRightSword;$/;"	m	class:Player	access:private
+StartFrameRightSwordAttack	.\Player.h	/^		int StartFrameRightSwordAttack;$/;"	m	class:Player	access:private
 StartTicks	.\Timer.h	/^        Uint32 StartTicks;$/;"	m	class:Timer	access:private
 Started	.\Timer.h	/^        bool Started;$/;"	m	class:Timer	access:private
 State	.\Player.h	/^		enum State$/;"	g	class:Player	access:private
@@ -462,8 +488,8 @@ Stop	.\Timer.cpp	/^void Timer::Stop()$/;"	f	class:Timer	signature:()
 Stop	.\Timer.h	/^        void Stop();$/;"	p	class:Timer	access:public	signature:()
 SwimmingDown	.\Player.h	/^		bool SwimmingDown;$/;"	m	class:Player	access:private
 SwimmingUp	.\Player.h	/^		bool SwimmingUp;$/;"	m	class:Player	access:private
-SwitchWeapon	.\Player.cpp	/^void Player::SwitchWeapon()$/;"	f	class:Player	signature:()
-SwitchWeapon	.\Player.h	/^		void SwitchWeapon();$/;"	p	class:Player	access:public	signature:()
+SwitchWeapon	.\Player.cpp	/^void Player::SwitchWeapon(int type)$/;"	f	class:Player	signature:(int type)
+SwitchWeapon	.\Player.h	/^		void SwitchWeapon(int type);$/;"	p	class:Player	access:public	signature:(int type)
 TEXTURES_H	.\Textures.h	2;"	d
 TICK_PER_FRAME	.\Constants.h	/^const int TICK_PER_FRAME = 1000 \/ FPS;$/;"	v
 TILE_CLEAR	.\Constants.h	/^const int TILE_CLEAR = 0;$/;"	v
@@ -633,6 +659,7 @@ endFrameDiver	.\Objects.h	/^	int endFrameDiver;$/;"	m	class:Objects	access:publi
 endFrameHose	.\Objects.h	/^	int endFrameHose;$/;"	m	class:Objects	access:public
 energy	.\Player.h	/^		int energy;$/;"	m	class:Player	access:private
 energyRecover	.\Player.h	/^		bool energyRecover;$/;"	m	class:Player	access:private
+energyRect	.\Hud.h	/^		SDL_Rect energyRect;$/;"	m	class:Hud	access:private
 fisherman	.\Objects.h	/^	SDL_Rect fisherman;$/;"	m	class:Objects	access:public
 fishermanSprite	.\Objects.h	/^	SDL_Rect fishermanSprite;$/;"	m	class:Objects	access:public
 foregroundTexture	.\Game.cpp	/^Textures foregroundTexture;$/;"	v
@@ -665,7 +692,9 @@ getWidth	.\Textures.cpp	/^int Textures::getWidth()$/;"	f	class:Textures	signatur
 getWidth	.\Textures.h	/^        int getWidth();$/;"	p	class:Textures	access:public	signature:()
 goingDown	.\Objects.h	/^	bool goingDown;$/;"	m	class:Objects	access:public
 goingUp	.\Objects.h	/^	bool goingUp;$/;"	m	class:Objects	access:public
+healtRect	.\Hud.h	/^		SDL_Rect healtRect;$/;"	m	class:Hud	access:private
 health	.\Player.h	/^		int health;$/;"	m	class:Player	access:private
+hud	.\Game.cpp	/^Hud hud;$/;"	v
 intro	.\Game.h	/^			intro,$/;"	e	enum:Game::Gamestates
 introScreenTexture1	.\Game.cpp	/^Textures introScreenTexture1;$/;"	v
 isAttacking	.\Player.h	/^		bool isAttacking;$/;"	m	class:Player	access:private
@@ -740,6 +769,8 @@ youWinTexture	.\Game.cpp	/^Textures youWinTexture;$/;"	v
 ~Collision	.\Collision.h	/^		virtual ~Collision();$/;"	p	class:Collision	access:public	signature:()
 ~Doors	.\Doors.cpp	/^Doors::~Doors()$/;"	f	class:Doors	signature:()
 ~Doors	.\Doors.h	/^        virtual ~Doors();$/;"	p	class:Doors	access:public	signature:()
+~Hud	.\Hud.cpp	/^Hud::~Hud()$/;"	f	class:Hud	signature:()
+~Hud	.\Hud.h	/^		~Hud();$/;"	p	class:Hud	access:public	signature:()
 ~Objects	.\Objects.cpp	/^Objects::~Objects()$/;"	f	class:Objects	signature:()
 ~Objects	.\Objects.h	/^	~Objects();$/;"	p	class:Objects	access:public	signature:()
 ~Player	.\Player.cpp	/^Player::~Player()$/;"	f	class:Player	signature:()

@@ -1,5 +1,5 @@
-#ifndef EQ_H
-#define EQ_H
+#ifndef GAME_H
+#define GAME_H
 
 #include <SDL.h>
 #include <SDL_image.h>
@@ -61,4 +61,4 @@ private:
 		void Cleanup();
 };
 
-#endif // EQ_H
+#endif // GAME_H
