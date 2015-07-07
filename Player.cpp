@@ -302,49 +302,49 @@ void Player::Input(Tile* tiles[])
 			SwimmingDown = false;
 			WalkingLeft = false;
 			WalkingRight = false;
-			if(keyState[SDL_SCANCODE_A])
+			if(keyState[SDL_SCANCODE_A] || keyState[SDL_SCANCODE_LEFT])
 			{
 				_state = state_walking;
 			}
-			if(keyState[SDL_SCANCODE_D])
+			if(keyState[SDL_SCANCODE_D] || keyState[SDL_SCANCODE_RIGHT])
 			{
 				_state = state_walking;
 			}
-			if(keyState[SDL_SCANCODE_S])
+			if(keyState[SDL_SCANCODE_S] || keyState[SDL_SCANCODE_DOWN])
 			{
 				_state = state_walking;
 			}
-			if(keyState[SDL_SCANCODE_W])
+			if(keyState[SDL_SCANCODE_W] || keyState[SDL_SCANCODE_UP])
 			{
 				_state = state_walking;
 			}
-			if(!keyState[SDL_SCANCODE_W])
+			if(!keyState[SDL_SCANCODE_W] || keyState[SDL_SCANCODE_UP])
 			{
 				canEnterDoor = true;
 			}
-			if(keyState[SDL_SCANCODE_L])
+			if(keyState[SDL_SCANCODE_L] || keyState[SDL_SCANCODE_SPACE])
 			{
 				_state = state_attacking;
 			}
-			if(!keyState[SDL_SCANCODE_L])
+			if(!keyState[SDL_SCANCODE_L] || keyState[SDL_SCANCODE_SPACE])
 			{
 				isAttacking = false;
 			}
-			if(keyState[SDL_SCANCODE_E])
+			if(keyState[SDL_SCANCODE_E] || keyState[SDL_SCANCODE_PERIOD])
 			{
 				this->SwitchWeapon(sword);
 			}
-			if(keyState[SDL_SCANCODE_Q])
+			if(keyState[SDL_SCANCODE_Q] || keyState[SDL_SCANCODE_COMMA])
 			{
 				this->SwitchWeapon(saw);
 			}
 			break;
 			
 		case state_walking:
-			if(keyState[SDL_SCANCODE_A])
+			if(keyState[SDL_SCANCODE_A] || keyState[SDL_SCANCODE_LEFT])
 			{
 				//To compensate fot verical movement
-				if(keyState[SDL_SCANCODE_W] || keyState[SDL_SCANCODE_S])
+				if(keyState[SDL_SCANCODE_W] || keyState[SDL_SCANCODE_S] || keyState[SDL_SCANCODE_UP] || keyState[SDL_SCANCODE_DOWN])
 				{
 					Xvel = -(swimmingSpeed/2);
 				}
@@ -358,10 +358,10 @@ void Player::Input(Tile* tiles[])
 				FacingRight = false;
 				FacingLeft = true;
 			}
-			else if(keyState[SDL_SCANCODE_D])
+			else if(keyState[SDL_SCANCODE_D] || keyState[SDL_SCANCODE_RIGHT])
 			{
 				//To compensate fot verical movement
-				if(keyState[SDL_SCANCODE_W] || keyState[SDL_SCANCODE_S])
+				if(keyState[SDL_SCANCODE_W] || keyState[SDL_SCANCODE_S] || keyState[SDL_SCANCODE_UP] || keyState[SDL_SCANCODE_DOWN])
 				{
 					Xvel = swimmingSpeed/2;
 				}
@@ -379,10 +379,10 @@ void Player::Input(Tile* tiles[])
 			{
 				_state = state_idle;
 			}
-			if (keyState[SDL_SCANCODE_W])
+			if (keyState[SDL_SCANCODE_W] || keyState[SDL_SCANCODE_UP])
 			{
 				//To compensate fot verical movement
-				if(keyState[SDL_SCANCODE_A] || keyState[SDL_SCANCODE_D])
+				if(keyState[SDL_SCANCODE_A] || keyState[SDL_SCANCODE_D] || keyState[SDL_SCANCODE_LEFT] || keyState[SDL_SCANCODE_RIGHT])
 				{
 					Yvel = -(swimmingSpeed/2);
 				}
@@ -394,10 +394,10 @@ void Player::Input(Tile* tiles[])
 				this->CheckObjects();
 				this->Move(up, tiles);
 			}
-			else if(keyState[SDL_SCANCODE_S])
+			else if(keyState[SDL_SCANCODE_S] || keyState[SDL_SCANCODE_DOWN])
 			{
 				//To compensate fot verical movement
-				if(keyState[SDL_SCANCODE_A] || keyState[SDL_SCANCODE_D])
+				if(keyState[SDL_SCANCODE_A] || keyState[SDL_SCANCODE_D] || keyState[SDL_SCANCODE_LEFT] || keyState[SDL_SCANCODE_RIGHT])
 				{
 					Yvel = swimmingSpeed/2;
 				}
@@ -413,22 +413,22 @@ void Player::Input(Tile* tiles[])
 			{
 				_state = state_idle;
 			}
-			if(keyState[SDL_SCANCODE_L])
+			if(keyState[SDL_SCANCODE_L] || keyState[SDL_SCANCODE_SPACE])
 			{
 				_state = state_attacking;
 			}
-			if(keyState[SDL_SCANCODE_E])
+			if(keyState[SDL_SCANCODE_E] || keyState[SDL_SCANCODE_PERIOD])
 			{
 				this->SwitchWeapon(sword);
 			}
-			if(keyState[SDL_SCANCODE_Q])
+			if(keyState[SDL_SCANCODE_Q] || keyState[SDL_SCANCODE_COMMA])
 			{
 				this->SwitchWeapon(saw);
 			}
 			break;
 			
 		case state_attacking:
-			if(keyState[SDL_SCANCODE_L])
+			if(keyState[SDL_SCANCODE_L] || keyState[SDL_SCANCODE_SPACE])
 			{
 				attack = true;
 				this->Attack();
