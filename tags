@@ -180,8 +180,8 @@ Hud	.\Hud.h	/^		Hud();$/;"	p	class:Hud	access:public	signature:()
 Hud	.\Hud.h	/^class Hud$/;"	c
 Hud::Hud	.\Hud.cpp	/^Hud::Hud()$/;"	f	class:Hud	signature:()
 Hud::Hud	.\Hud.h	/^		Hud();$/;"	p	class:Hud	access:public	signature:()
-Hud::Render	.\Hud.cpp	/^void Hud::Render(int health, int energy)$/;"	f	class:Hud	signature:(int health, int energy)
-Hud::Render	.\Hud.h	/^		void Render(int health, int energy);$/;"	p	class:Hud	access:public	signature:(int health, int energy)
+Hud::Render	.\Hud.cpp	/^void Hud::Render(SDL_Renderer* Renderer, int health, int energy)$/;"	f	class:Hud	signature:(SDL_Renderer* Renderer, int health, int energy)
+Hud::Render	.\Hud.h	/^		void Render(SDL_Renderer*, int health, int energy);$/;"	p	class:Hud	access:public	signature:(SDL_Renderer*, int health, int energy)
 Hud::energyRect	.\Hud.h	/^		SDL_Rect energyRect;$/;"	m	class:Hud	access:private
 Hud::healtRect	.\Hud.h	/^		SDL_Rect healtRect;$/;"	m	class:Hud	access:private
 Hud::~Hud	.\Hud.cpp	/^Hud::~Hud()$/;"	f	class:Hud	signature:()
@@ -281,6 +281,7 @@ Objects::RenderForeground	.\Objects.cpp	/^void Objects::RenderForeground(SDL_Ren
 Objects::RenderForeground	.\Objects.h	/^	void RenderForeground(SDL_Renderer* Renderer, SDL_Rect* camera, bool doorStatus, bool diverStatus, bool sawStatus, bool swordStatus);$/;"	p	class:Objects	access:public	signature:(SDL_Renderer* Renderer, SDL_Rect* camera, bool doorStatus, bool diverStatus, bool sawStatus, bool swordStatus)
 Objects::Update	.\Objects.cpp	/^void Objects::Update(int action)$/;"	f	class:Objects	signature:(int action)
 Objects::Update	.\Objects.h	/^	void Update(int action);$/;"	p	class:Objects	access:public	signature:(int action)
+Objects::boat	.\Objects.h	/^	SDL_Rect boat;$/;"	m	class:Objects	access:public
 Objects::chest	.\Objects.h	/^	SDL_Rect chest;$/;"	m	class:Objects	access:public
 Objects::diver	.\Objects.h	/^	SDL_Rect diver;$/;"	m	class:Objects	access:public
 Objects::diverHose	.\Objects.h	/^	SDL_Rect diverHose;$/;"	m	class:Objects	access:public
@@ -449,8 +450,8 @@ Render	.\Camera.cpp	/^void Camera::Render(SDL_Renderer* Renderer)$/;"	f	class:Ca
 Render	.\Camera.h	/^		void Render(SDL_Renderer* Renderer);$/;"	p	class:Camera	access:public	signature:(SDL_Renderer* Renderer)
 Render	.\Game.cpp	/^void Game::Render()$/;"	f	class:Game	signature:()
 Render	.\Game.h	/^		void Render();$/;"	p	class:Game	access:public	signature:()
-Render	.\Hud.cpp	/^void Hud::Render(int health, int energy)$/;"	f	class:Hud	signature:(int health, int energy)
-Render	.\Hud.h	/^		void Render(int health, int energy);$/;"	p	class:Hud	access:public	signature:(int health, int energy)
+Render	.\Hud.cpp	/^void Hud::Render(SDL_Renderer* Renderer, int health, int energy)$/;"	f	class:Hud	signature:(SDL_Renderer* Renderer, int health, int energy)
+Render	.\Hud.h	/^		void Render(SDL_Renderer*, int health, int energy);$/;"	p	class:Hud	access:public	signature:(SDL_Renderer*, int health, int energy)
 Render	.\Player.cpp	/^void Player::Render(SDL_Renderer* Renderer, SDL_Rect* camera)$/;"	f	class:Player	signature:(SDL_Renderer* Renderer, SDL_Rect* camera)
 Render	.\Player.h	/^		void Render(SDL_Renderer* Renderer, SDL_Rect* camera);$/;"	p	class:Player	access:public	signature:(SDL_Renderer* Renderer, SDL_Rect* camera)
 Render	.\Textures.cpp	/^void Textures::Render(SDL_Renderer* Renderer,int x ,int y, SDL_Rect* clip)$/;"	f	class:Textures	signature:(SDL_Renderer* Renderer,int x ,int y, SDL_Rect* clip)
@@ -631,6 +632,7 @@ attackEnergy	.\Player.h	/^		int attackEnergy;$/;"	m	class:Player	access:private
 avgFPS	.\Game.h	/^		float avgFPS;$/;"	m	class:Game	access:private
 block	.\Player.h	/^		bool block;$/;"	m	class:Player	access:private
 blockEnergy	.\Player.h	/^		int blockEnergy;$/;"	m	class:Player	access:private
+boat	.\Objects.h	/^	SDL_Rect boat;$/;"	m	class:Objects	access:public
 bottomA	.\Collision.h	/^		int bottomA, bottomB;$/;"	m	class:Collision	access:private
 bottomB	.\Collision.h	/^		int bottomA, bottomB;$/;"	m	class:Collision	access:private
 camera	.\Game.cpp	/^Camera camera;$/;"	v

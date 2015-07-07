@@ -24,7 +24,7 @@ public:
 	
 	void Cleanup();
 	
-	SDL_Rect ObjectClips[13];
+	SDL_Rect ObjectClips[14];
 	
 	SDL_Rect chest;
 	SDL_Rect door;
@@ -41,9 +41,10 @@ public:
 	SDL_Rect item_sawSprite;
 	SDL_Rect item_sword;
 	SDL_Rect item_swordSprite;
+	SDL_Rect boat;
 	
 	int framePlant;
-	
+	int frameBoat;
 	int frameHose;
 	int frameCounterHose;
 	int startFrameHose;

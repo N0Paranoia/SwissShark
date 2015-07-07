@@ -32,7 +32,8 @@ void Objects::InitObjects()
 	frameSwitch = 60;
 	
 	framePlant = 12;
-	
+	frameBoat = 14;
+
 	goingUp = false;
 	goingDown = true;
 	
@@ -86,6 +87,11 @@ void Objects::InitObjects()
 	plantSprite2.y = 1*TILE_SIZE;
 	plantSprite2.w = 2*TILE_SIZE;
 	plantSprite2.h = 2*TILE_SIZE;
+
+	boat.x = 8*TILE_SIZE;
+	boat.y = 0*TILE_SIZE;
+	boat.w = 10*TILE_SIZE;
+	boat.h = 3*TILE_SIZE;
 }
 
 int Objects::LoadMedia(SDL_Renderer* Renderer)
@@ -147,7 +153,7 @@ int Objects::LoadMedia(SDL_Renderer* Renderer)
 		ObjectClips[9].y = 9*TILE_SIZE;
 		ObjectClips[9].w = 2*TILE_SIZE;
 		ObjectClips[9].h = 4*TILE_SIZE;
-		// Diver sprite		
+		//Door sprite	
 		ObjectClips[10].x = 0*TILE_SIZE;
 		ObjectClips[10].y = 2*TILE_SIZE;
 		ObjectClips[10].w = TILE_SIZE;
@@ -157,16 +163,21 @@ int Objects::LoadMedia(SDL_Renderer* Renderer)
 		ObjectClips[11].y = 2*TILE_SIZE;
 		ObjectClips[11].w = TILE_SIZE;
 		ObjectClips[11].h = 2*TILE_SIZE;
-						
+		//plant sprite				
 		ObjectClips[12].x = 3*TILE_SIZE;
 		ObjectClips[12].y = 4*TILE_SIZE;
 		ObjectClips[12].w = 2*TILE_SIZE;
 		ObjectClips[12].h = 2*TILE_SIZE;
-		
+		//fishing rod sprite
 		ObjectClips[13].x = 0*TILE_SIZE; 
 		ObjectClips[13].y = 4*TILE_SIZE;
 		ObjectClips[13].w = 1*TILE_SIZE;
 		ObjectClips[13].h = 12*TILE_SIZE;
+		//fishing boat sprite
+		ObjectClips[14].x = 1*TILE_SIZE; 
+		ObjectClips[14].y = 13*TILE_SIZE;
+		ObjectClips[14].w = 10*TILE_SIZE;
+		ObjectClips[14].h = 3*TILE_SIZE;
 	}	
 	return true;
 }
@@ -309,6 +320,7 @@ void Objects::RenderBackground(SDL_Renderer* Renderer, SDL_Rect* camera, bool do
 	}
 	ItemSheetTexture.Render(Renderer, this->diverHose.x - camera->x, this->diverHose.y - camera->y, &ObjectClips[frameHose]);
 	ItemSheetTexture.Render(Renderer, this->diver.x - camera->x, this->diver.y - camera->y, &ObjectClips[frameDiver]);
+	ItemSheetTexture.Render(Renderer, this->boat.x - camera->x, this->boat.y - camera->y, &ObjectClips[frameBoat]);
 }
 
 void Objects::Cleanup()
