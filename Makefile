@@ -16,7 +16,7 @@ LIBRARY_PATHS = -LC:\Compilers\MinGw\lib
 # -Wl,-subsystem,windows gets rid of the console window
 CFLAGS = -w
 
-CXXFLAGS = -g -std=c++11 -Wall
+CXXFLAGS = -g -O0 -std=c++11 -Wall
 
 #LINKER_FLAGS specifies the libraries we're linking against
 LINKER_FLAGS = -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf

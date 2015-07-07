@@ -361,7 +361,6 @@ int Game::Execute()
 	return 0;
 }
 
-
 int main(int argc, char* argv[])
 {
 	Game EpicQuest;
