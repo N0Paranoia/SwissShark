@@ -14,7 +14,7 @@ LIBRARY_PATHS = -LC:\Compilers\MinGw\lib
 #COMPILER_FLAGS specifies the additional compilation options we're using
 # -w suppresses all warnings
 # -Wl,-subsystem,windows gets rid of the console window
-CFLAGS = -w
+CFLAGS = -w -static-libgcc -static-libstdc++
 
 CXXFLAGS = -g -O0 -std=c++11 -Wall
 

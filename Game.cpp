@@ -18,7 +18,6 @@ Camera camera;
 Objects objects;
 Tile* tileSet[TOTAL_TILES];
 
-
 Textures introScreenTexture1;
 Textures wallpaperTexture;
 Textures foregroundTexture;
@@ -346,7 +345,6 @@ int Game::Execute()
 
 	while(Running)
 	{
-
 		CAPtimer.Start();
 		while(SDL_PollEvent(&event))
 		{
